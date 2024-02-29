@@ -1,0 +1,13 @@
+vtan.ujep.cz/IS
+username: is
+password: ki
+PIN1-2012-2013
+github/JanBurle
+
+XML - značkovací jazyk, nemá je předdefinované, jako html
+- je jedno, v jakém pořadí napíši atributy.. krom 1. řádku
+1. řádek v každém XML souboru (ptá se u zkoušky a státnic): <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+                                                                  povinný       nepovinný        nepovinný
+Elementy např <rodina> může vypadat <_rodina>, <:rodina>.. ale nedoporučuje se to .... <URI:rodina> -> unikátní element -> nesmí se používat v obsahu ":"
+
+test test test

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE fakulta SYSTEM "fakulta.dtd">
+
+<fakulta děkan="">
+        <katedra zkratka_katedry="">
+            <vedoucí>
+                <jméno></jméno>
+                <telefon></telefon>
+                <email></email>
+            </vedoucí>
+            <zaměstnanci>
+                <zaměstnanec>
+                    <jméno></jméno>
+                    <telefon></telefon>
+                    <pozice>
+                    </pozice>
+                </zaměstnanec>
+            </zaměstnanci>
+            <předměty>
+            </předměty>
+        </katedra>
+</fakulta>

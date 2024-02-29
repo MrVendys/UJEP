@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<universita>
+    <fakulta jmeno="Přírodoveděcká">
+        <studenti forma="prezenční">
+            <student>
+                <jmeno>Vašek</jmeno>
+                <prijmeni>Pták</prijmeni>
+                <studentskeCislo>st00001</studentskeCislo>
+            </student>
+        </studenti>
+    </fakulta>
+</universita>
