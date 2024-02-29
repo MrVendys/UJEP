@@ -1,0 +1,90 @@
+{% extends "template.html" %}
+
+{% block subtitle %}
+Spells
+{% endblock %}
+
+{% block tittleofsite %}
+Spells Library
+{% endblock %}
+
+{% block main %}
+<h2>Spells</h2>
+
+<label for="lvl">Choose spell lvl:</label>
+
+<select class="form-select mb-3 w-25" onchange="val()" name="lvl" id="lvl">
+    <option value="cantrip">Cantrip</option>
+    <option value="lvl1">Lvl1</option>
+    <option value="lvl2">Lvl2</option>
+</select>
+
+<p id="selected-level"></p>
+
+<script>
+    var selectTag = document.getElementById('lvl');
+    var pTag = document.getElementById('selected-level');
+    val()
+    // pTag.innerText = selectTag.value;
+    function val() {
+        if (selectTag.value == "cantrip") {
+            pTag.innerHTML = `
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+        {% for spell in cantrips %}
+          <div class="col">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">{{ spell["name"] }}</h5>
+                <p class="card-text">{{ spell["school"] }}</p>
+                <p class="card-text">Range: {{ spell["range"] }}</p>
+              </div>
+              <div class="card-footer">
+                <small class="text-body-secondary">{{ spell["casting time"] }}</small>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+        </div>
+        `;
+        } else if (selectTag.value == "lvl1") {
+            pTag.innerHTML = `
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+        {% for spell in spellslvl1 %}
+          <div class="col">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">{{ spell["name"] }}</h5>
+                <p class="card-text">{{ spell["school"] }}</p>
+                <p class="card-text">Range: {{ spell["range"] }}</p>
+              </div>
+              <div class="card-footer">
+                <small class="text-body-secondary">{{ spell["casting time"] }}</small>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+        </div>
+        `;
+        } else if (selectTag.value == "lvl2") {
+            pTag.innerHTML = `
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+        {% for spell in spellslvl2 %}
+          <div class="col">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">{{ spell["name"] }}</h5>
+                <p class="card-text">{{ spell["school"] }}</p>
+                <p class="card-text">Range: {{ spell["range"] }}</p>
+              </div>
+              <div class="card-footer">
+                <small class="text-body-secondary">{{ spell["casting time"] }}</small>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+        </div>
+        `;
+        }
+    }
+</script>
+{% endblock %}

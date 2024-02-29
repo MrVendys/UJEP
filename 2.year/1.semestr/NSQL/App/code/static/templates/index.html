@@ -1,0 +1,44 @@
+{% extends "template.html" %}
+
+{% block subtitle %}
+Home
+{% endblock %}
+
+{% block tittleofsite %}
+Home
+{% endblock %}
+
+{% block main %}
+<div class="container">
+    <div class="row">
+        
+        <div class="col">
+            <h2>Character stats</h2>
+            <ul class="list-group w-50">
+                {% for stat in player["char_stats"]%}
+                <li style="text-transform: capitalize;"
+                    class="list-group-item d-flex justify-content-between align-items-center">
+                    <div class="ms-2 me-auto">
+                        <div class="fw-bold">{{stat}}</div>
+                        {{ player["char_stats"][stat]["stat"] }}
+                    </div>
+                    <span class="badge bg-primary rounded-pill">Bonus: {{ player["char_stats"][stat]["bonus"] }}</span>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="col">
+            <h2>Fighting stats</h2>
+            <ul class="list-group w-50">
+                {% for stat in player["fight_stats"]%}
+                <li style="text-transform: capitalize;"
+                    class="list-group-item d-flex justify-content-between align-items-center">
+                    <div class="ms-2 me-auto">
+                        <div class="fw-bold">{{stat}}</div>
+                        {{ player["fight_stats"][stat] }}
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

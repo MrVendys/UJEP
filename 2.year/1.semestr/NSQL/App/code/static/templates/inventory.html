@@ -1,0 +1,102 @@
+{% extends "template.html" %}
+
+{% block subtitle %}
+Inventory
+{% endblock %}
+
+{% block tittleofsite %}
+Inventory
+{% endblock %}
+
+{% block main %}
+
+<div>
+    <h2>Equipment</h2>
+    <!-- <ul>Weapons:
+        {% for weapon in weapons %}
+        <li>{{ weapon["name"] }} {{ weapon["dmg_dice"] }} {{ weapon["Properties"] }}</li>
+        {% endfor %}
+    </ul> -->
+    
+    <div class="d-flex justify-content-between">
+        <h3>Weapons</h3>
+        <button class="btn btn-outline-warning btn-sm" onclick="openDialog('cantrip')">...</button>
+    </div>
+    
+    <div class="row row-cols-1 row-cols-md-4 g-4" style="text-transform: capitalize;">
+        {% for weapon in weapons %}
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ weapon["name"] }}</h5>
+                    <p class="card-text">{{ weapon["dmg_dice"] }}</p>
+                </div>
+                <div class="card-footer">
+                    <small class="text-body-secondary">{{ weapon["Properties"][0] }} - {{ weapon["Properties"][1] }}</small>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    
+</div>
+
+<div class="overlay"></div>
+<div>
+    <dialog id="dialog" class="" style="position: absolute; top: 50%; transform: translate(0, -50%);">
+        <h2>Weapons</h2>
+        <div id="select-form"></div>
+    </dialog>
+</div>
+
+<script>
+    const dialog = document.getElementById('dialog');
+
+    function closeDialog(event) {
+        document.getElementsByClassName("overlay")[0].style.display = 'none';
+        document.body.style.overflow = 'auto';
+        dialog.style.display = 'none';
+    }
+    function openDialog(card_name) {
+        document.getElementsByClassName("overlay")[0].style.display = 'block';
+        document.getElementsByTagName("dialog")[0].style.display = 'block';
+        document.body.style.overflow = 'hidden';
+        val(card_name)
+    }
+
+    function submitUpdate() {
+        document.getElementById("Form").submit();
+    }
+
+    var pTag = document.getElementById('select-form');
+    var selectTag = document.getElementById('lvl');
+
+    pTag.innerText = selectTag.value;
+    // Update the inner HTML of the pTag
+    //Print each weapon from the weaponlist and creating a checkbox for each weapon
+    function val() {
+            pTag.innerHTML = `
+        <form action="/inventory" method="post" id="Form">
+            <h3>Weapons</h3>
+            <div class="list_items mb-1">
+            {% set ids = weapons|map(attribute='id')|list %}
+            {% for weapon in weapon_list %}
+
+                <div class="mb-1" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });">
+                    <input type="hidden" name="weapons" value="weapon_{{ loop.index }}">
+                    <input class="btn-check" autocomplete="off" type="checkbox" id="weapon_{{ loop.index }}" name="weapons" value="{{ weapon["id"] }}" {% if weapon["id"] in ids %} checked {% endif %}>
+                    <label class="btn list_item" style="text-transform: capitalize" for="weapon_{{ loop.index }}">
+                        <div class="fw-bold">{{ weapon["name"] }}</div>
+                        Damage: {{ weapon["dmg_dice"] }}<br>
+                        {{ weapon["Properties"][0] }} -  {{ weapon["Properties"][1] }}</label>
+                </div>
+            {% endfor %}
+        </div>
+        <button class="btn btn-outline-danger" type="button" onclick="closeDialog()">Close</button>
+        <button class="btn btn-outline-primary" type="button" onclick="submitUpdate()">Update</button>
+        </form>      
+        `;
+        
+    }
+</script>
+{% endblock %}

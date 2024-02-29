@@ -1,0 +1,190 @@
+{% extends "template.html" %}
+
+{% block subtitle %}
+My Spells
+{% endblock %}
+
+{% block tittleofsite %}
+My Spells
+{% endblock %}
+
+{%block main%}
+
+<div>
+    <h2>Players spells</h2>
+    <div class="row">
+        <div class="col-sm-6 mb-3 mb-sm-0">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between mb-1">
+                        <h5 class="card-title">Cantrips</h5>
+                        <button class="btn btn-outline-warning btn-sm" onclick="openDialog('cantrip')">...</button>
+                    </div>
+                    <ol class="list-group list-group-numbered">
+                        {% for spell in cantrips %}
+                        <li class="list-group-item d-flex justify-content-between align-items-start">
+                            <div class="ms-2 me-auto">
+                                <div class="fw-bold">{{ spell["name"] }}</div>
+                                ({{ spell["school"] }}) <br>
+                                Range: {{ spell["range"] }}
+                            </div>
+                            <span class="badge bg-primary rounded-pill">{{ spell["casting time"] }}</span>
+                        </li>
+                        {% endfor %}
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 mb-3 mb-sm-0">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between mb-1">
+                        <h5 class="card-title">Level 1 spells</h5>
+                        <button class="btn btn-outline-warning btn-sm" onclick="openDialog('lvl1')">...</button>
+                    </div>
+                    <ol class="list-group list-group-numbered">
+                        {% for spell in spellslvl1 %}
+                        <li class="list-group-item d-flex justify-content-between align-items-start">
+                            <div class="ms-2 me-auto">
+                                <div class="fw-bold">{{ spell["name"] }}</div>
+                                ({{ spell["school"] }}) <br>
+                                Range: {{ spell["range"] }}
+                            </div>
+                            <span class="badge bg-primary rounded-pill">{{ spell["casting time"] }}</span>
+                        </li>
+                        {% endfor %}
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 mb-3 mb-sm-0">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between mb-1">
+                        <h5 class="card-title">Level 2 spells</h5>
+                        <button class="btn btn-outline-warning btn-sm" onclick="openDialog('lvl2')">...</button>
+                    </div>
+                    <ol class="list-group list-group-numbered">
+                        {% for spell in spellslvl2 %}
+                        <li class="list-group-item d-flex justify-content-between align-items-start">
+                            <div class="ms-2 me-auto">
+                                <div class="fw-bold">{{ spell["name"] }}</div>
+                                ({{ spell["school"] }}) <br>
+                                Range: {{ spell["range"] }}
+                            </div>
+                            <span class="badge bg-primary rounded-pill">{{ spell["casting time"] }}</span>
+                        </li>
+                        {% endfor %}
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="overlay"></div>
+    <div>
+        <dialog id="dialog" class="" style="position: absolute; top: 50%; transform: translate(0, -50%);">
+            <h2>Spells</h2>
+            <div id="select-form"></div>
+        </dialog>
+    </div>
+</div>
+
+<script>
+    const dialog = document.getElementById('dialog');
+
+    function closeDialog(event) {
+        document.getElementsByClassName("overlay")[0].style.display = 'none';
+        document.body.style.overflow = 'auto';
+        dialog.style.display = 'none';
+    }
+    function openDialog(card_name) {
+        document.getElementsByClassName("overlay")[0].style.display = 'block';
+        document.getElementsByTagName("dialog")[0].style.display = 'block';
+        document.body.style.overflow = 'hidden';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        val(card_name)
+    }
+
+    function submitUpdate() {
+        document.getElementById("spellForm").submit();
+    }
+
+    var pTag = document.getElementById('select-form');
+    var selectTag = document.getElementById('lvl');
+
+    pTag.innerText = selectTag.value;
+
+    // Update the inner HTML of the pTag based on the card_name
+    //Print each spell list and creating a checkbox for each spell
+    function val(card_name) {
+        if (card_name == "cantrip") {
+            pTag.innerHTML = `
+        <form action="/my_spells" method="post" id="spellForm">
+            <h3>Cantrips</h3>
+            <div class="list_items mb-1">
+            {% set splcn_ids = cantrips|map(attribute='id')|list %}
+            {% for spell in spells_list[0] %}
+
+                <div class="mb-1" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });">
+                    <input type="hidden" name="cantrips" value="spell_{{ loop.index }}">
+                    <input class="btn-check" autocomplete="off" type="checkbox" id="spell_{{ loop.index }}" name="cantrips" value="{{ spell["id"] }}" {% if spell["id"] in splcn_ids %} checked {% endif %}>
+                    <label class="btn list_item" for="spell_{{ loop.index }}">
+                        <div class="fw-bold">{{ spell["name"] }} ({{ spell["school"] }})</div>
+                    Range: {{ spell["range"] }}</label>
+                </div>
+            
+            {% endfor %}
+            </div>
+            <div class="list_btn">
+                <button class="btn btn-outline-danger" type="button" onclick="closeDialog()">Close</button>
+                <button class="btn btn-outline-primary" type="button" onclick="submitUpdate()">Update</button>
+            </div>
+        </form>      
+            
+            `;
+        } else if (card_name == "lvl1") {
+            pTag.innerHTML = `
+            <form action="/my_spells" method="post" id="spellForm">
+            <h3>Spells lvl 1</h3>
+            <div class="list_items mb-1">
+            {% set splcn_ids = spellslvl1|map(attribute='id')|list %}
+            {% for spell in spells_list[1] %}
+                <div class="mb-1" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });">
+                    <input type="hidden" name="spellslvl1" value="spell_{{ loop.index }}">
+                    <input class="btn-check" autocomplete="off" type="checkbox" id="spell_{{ loop.index }}" name="spellslvl1" value="{{ spell["id"] }}" {% if spell["id"] in splcn_ids %} checked {% endif %}>
+                    <label class="btn list_item" for="spell_{{ loop.index }}">
+                        <div class="fw-bold">{{ spell["name"] }} ({{ spell["school"] }})</div>
+                    Range: {{ spell["range"] }}</label>
+                </div>
+            {% endfor %}
+            </div>
+            <button class="btn btn-outline-danger" type="button" onclick="closeDialog()">Close</button>
+            <button class="btn btn-outline-primary" type="button" onclick="submitUpdate()">Update</button>
+        </form>  
+            
+            `;
+        } else if (card_name == "lvl2") {
+            pTag.innerHTML = `
+            <form action="/my_spells" method="post" id="spellForm">
+            <h3>Spells lvl 2</h3>
+            <div class="list_items mb-1">
+            {% set splcn_ids = spellslvl2|map(attribute='id')|list %}
+            {% for spell in spells_list[2] %}
+                <div class="mb-1" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });">
+                    <input type="hidden" name="spellslvl2" value="spell_{{ loop.index }}">
+                    <input class="btn-check" autocomplete="off" type="checkbox" id="spell_{{ loop.index }}" name="spellslvl2" value="{{ spell["id"] }}" {% if spell["id"] in splcn_ids %} checked {% endif %}>
+                    <label class="btn list_item" for="spell_{{ loop.index }}">
+                        <div class="fw-bold">{{ spell["name"] }} ({{ spell["school"] }})</div>
+                    Range: {{ spell["range"] }}</label>
+                </div>
+            {% endfor %}
+            </div>
+            <button class="btn btn-outline-danger" type="button" onclick="closeDialog()">Close</button>
+            <button class="btn btn-outline-primary" type="button" onclick="submitUpdate()">Update</button>
+        </form>  `;
+        }
+    }
+</script>
+
+{% endblock %}
