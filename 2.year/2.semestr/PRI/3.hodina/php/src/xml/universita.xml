@@ -1,0 +1,21 @@
+<universita>
+    <fakulta jmeno="">
+        <děkan></děkan>
+        <katedra jmeno="" vedouci=" "><katedra>
+        <zamestnanec jmeno="" telefon="" email="">
+            <titul></titul>
+            <pozice></pozice>
+            <plat></plat>
+        </zamestnanec>
+        <student jmeno="" prijmeni="" email="">
+            <cislo></cislo>
+            <studijni_rok></studijni_rok>
+            <rozvrh>
+                <predmet></predmet>
+            </rozvrh>
+            <splenen_predmety>
+                <predmet></predmet>
+            </splenen_predmety>
+        </student>
+    </fakulta>
+</universita>
