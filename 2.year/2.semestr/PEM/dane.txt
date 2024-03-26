@@ -5,7 +5,7 @@ přispíváme na hrazení nevýdělečných služeb (zdravotnictví, doprava, ku
 Přímé:
     Zdaněním příjmů nebo majetku
         Daň z příjmu - 15% z příjmu do 3násobku roční průměrné mzdy, poté 23% 
-        Daň silniční
+        Daň silniční - u osobních aut závisí na objemu motoru
         Daň z nemovitosti
         Daň dědická a darovací
         Daň z převodu nemovitosti
