@@ -1,0 +1,14 @@
+universita {
+    display: table;
+    background-color: palegoldenrod;
+    border: thin solid grey;
+  }
+  
+  student {
+    display: table-row;
+  }
+
+  jmeno, primeni, studentskeCislo {
+    display: table-cell;
+  }
+  
