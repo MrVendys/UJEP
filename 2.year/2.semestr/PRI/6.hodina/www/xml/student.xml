@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--<?xml-stylesheet type="text/css" href="student.css"?> -->
+<?xml-stylesheet type="text/css" href="student.xls"?>
+<universita>
+    <fakulta jmeno="Přírodoveděcká">
+        <studenti forma="prezenční">
+            <student>
+                <jmeno>Vašek</jmeno>
+                <prijmeni>Pták</prijmeni>
+                <studentskeCislo>st00001</studentskeCislo>
+            </student>
+            <student>
+                <jmeno>Radek</jmeno>
+                <prijmeni>Šmejkal</prijmeni>
+                <studentskeCislo>st00002</studentskeCislo>
+            </student>
+            <student>
+                <jmeno>Martin</jmeno>
+                <prijmeni>Formánek</prijmeni>
+                <studentskeCislo>st00003</studentskeCislo>
+            </student>
+        </studenti>
+    </fakulta>
+</universita>

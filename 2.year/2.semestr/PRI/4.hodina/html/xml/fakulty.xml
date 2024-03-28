@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faculties xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="faculties.xsd">
+    <faculty>
+        <name>Faculty of Engineering</name>
+        <dean>Prof. Ing. Martin Novák, CSc.</dean>
+        <departments>
+            <department>
+                <name>Department of Mechanical Engineering</name>
+                <head>Prof. Ing. Petr Kovář, DrSc.</head>
+                <employees>
+                    <employee>
+                        <name>Anna</name>
+                        <surname>Novotná</surname>
+                        <position>Assistant Professor</position>
+                        <contact>anna.novotna@facultyengineering.cz</contact>
+                        <titles>
+                            <title>Ing.</title>
+                            <title>Ph.D.</title>
+                        </titles>
+                    </employee>
+                    <employee>
+                        <name>Martin</name>
+                        <surname>Novák</surname>
+                        <position>Research Assistant</position>
+                        <contact>martin.novak@facultyengineering.cz</contact>
+                        <titles>
+                            <title>Ing.</title>
+                        </titles>
+                    </employee>
+                </employees>
+            </department>
+            <department>
+                <name>Department of Electrical Engineering</name>
+                <head>Prof. Ing. Kateřina Svobodová, CSc.</head>
+                <employees>
+                    <employee>
+                        <name>Petr</name>
+                        <surname>Novotný</surname>
+                        <position>Associate Professor</position>
+                        <contact>petr.novotny@facultyengineering.cz</contact>
+                        <titles>
+                            <title>Ing.</title>
+                            <title>Ph.D.</title>
+                        </titles>
+                    </employee>
+                    <employee>
+                        <name>Lucie</name>
+                        <surname>Kovářová</surname>
+                        <position>Researcher</position>
+                        <contact>lucie.kovarova@facultyengineering.cz</contact>
+                        <titles>
+                            <title>Ph.D.</title>
+                        </titles>
+                    </employee>
+                </employees>
+            </department>
+        </departments>
+    </faculty>
+    <!-- Add more faculties with departments here -->
+    <faculty>
+        <name>Faculty of Business Administration</name>
+        <dean>Prof. Mgr. Jan Nový, Ph.D.</dean>
+        <departments>
+            <department>
+                <name>Department of Finance</name>
+                <head>Prof. Mgr. Kateřina Nováková, Ph.D.</head>
+                <employees>
+                    <employee>
+                        <name>Tomáš</name>
+                        <surname>Kovář</surname>
+                        <position>Assistant Professor</position>
+                        <contact>tomas.kovar@facultybusiness.cz</contact>
+                        <titles>
+                            <title>Mgr.</title>
+                            <title>Ph.D.</title>
+                        </titles>
+                    </employee>
+                    <employee>
+                        <name>Pavel</name>
+                        <surname>Novák</surname>
+                        <position>Associate Professor</position>
+                        <contact>pavel.novak@facultybusiness.cz</contact>
+                        <titles>
+                            <title>Mgr.</title>
+                            <title>Ph.D.</title>
+                        </titles>
+                    </employee>
+                </employees>
+            </department>
+            <department>
+                <name>Department of Marketing</name>
+                <head>Prof. Mgr. Eva Svobodová, Ph.D.</head>
+                <employees>
+                    <employee>
+                        <name>Marie</name>
+                        <surname>Nováková</surname>
+                        <position>Research Assistant</position>
+                        <contact>marie.novakova@facultybusiness.cz</contact>
+                        <titles>
+                            <title>Mgr.</title>
+                            <title>Ph.D.</title>
+                        </titles>
+                    </employee>
+                    <employee>
+                        <name>Petr</name>
+                        <surname>Novotný</surname>
+                        <position>Associate Professor</position>
+                        <contact>petr.novotny@facultybusiness.cz</contact>
+                        <titles>
+                            <title>Mgr.</title>
+                            <title>Ph.D.</title>
+                        </titles>
+                    </employee>
+                </employees>
+            </department>
+        </departments>
+    </faculty>
+    <faculty>
+        <name>Faculty of Arts</name>
+        <dean>Prof. PhDr. Marie Nováková, DrSc.</dean>
+        <departments>
+            <department>
+                <name>Department of Literature</name>
+                <head>Prof. PhDr. Jan Kovář, DrSc.</head>
+                <employees>
+                    <employee>
+                        <name>Lucie</name>
+                        <surname>Novotná</surname>
+                        <position>Associate Professor</position>
+                        <contact>lucie.novotna@facultyarts.cz</contact>
+                        <titles>
+                            <title>PhDr.</title>
+                            <title>DrSc.</title>
+                        </titles>
+                    </employee>
+                    <employee>
+                        <name>Pavel</name>
+                        <surname>Novák</surname>
+                        <position>Assistant Professor</position>
+                        <contact>pavel.novak@facultyarts.cz</contact>
+                        <titles>
+                            <title>PhDr.</title>
+                        </titles>
+                    </employee>
+                </employees>
+            </department>
+            <department>
+                <name>Department of Fine Arts</name>
+                <head>Prof. Mgr. Kateřina Kovářová, DrSc.</head>
+                <employees>
+                    <employee>
+                        <name>Tomáš</name>
+                        <surname>Kovář</surname>
+                        <position>Professor</position>
+                        <contact>tomas.kovar@facultyarts.cz</contact>
+                        <titles>
+                            <title>Mgr.</title>
+                            <title>DrSc.</title>
+                        </titles>
+                    </employee>
+                    <employee>
+                        <name>Eva</name>
+                        <surname>Nováková</surname>
+                        <position>Research Assistant</position>
+                        <contact>eva.novakova@facultyarts.cz</contact>
+                        <titles>
+                            <title>Mgr.</title>
+                        </titles>
+                    </employee>
+                </employees>
+            </department>
+        </departments>
+    </faculty>
+    <faculty>
+        <name>Faculty of Science</name>
+        <dean>Prof. RNDr. Jiří Nový, DrSc.</dean>
+        <departments>
+            <department>
+                <name>Department of Biology</name>
+                <head>Prof. RNDr. Petr Novák, DrSc.</head>
+                <employees>
+                    <employee>
+                        <name>Martin</name>
+                        <surname>Novotný</surname>
+                        <position>Associate Professor</position>
+                        <contact>martin.novotny@facultyscience.cz</contact>
+                        <titles>
+                            <title>RNDr.</title>
+                            <title>DrSc.</title>
+                        </titles>
+                    </employee>
+                    <employee>
+                        <name>Kateřina</name>
+                        <surname>Nováková</surname>
+                        <position>Assistant Professor</position>
+                        <contact>katerina.novakova@facultyscience.cz</contact>
+                        <titles>
+                            <title>RNDr.</title>
+                        </titles>
+                    </employee>
+                </employees>
+            </department>
+            <department>
+                <name>Department of Physics</name>
+                <head>Prof. RNDr. Jan Kovář, DrSc.</head>
+                <employees>
+                    <employee>
+                        <name>Petr</name>
+                        <surname>Novák</surname>
+                        <position>Professor</position>
+                        <contact>petr.novak@facultyscience.cz</contact>
+                        <titles>
+                            <title>RNDr.</title>
+                            <title>DrSc.</title>
+                        </titles>
+                    </employee>
+                    <employee>
+                        <name>Lucie</name>
+                        <surname>Nováková</surname>
+                        <position>Research Assistant</position>
+                        <contact>lucie.novakova@facultyscience.cz</contact>
+                        <titles>
+                            <title>RNDr.</title>
+                        </titles>
+                    </employee>
+                </employees>
+            </department>
+        </departments>
+    </faculty>
+</faculties>

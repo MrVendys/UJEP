@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="faculties">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="faculty" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="faculty">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="name"/>
+                <xs:element ref="dean"/>
+                <xs:element ref="departments"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="name" type="xs:string"/>
+    <xs:element name="dean" type="xs:string"/>
+
+    <xs:element name="departments">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="department" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="department">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="name"/>
+                <xs:element ref="head"/>
+                <xs:element ref="employees"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="head" type="xs:string"/>
+
+    <xs:element name="employees">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="employee" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="employee">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="name"/>
+                <xs:element ref="surname"/>
+                <xs:element ref="position"/>
+                <xs:element ref="contact"/>
+                <xs:element ref="titles"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="surname" type="xs:string"/>
+    <xs:element name="position" type="xs:string"/>
+    <xs:element name="contact" type="xs:string"/>
+
+    <xs:element name="titles">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="title" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="title" type="xs:string"/>
+</xs:schema>

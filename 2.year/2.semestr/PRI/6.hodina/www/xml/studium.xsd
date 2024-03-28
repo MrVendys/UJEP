@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <!-- Definition of simple types with restrictions -->
+  <xs:simpleType name="cisloType">
+    <xs:restriction base="xs:integer">
+      <xs:minInclusive value="1"/>
+      <xs:maxInclusive value="3"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="nazevType">
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+
+  <xs:simpleType name="emailType">
+    <xs:restriction base="xs:string">
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="telefonType">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="\d{9}"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Complex type for vyucujici -->
+  <xs:complexType name="vyucujiciType">
+    <xs:sequence>
+      <xs:element name="jmeno" type="xs:string"/>
+      <xs:element name="email" type="emailType"/>
+      <xs:element name="telefon" type="telefonType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- Complex type for predmet -->
+  <xs:complexType name="predmetType">
+    <xs:sequence>
+      <xs:element name="nazev" type="nazevType"/>
+      <xs:element name="vyucujici" type="vyucujiciType"/>
+      <xs:element name="kredity" type="xs:integer"/>
+      <xs:element name="status" type="xs:string"/>
+      <xs:element name="zakonceni" type="xs:string"/>
+    </xs:sequence>
+    <xs:attribute name="katedra" type="xs:string" use="required"/>
+    <xs:attribute name="kod" type="xs:string" use="required"/>
+  </xs:complexType>
+
+  <!-- Complex type for semestr -->
+  <xs:complexType name="semestrType">
+    <xs:sequence>
+      <xs:element name="predmet" type="predmetType" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="nazev" type="xs:string" use="required"/>
+  </xs:complexType>
+
+  <!-- Complex type for rocnik -->
+  <xs:complexType name="rocnikType">
+    <xs:sequence>
+      <xs:element name="semestr" type="semestrType" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="cislo" type="cisloType" use="required"/>
+  </xs:complexType>
+
+  <!-- Root element -->
+  <xs:element name="studium">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="rocnik" type="rocnikType" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>

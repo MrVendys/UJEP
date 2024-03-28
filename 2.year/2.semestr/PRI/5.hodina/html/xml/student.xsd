@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="students">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="student" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="student">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="name"/>
+                <xs:element ref="surname"/>
+                <xs:element ref="faculty"/>
+                <xs:element ref="student_id"/>
+                <xs:element ref="email"/>
+                <xs:element ref="academic_year"/>
+                <xs:element ref="courses"/>
+                <xs:element ref="address"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="name" type="xs:string"/>
+    <xs:element name="surname" type="xs:string"/>
+    <xs:element name="faculty" type="xs:string"/>
+    <xs:element name="student_id" type="xs:string"/>
+    <xs:element name="email" type="xs:string"/>
+    <xs:element name="academic_year" type="xs:integer"/>
+
+    <xs:element name="courses">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="course" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="course">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:string">
+                    <xs:attribute name="completed" type="xs:integer" use="required"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="address">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="street"/>
+                <xs:element ref="town"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="street" type="xs:string"/>
+    <xs:element name="town" type="xs:string"/>
+</xs:schema>
