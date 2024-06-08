@@ -1,0 +1,17 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<form method="post">
+    <div class="text-center">
+        <div><input type="text" name="text" placeholder="Enter plain-text"/></div>
+        <div><input type="text" name="key" placeholder="Enter secret-key" min="8" max="56" /></div>
+
+        <div><input type="submit" /></div>
+
+        <label>@Model.hashText</label>
+
+    </div>
+</form>
