@@ -13,3 +13,17 @@ C:\Users\vasik\Projects\UJEP\2.year\2.semestr\ZKR\ZKR_code\ZKR_code\obj\Debug\ne
 C:\Users\vasik\Projects\UJEP\2.year\2.semestr\ZKR\ZKR_code\ZKR_code\obj\Debug\net6.0\ZKR_code.pdb
 C:\Users\vasik\Projects\UJEP\2.year\2.semestr\ZKR\ZKR_code\ZKR_code\obj\Debug\net6.0\ZKR_code.genruntimeconfig.cache
 C:\Users\vasik\Projects\UJEP\2.year\2.semestr\ZKR\ZKR_code\ZKR_code\obj\Debug\net6.0\ref\ZKR_code.dll
+C:\Users\Venca\Projects\UJEP\UJEP\2.year\2.semestr\ZKR\ZKR_code\ZKR_code\obj\Debug\net6.0\ZKR_code.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Venca\Projects\UJEP\UJEP\2.year\2.semestr\ZKR\ZKR_code\ZKR_code\obj\Debug\net6.0\ZKR_code.AssemblyInfoInputs.cache
+C:\Users\Venca\Projects\UJEP\UJEP\2.year\2.semestr\ZKR\ZKR_code\ZKR_code\obj\Debug\net6.0\ZKR_code.AssemblyInfo.cs
+C:\Users\Venca\Projects\UJEP\UJEP\2.year\2.semestr\ZKR\ZKR_code\ZKR_code\obj\Debug\net6.0\ZKR_code.csproj.CoreCompileInputs.cache
+C:\Users\Venca\Projects\UJEP\UJEP\2.year\2.semestr\ZKR\ZKR_code\ZKR_code\obj\Debug\net6.0\ZKR_code.dll
+C:\Users\Venca\Projects\UJEP\UJEP\2.year\2.semestr\ZKR\ZKR_code\ZKR_code\obj\Debug\net6.0\refint\ZKR_code.dll
+C:\Users\Venca\Projects\UJEP\UJEP\2.year\2.semestr\ZKR\ZKR_code\ZKR_code\obj\Debug\net6.0\ZKR_code.pdb
+C:\Users\Venca\Projects\UJEP\UJEP\2.year\2.semestr\ZKR\ZKR_code\ZKR_code\bin\Debug\net6.0\ZKR_code.exe
+C:\Users\Venca\Projects\UJEP\UJEP\2.year\2.semestr\ZKR\ZKR_code\ZKR_code\bin\Debug\net6.0\ZKR_code.deps.json
+C:\Users\Venca\Projects\UJEP\UJEP\2.year\2.semestr\ZKR\ZKR_code\ZKR_code\bin\Debug\net6.0\ZKR_code.runtimeconfig.json
+C:\Users\Venca\Projects\UJEP\UJEP\2.year\2.semestr\ZKR\ZKR_code\ZKR_code\bin\Debug\net6.0\ZKR_code.dll
+C:\Users\Venca\Projects\UJEP\UJEP\2.year\2.semestr\ZKR\ZKR_code\ZKR_code\bin\Debug\net6.0\ZKR_code.pdb
+C:\Users\Venca\Projects\UJEP\UJEP\2.year\2.semestr\ZKR\ZKR_code\ZKR_code\obj\Debug\net6.0\ZKR_code.genruntimeconfig.cache
+C:\Users\Venca\Projects\UJEP\UJEP\2.year\2.semestr\ZKR\ZKR_code\ZKR_code\obj\Debug\net6.0\ref\ZKR_code.dll

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Index</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100">
+    <header class="pt-4 bg-white">
+        <div class="container mx-auto flex justify-between items-center px-4">
+            <div class="text-2xl font-bold">
+                <a href="#" class="text-gray-800">Projekt 8</a>
+            </div>
+        </div>
+        <hr class="mt-4 border-green-500">
+    </header>
+
+    <div class="px-4 text-left">
+        <table id="books" class="w-full border-collapse border bg-white border-gray-200 mt-4">
+            <thead class="text-xl text-center">
+                <tr>
+                <tr>
+                    <th class="px-4 py-2 border-r border-b border-b-2 font-bold">Title</th>
+                    <th class="px-4 py-2 border-r border-b border-b-2 font-bold">Author</th>
+                    <th class="px-4 py-2 border-r border-b border-b-2 font-bold">Characters</th>
+                    <th class="px-4 py-2 w-1/2 border-b border-b-2 font-bold">Description</th>
+                </tr>
+                </tr>
+            </thead>
+            <tbody id="booksBody" class="divide-y divide-gray-200">
+
+            </tbody>
+        </table>
+    </div>
+
+    <div id="hint" class="mt-2 text-gray-600 text-center">Press "r" to recreate the table</div>
+
+    <script>
+        function createCell(textContent) {
+            var cell = document.createElement("td");
+            cell.textContent = textContent;
+            cell.classList.add("p-4");
+            cell.classList.add("border-r")
+            cell.addEventListener("click", function () {
+                this.classList.toggle("bg-red-200");
+            });
+            return cell;
+        }
+
+        function createRow(nazev, autor, postavy, popis) {
+            var row = document.createElement("tr");
+            row.addEventListener("dblclick", function () {
+                this.remove();
+            });
+            row.addEventListener("mouseover", function () {
+                this.classList.add("bg-blue-200");
+            });
+
+            row.addEventListener("mouseout", function () {
+                this.classList.remove("bg-blue-200");
+            });
+            row.appendChild(createCell(nazev));
+            row.appendChild(createCell(autor));
+
+            var charactersCell = createCell("-");
+            if (postavy.length > 0) {
+                var characterNames = [];
+                var postavaElements = postavy[0].getElementsByTagName("postava");
+                for (var j = 0; j < postavaElements.length; j++) {
+                    characterNames.push(postavaElements[j].textContent);
+                }
+                charactersCell.textContent = characterNames.join(", ");
+            }
+            row.appendChild(charactersCell);
+
+
+
+            var descriptionCell = createCell(popis || "-");
+            row.appendChild(descriptionCell);
+
+            return row;
+        }
+
+        function createTable(xml) {
+            var xmlDoc = xml.responseXML;
+            var tableBody = document.getElementById("booksBody");
+
+            // Loop through each <kniha> element
+            var knihy = xmlDoc.getElementsByTagName("kniha");
+            for (var i = 0; i < knihy.length; i++) {
+                var kniha = knihy[i];
+                var nazev = kniha.getElementsByTagName("nazev")[0].textContent;
+                var autor = kniha.getElementsByTagName("autor")[0].textContent;
+                var postavy = kniha.getElementsByTagName("postavy");
+                var popis = kniha.getElementsByTagName("popis")[0] ?
+                    kniha.getElementsByTagName("popis")[0].textContent : "";
+
+                // Create a new row and append it to the table body
+                var row = createRow(nazev, autor, postavy, popis);
+                tableBody.appendChild(row);
+            }
+
+            alignTableCells();
+        }
+
+        // Function to align cells containing "-" text content
+        function alignTableCells() {
+            var cells = document.querySelectorAll("#books td");
+            cells.forEach(function (cell) {
+                if (cell.textContent == "-") {
+                    cell.classList.add("text-center");
+                }
+            });
+        }
+
+        // Fetch XML data
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                createTable(this);
+            }
+        };
+        xhttp.open("GET", "../xml/knihy.xml", true);
+        xhttp.send();
+
+        document.addEventListener("keydown", function (event) {
+            if (event.key === "r") {
+                var tableBody = document.getElementById("booksBody");
+                tableBody.innerHTML = "";
+
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        createTable(this);
+                    }
+                };
+                xhttp.open("GET", "../xml/knihy.xml", true);
+                xhttp.send();
+            }
+        });
+
+
+    </script>
+
+</body>
+
+</html>

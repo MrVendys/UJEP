@@ -1,0 +1,11 @@
+services:
+  # PHP and Apache, described in Dockerfile
+  php-apache:
+    container_name: php-apache
+    build:
+      context: .
+      dockerfile: Dockerfiles/PhpApache
+    volumes:
+      - ./www:/var/www/
+    ports:
+      - 8000:80

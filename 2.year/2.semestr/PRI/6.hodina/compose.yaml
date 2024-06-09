@@ -1,7 +1,7 @@
 services:
   php-apache: 
     build:
-      dockerfile: Dockerfiles/PhpApache
+      dockerfile: Dockerfiles/Dockerfile
     volumes:
       - ./www:/var/www
     ports:

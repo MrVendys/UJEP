@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 using System.Net.Security;
@@ -21,7 +22,7 @@ namespace ZKR_code
         0x9216D5D9, 0x8979FB1B
 };
         private uint[] Sbox0 = new uint[]{
-    0xd1310ba6, 0x98dfb5ac, 0x2ffd72db, 0xd01adfb7, 0xb8e1afed, 0x6a267e96,
+     0xd1310ba6, 0x98dfb5ac, 0x2ffd72db, 0xd01adfb7, 0xb8e1afed, 0x6a267e96,
     0xba7c9045, 0xf12c7f99, 0x24a19947, 0xb3916cf7, 0x0801f2e2, 0x858efc16,
     0x636920d8, 0x71574e69, 0xa458fea3, 0xf4933d7e, 0x0d95748f, 0x728eb658,
     0x718bcd58, 0x82154aee, 0x7b54a41d, 0xc25a59b5, 0x9c30d539, 0x2af26013,
@@ -40,7 +41,30 @@ namespace ZKR_code
     0xe06f75d8, 0x85c12073, 0x401a449f, 0x56c16aa6, 0x4ed3aa62, 0x363f7706,
     0x1bfedf72, 0x429b023d, 0x37d0d724, 0xd00a1248, 0xdb0fead3, 0x49f1c09b,
     0x075372c9, 0x80991b7b, 0x25d479d8, 0xf6e8def7, 0xe3fe501a, 0xb6794c3b,
-    0x976ce0bd, 0x04c006ba, 0xc1a94fb6,
+    0x976ce0bd, 0x04c006ba, 0xc1a94fb6, 0x409f60c4, 0x5e5c9ec2, 0x196a2463,
+    0x68fb6faf, 0x3e6c53b5, 0x1339b2eb, 0x3b52ec6f, 0x6dfc511f, 0x9b30952c,
+    0xcc814544, 0xaf5ebd09, 0xbee3d004, 0xde334afd, 0x660f2807, 0x192e4bb3,
+    0xc0cba857, 0x45c8740f, 0xd20b5f39, 0xb9d3fbdb, 0x5579c0bd, 0x1a60320a,
+    0xd6a100c6, 0x402c7279, 0x679f25fe, 0xfb1fa3cc, 0x8ea5e9f8, 0xdb3222f8,
+    0x3c7516df, 0xfd616b15, 0x2f501ec8, 0xad0552ab, 0x323db5fa, 0xfd238760,
+    0x53317b48, 0x3e00df82, 0x9e5c57bb, 0xca6f8ca0, 0x1a87562e, 0xdf1769db,
+    0xd542a8f6, 0x287effc3, 0xac6732c6, 0x8c4f5573, 0x695b27b0, 0xbbca58c8,
+    0xe1ffa35d, 0xb8f011a0, 0x10fa3d98, 0xfd2183b8, 0x4afcb56c, 0x2dd1d35b,
+    0x9a53e479, 0xb6f84565, 0xd28e49bc, 0x4bfb9790, 0xe1ddf2da, 0xa4cb7e33,
+    0x62fb1341, 0xcee4c6e8, 0xef20cada, 0x36774c01, 0xd07e9efe, 0x2bf11fb4,
+    0x95dbda4d, 0xae909198, 0xeaad8e71, 0x6b93d5a0, 0xd08ed1d0, 0xafc725e0,
+    0x8e3c5b2f, 0x8e7594b7, 0x8ff6e2fb, 0xf2122b64, 0x8888b812, 0x900df01c,
+    0x4fad5ea0, 0x688fc31c, 0xd1cff191, 0xb3a8c1ad, 0x2f2f2218, 0xbe0e1777,
+    0xea752dfe, 0x8b021fa1, 0xe5a0cc0f, 0xb56f74e8, 0x18acf3d6, 0xce89e299,
+    0xb4a84fe0, 0xfd13e0b7, 0x7cc43b81, 0xd2ada8d9, 0x165fa266, 0x80957705,
+    0x93cc7314, 0x211a1477, 0xe6ad2065, 0x77b5fa86, 0xc75442f5, 0xfb9d35cf,
+    0xebcdaf0c, 0x7b3e89a0, 0xd6411bd3, 0xae1e7e49, 0x00250e2d, 0x2071b35e,
+    0x226800bb, 0x57b8e0af, 0x2464369b, 0xf009b91e, 0x5563911d, 0x59dfa6aa,
+    0x78c14389, 0xd95a537f, 0x207d5ba2, 0x02e5b9c5, 0x83260376, 0x6295cfa9,
+    0x11c81968, 0x4e734a41, 0xb3472dca, 0x7b14a94a, 0x1b510052, 0x9a532915,
+    0xd60f573f, 0xbc9bc6e4, 0x2b60a476, 0x81e67400, 0x08ba6fb5, 0x571be91f,
+    0xf296ec6b, 0x2a0dd915, 0xb6636521, 0xe7b9f9b6, 0xff34052e, 0xc5855664,
+    0x53b02d5d, 0xa99f8fa1, 0x08ba4799, 0x6e85076a
     };
 
         private uint[] Sbox1 = new uint[]{
@@ -179,37 +203,154 @@ namespace ZKR_code
         public uint[,] S2;
         public uint[,] S3;
 
+
         byte[] key;
         byte[] dataToEncrypt;
-        byte[][] chunks;
+        string plainText = "HiWorldd";
+        byte[] hash;
+       
         public void Do()
         {
-            key = System.Text.Encoding.UTF8.GetBytes("mysecret"); 
-            dataToEncrypt = System.Text.Encoding.UTF8.GetBytes("HiWorldd");
-            //System.Diagnostics.Debug.WriteLine("Key:" + key);
-            if(key.Length % 2 == 1) key = AddPadding(key, 8);
-            foreach (var item in key)
-            {
-                //System.Diagnostics.Debug.WriteLine(item);
-            }
-            byte[] hexBytes = BitConverter.GetBytes(PArray[0]);
+            key = System.Text.Encoding.UTF8.GetBytes("mysecret");
+            dataToEncrypt = System.Text.Encoding.UTF8.GetBytes(plainText);
+            if(key.Length % 8 == 1) key = AddPadding(key, 2);
 
-            byte[] result = new byte[4];
-
-            for (int k = 0; k < PArray.Length; k++)
-            {
-                for (int j = 0; j < chunks.Length; j++)
-                {
-                    for (int i = 0; i < 4; i++)
-                    {
-                        result[i] = (byte)(hexBytes[i] ^ chunks[j][i]);
-                    }
-
-                }
-
-            }
             
 
+            BlowFish();
+            Decription();
+
+        }
+        public void GenerateKeys(bool encrypt)
+        {
+            int keyIndex = 0;
+            if (encrypt)
+            {
+                for (int i = 0; i < PArray.Length; i++)
+                {
+                    uint data = 0;
+                    for (int j = 0; j < 4; j++)
+                    {
+                        data = (data << 8) | key[keyIndex];
+                        keyIndex = (keyIndex + 1) % key.Length;
+                    }
+                    P[i] ^= data;
+                }
+            }
+        }
+        public void BlowFish()
+        {
+            GenerateKeys(true);
+            byte[][] roundResult = SplitString(dataToEncrypt, 2);
+            byte[] finalResult = new byte[8];
+
+            for (int r = 0; r < 16; r++)
+            {
+                roundResult = Round(BitConverter.GetBytes(PArray[r]), roundResult);
+                System.Diagnostics.Debug.WriteLine($"Round number {r}:" );
+                System.Diagnostics.Debug.WriteLine("First 32bit:");
+                System.Diagnostics.Debug.WriteLine(Convert.ToHexString(roundResult[0]));
+                System.Diagnostics.Debug.WriteLine("Second 32bit:");
+                System.Diagnostics.Debug.WriteLine(Convert.ToHexString(roundResult[1]) + "\n");
+
+            }
+
+            roundResult[0] = xor(roundResult[1], BitConverter.GetBytes(PArray[17]));
+            roundResult[1] = xor(roundResult[0], BitConverter.GetBytes(PArray[16]));
+            /*for (int i = 0; i < result[0].Length; i++)
+            {
+                // Perform the addition with modular wrap-around for 32-bit unsigned integers
+                var a = result[0][i] + result[1][i];
+                f
+                finalResult[i+1] = a;
+
+            }
+            */
+            roundResult[0].CopyTo(finalResult,0);
+            roundResult[1].CopyTo(finalResult,4);
+
+            hash = finalResult;
+            System.Diagnostics.Debug.WriteLine("Hash :" + Convert.ToHexString(finalResult));
+        }
+        public void Decription()
+        {
+            byte[][] roundResult = SplitString(hash, 2);
+            byte[] finalResult = new byte[8];
+
+            for (int r = PArray.Length-1; r > 1; r--)
+            {
+
+                roundResult = Round(BitConverter.GetBytes(PArray[r]), roundResult);
+                System.Diagnostics.Debug.WriteLine($"Round number {r}:");
+                System.Diagnostics.Debug.WriteLine("First 32bit:");
+                System.Diagnostics.Debug.WriteLine(Convert.ToHexString(roundResult[0]));
+                System.Diagnostics.Debug.WriteLine("Second 32bit:");
+                System.Diagnostics.Debug.WriteLine(Convert.ToHexString(roundResult[1]) + "\n");
+
+            }
+
+            roundResult[0] = xor(roundResult[1], BitConverter.GetBytes(PArray[0]));
+            roundResult[1] = xor(roundResult[0], BitConverter.GetBytes(PArray[1]));
+            /*for (int i = 0; i < result[0].Length; i++)
+            {
+                // Perform the addition with modular wrap-around for 32-bit unsigned integers
+                var a = result[0][i] + result[1][i];
+                f
+                finalResult[i+1] = a;
+
+            }
+            */
+            roundResult[0].CopyTo(finalResult, 0);
+            roundResult[1].CopyTo(finalResult, 4);
+
+
+            System.Diagnostics.Debug.WriteLine("Plain-text :" + System.Text.Encoding.UTF8.GetString(finalResult));
+        }
+        public byte[] xor(byte[] a, byte[] b)
+        {
+            byte[] result = new byte[4];
+            for (int i = 0; i < 4; i++)
+            {
+                result[i] = (byte)(a[i] ^ b[i]);
+            }
+            return result;
+        }
+        public byte[][] Round(byte[] hexBytes, byte[][] chunks2)
+        {
+            
+            
+            /*byte[] result = new byte[4];
+            for (int i = 0; i < 4; i++)
+            {
+                result[i] = (byte)(hexBytes[i] ^ chunks2[0][i]);
+            }
+            */
+            byte[][] RoundResult = new byte[2][];
+            RoundResult[1] = chunks2[0];
+            RoundResult[0] = xor(F(xor(hexBytes, chunks2[0])), chunks2[1]);
+            return RoundResult;
+
+        }
+        public uint ModularAdd(uint a, uint b)
+        {
+
+            return ((uint)((a + b) % Math.Pow(2,32)));
+        }
+        public byte[] F(byte[] result)
+        {
+            byte[][] chunks = SplitString(result, 4);
+            uint[] SboxValue = new uint[4];
+            List<uint[]> Sboxes = new List<uint[]>
+            {
+                Sbox0, Sbox1, Sbox2, Sbox3
+        };
+            for (int i = 0; i < 4; i++)
+            {
+
+                SboxValue[i] = Sboxes[i][chunks[i][0]];
+            }
+
+            return BitConverter.GetBytes(ModularAdd((ModularAdd(SboxValue[0],SboxValue[1]) ^ SboxValue[2]),SboxValue[3]));
         }
         public byte[] AddPadding(byte[] data, int blockSize)
         {
@@ -222,24 +363,25 @@ namespace ZKR_code
             }
             return paddedData;
         }
-        public void SplitString()
+        public byte[][] SplitString(byte[] data, int size)
         {
 
             // Calculate the number of chunks
-            int chunkSize = 4; // 32 bits = 4 bytes
-            int numberOfChunks = (dataToEncrypt.Length + chunkSize - 1) / chunkSize;
+            int chunkSize = data.Length / size; // 32 bits = 4 bytes
+            int numberOfChunks = size;
 
             // Create an array to hold the chunks
-            chunks = new byte[numberOfChunks][];
+            byte[][] chunks = new byte[numberOfChunks][];
 
             // Split the byte array into 4-byte chunks
             for (int i = 0; i < numberOfChunks; i++)
             {
                 int start = i * chunkSize;
-                int length = Math.Min(chunkSize, dataToEncrypt.Length - start);
+                int length = Math.Min(chunkSize, data.Length - start);
                 chunks[i] = new byte[length];
-                Array.Copy(dataToEncrypt, start, chunks[i], 0, length);
+                Array.Copy(data, start, chunks[i], 0, length);
             }
+            return chunks;
         }
     }
 }
