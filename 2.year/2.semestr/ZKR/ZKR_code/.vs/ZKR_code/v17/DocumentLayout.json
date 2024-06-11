@@ -1,14 +1,18 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\vasik\\Projects\\UJEP\\2.year\\2.semestr\\ZKR\\ZKR_code\\",
+  "WorkspaceRootPath": "C:\\Users\\Venca\\Projects\\UJEP\\UJEP\\2.year\\2.semestr\\ZKR\\ZKR_code\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{81C80C6E-6608-49FA-9257-8D78835EF2FB}|ZKR_code\\ZKR_code.csproj|c:\\users\\vasik\\projects\\ujep\\2.year\\2.semestr\\zkr\\zkr_code\\zkr_code\\code.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{81C80C6E-6608-49FA-9257-8D78835EF2FB}|ZKR_code\\ZKR_code.csproj|solutionrelative:zkr_code\\code.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{81C80C6E-6608-49FA-9257-8D78835EF2FB}|ZKR_code\\ZKR_code.csproj|c:\\users\\venca\\projects\\ujep\\ujep\\2.year\\2.semestr\\zkr\\zkr_code\\zkr_code\\chat_code.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{81C80C6E-6608-49FA-9257-8D78835EF2FB}|ZKR_code\\ZKR_code.csproj|solutionrelative:zkr_code\\chat_code.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{81C80C6E-6608-49FA-9257-8D78835EF2FB}|ZKR_code\\ZKR_code.csproj|c:\\users\\vasik\\projects\\ujep\\2.year\\2.semestr\\zkr\\zkr_code\\zkr_code\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{81C80C6E-6608-49FA-9257-8D78835EF2FB}|ZKR_code\\ZKR_code.csproj|c:\\users\\venca\\projects\\ujep\\ujep\\2.year\\2.semestr\\zkr\\zkr_code\\zkr_code\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{81C80C6E-6608-49FA-9257-8D78835EF2FB}|ZKR_code\\ZKR_code.csproj|solutionrelative:zkr_code\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{81C80C6E-6608-49FA-9257-8D78835EF2FB}|ZKR_code\\ZKR_code.csproj|c:\\users\\venca\\projects\\ujep\\ujep\\2.year\\2.semestr\\zkr\\zkr_code\\zkr_code\\code.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{81C80C6E-6608-49FA-9257-8D78835EF2FB}|ZKR_code\\ZKR_code.csproj|solutionrelative:zkr_code\\code.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -23,12 +27,25 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "chat_code.cs",
+              "DocumentMoniker": "C:\\Users\\Venca\\Projects\\UJEP\\UJEP\\2.year\\2.semestr\\ZKR\\ZKR_code\\ZKR_code\\chat_code.cs",
+              "RelativeDocumentMoniker": "ZKR_code\\chat_code.cs",
+              "ToolTip": "C:\\Users\\Venca\\Projects\\UJEP\\UJEP\\2.year\\2.semestr\\ZKR\\ZKR_code\\ZKR_code\\chat_code.cs",
+              "RelativeToolTip": "ZKR_code\\chat_code.cs",
+              "ViewState": "AQIAAEsBAAAAAAAAAAAuwGkBAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-10T11:16:35.165Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "Code.cs",
-              "DocumentMoniker": "C:\\Users\\vasik\\Projects\\UJEP\\2.year\\2.semestr\\ZKR\\ZKR_code\\ZKR_code\\Code.cs",
+              "DocumentMoniker": "C:\\Users\\Venca\\Projects\\UJEP\\UJEP\\2.year\\2.semestr\\ZKR\\ZKR_code\\ZKR_code\\Code.cs",
               "RelativeDocumentMoniker": "ZKR_code\\Code.cs",
-              "ToolTip": "C:\\Users\\vasik\\Projects\\UJEP\\2.year\\2.semestr\\ZKR\\ZKR_code\\ZKR_code\\Code.cs",
+              "ToolTip": "C:\\Users\\Venca\\Projects\\UJEP\\UJEP\\2.year\\2.semestr\\ZKR\\ZKR_code\\ZKR_code\\Code.cs",
               "RelativeToolTip": "ZKR_code\\Code.cs",
-              "ViewState": "AQIAALoAAAAAKDMzM3MtwNMAAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAANMAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-08T09:36:09.644Z",
               "EditorCaption": ""
@@ -37,11 +54,11 @@
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\vasik\\Projects\\UJEP\\2.year\\2.semestr\\ZKR\\ZKR_code\\ZKR_code\\Program.cs",
+              "DocumentMoniker": "C:\\Users\\Venca\\Projects\\UJEP\\UJEP\\2.year\\2.semestr\\ZKR\\ZKR_code\\ZKR_code\\Program.cs",
               "RelativeDocumentMoniker": "ZKR_code\\Program.cs",
-              "ToolTip": "C:\\Users\\vasik\\Projects\\UJEP\\2.year\\2.semestr\\ZKR\\ZKR_code\\ZKR_code\\Program.cs",
+              "ToolTip": "C:\\Users\\Venca\\Projects\\UJEP\\UJEP\\2.year\\2.semestr\\ZKR\\ZKR_code\\ZKR_code\\Program.cs",
               "RelativeToolTip": "ZKR_code\\Program.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAARAAAA",
+              "ViewState": "AQIAABAAAAAAAAAAAAAowB0AAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-08T09:33:34.377Z",
               "EditorCaption": ""

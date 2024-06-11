@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ZKR_code")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9e59da0d099a10e3b686ae3e2a75fd3b1c1c23b0")]
 [assembly: System.Reflection.AssemblyProductAttribute("ZKR_code")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ZKR_code")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

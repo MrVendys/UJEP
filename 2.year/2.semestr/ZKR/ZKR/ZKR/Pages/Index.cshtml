@@ -4,14 +4,40 @@
     ViewData["Title"] = "Home page";
 }
 
-<form method="post">
-    <div class="text-center">
-        <div><input type="text" name="text" placeholder="Enter plain-text"/></div>
-        <div><input type="text" name="key" placeholder="Enter secret-key" min="8" max="56" /></div>
+<div class="container mt-5">
+    <div class="form-container">
+        <form method="post" class="text-center">
+            <div class="form-group">
+                <label for="plaintext" class="sr-only">Plaintext</label>
+                <input type="text" class="form-control" id="plaintext" name="plaintext" placeholder="Enter plain-text" />
+            </div>
+            <div class="form-group">
+                <label for="EncryptedText" class="sr-only">Encrypted Text</label>
+                <input type="text" class="form-control" id="EncryptedText" name="EncryptedText" placeholder="Enter hash-text" />
+            </div>
+            <div class="form-group">
+                <label for="key" class="sr-only">Secret Key</label>
+                <input type="text" class="form-control" id="key" name="key" placeholder="Enter secret-key" minlength="8" maxlength="56" />
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-block" name="action" value="Encrypt">Encrypt</button>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-secondary btn-block" name="action" value="Decrypt">Decrypt</button>
+            </div>
 
-        <div><input type="submit" /></div>
-
-        <label>@Model.hashText</label>
-
+            <div class="mt-4">
+                <label class="font-weight-bold">PlainText:</label>
+                <p>@Model.PlainText</p>
+            </div>
+            <div class="mt-2">
+                <label class="font-weight-bold">HashText:</label>
+                <p>@Model.EncryptedText</p>
+            </div>
+            <div class="mt-2">
+                <label class="font-weight-bold">Decrypted Text:</label>
+                <p>@Model.DecryptedText</p>
+            </div>
+        </form>
     </div>
-</form>
+</div>

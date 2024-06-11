@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
+using System.Text;
 
 namespace ZKR_code // Note: actual namespace depends on the project name.
 {
@@ -20,7 +21,19 @@ namespace ZKR_code // Note: actual namespace depends on the project name.
             System.Diagnostics.Debug.WriteLine("Plaintext: " + plaintext);
 
             byte[] encrypted = ch.Encrypt(plaintext);
-            System.Diagnostics.Debug.WriteLine("Encrypted: " + BitConverter.ToString(encrypted).Replace("-", " "));
+            var encryptedText = BitConverter.ToString(encrypted).Replace("-","");
+            System.Diagnostics.Debug.WriteLine("Encrypted: " + encryptedText);
+
+
+
+
+            byte[] bytes = new byte[encryptedText.Length / 2];
+            for (int i = 0; i < encryptedText.Length; i += 2)
+            {
+                bytes[i / 2] = Convert.ToByte(encryptedText.Substring(i, 2), 16);
+            }
+
+
 
             string decrypted = ch.Decrypt(encrypted);
             System.Diagnostics.Debug.WriteLine("Decrypted: " + decrypted);

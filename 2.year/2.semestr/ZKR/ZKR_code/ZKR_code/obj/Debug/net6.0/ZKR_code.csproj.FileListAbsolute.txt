@@ -27,3 +27,4 @@ C:\Users\Venca\Projects\UJEP\UJEP\2.year\2.semestr\ZKR\ZKR_code\ZKR_code\bin\Deb
 C:\Users\Venca\Projects\UJEP\UJEP\2.year\2.semestr\ZKR\ZKR_code\ZKR_code\bin\Debug\net6.0\ZKR_code.pdb
 C:\Users\Venca\Projects\UJEP\UJEP\2.year\2.semestr\ZKR\ZKR_code\ZKR_code\obj\Debug\net6.0\ZKR_code.genruntimeconfig.cache
 C:\Users\Venca\Projects\UJEP\UJEP\2.year\2.semestr\ZKR\ZKR_code\ZKR_code\obj\Debug\net6.0\ref\ZKR_code.dll
+C:\Users\Venca\Projects\UJEP\UJEP\2.year\2.semestr\ZKR\ZKR_code\ZKR_code\obj\Debug\net6.0\ZKR_code.sourcelink.json

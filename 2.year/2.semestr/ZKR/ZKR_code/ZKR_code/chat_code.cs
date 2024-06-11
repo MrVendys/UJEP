@@ -9,8 +9,6 @@ namespace ZKR_code
 {
     internal class chat_code
     {
-
-        private const int P_ARRAY_SIZE = 18;
         private const int S_BOX_SIZE = 256;
 
 
@@ -195,7 +193,7 @@ namespace ZKR_code
 
         private void InitializeArrays()
         {
-            for (int i = 0; i < P_ARRAY_SIZE; i++)
+            for (int i = 0; i < P_ORIG.Length; i++)
             {
                 P[i] = P_ORIG[i];
             }
@@ -212,7 +210,7 @@ namespace ZKR_code
         {
             int keyIndex = 0;
 
-            for (int i = 0; i < P_ARRAY_SIZE; i++)
+            for (int i = 0; i < P_ORIG.Length; i++)
             {
                 uint data = 0;
                 for (int j = 0; j < 4; j++)
@@ -225,7 +223,7 @@ namespace ZKR_code
 
             uint L = 0, R = 0;
 
-            for (int i = 0; i < P_ARRAY_SIZE; i += 2)
+            for (int i = 0; i < P_ORIG.Length; i += 2)
             {
                 uint[] encrypted = EncryptBlock(L, R);
                 L = encrypted[0];

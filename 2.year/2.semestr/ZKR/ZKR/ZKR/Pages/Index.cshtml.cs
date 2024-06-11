@@ -1,23 +1,25 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.DataProtection.KeyManagement;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Text;
 
 namespace ZKR.Pages
 {
     public class IndexModel : PageModel
     {
-        private string plainText;
-        private byte[] secretKey;
-        public string hashText;
-        private readonly uint[] PArray = new uint[]
-   {
+        private const int S_BOX_SIZE = 256;
+
+
+        private static readonly uint[] P_ORIG = {
         0x243F6A88, 0x85A308D3, 0x13198A2E, 0x03707344,
         0xA4093822, 0x299F31D0, 0x082EFA98, 0xEC4E6C89,
         0x452821E6, 0x38D01377, 0xBE5466CF, 0x34E90C6C,
         0xC0AC29B7, 0xC97C50DD, 0x3F84D5B5, 0xB5470917,
         0x9216D5D9, 0x8979FB1B
-   };
-        private uint[] Sbox0 = new uint[]{
-    0xd1310ba6, 0x98dfb5ac, 0x2ffd72db, 0xd01adfb7, 0xb8e1afed, 0x6a267e96,
+    };
+
+        private static readonly uint[,] S_ORIG = {
+        { 0xd1310ba6, 0x98dfb5ac, 0x2ffd72db, 0xd01adfb7, 0xb8e1afed, 0x6a267e96,
     0xba7c9045, 0xf12c7f99, 0x24a19947, 0xb3916cf7, 0x0801f2e2, 0x858efc16,
     0x636920d8, 0x71574e69, 0xa458fea3, 0xf4933d7e, 0x0d95748f, 0x728eb658,
     0x718bcd58, 0x82154aee, 0x7b54a41d, 0xc25a59b5, 0x9c30d539, 0x2af26013,
@@ -36,11 +38,31 @@ namespace ZKR.Pages
     0xe06f75d8, 0x85c12073, 0x401a449f, 0x56c16aa6, 0x4ed3aa62, 0x363f7706,
     0x1bfedf72, 0x429b023d, 0x37d0d724, 0xd00a1248, 0xdb0fead3, 0x49f1c09b,
     0x075372c9, 0x80991b7b, 0x25d479d8, 0xf6e8def7, 0xe3fe501a, 0xb6794c3b,
-    0x976ce0bd, 0x04c006ba, 0xc1a94fb6,
-    };
-
-        private uint[] Sbox1 = new uint[]{
-    0x4b7a70e9, 0xb5b32944, 0xdb75092e, 0xc4192623, 0xad6ea6b0, 0x49a7df7d,
+    0x976ce0bd, 0x04c006ba, 0xc1a94fb6, 0x409f60c4, 0x5e5c9ec2, 0x196a2463,
+    0x68fb6faf, 0x3e6c53b5, 0x1339b2eb, 0x3b52ec6f, 0x6dfc511f, 0x9b30952c,
+    0xcc814544, 0xaf5ebd09, 0xbee3d004, 0xde334afd, 0x660f2807, 0x192e4bb3,
+    0xc0cba857, 0x45c8740f, 0xd20b5f39, 0xb9d3fbdb, 0x5579c0bd, 0x1a60320a,
+    0xd6a100c6, 0x402c7279, 0x679f25fe, 0xfb1fa3cc, 0x8ea5e9f8, 0xdb3222f8,
+    0x3c7516df, 0xfd616b15, 0x2f501ec8, 0xad0552ab, 0x323db5fa, 0xfd238760,
+    0x53317b48, 0x3e00df82, 0x9e5c57bb, 0xca6f8ca0, 0x1a87562e, 0xdf1769db,
+    0xd542a8f6, 0x287effc3, 0xac6732c6, 0x8c4f5573, 0x695b27b0, 0xbbca58c8,
+    0xe1ffa35d, 0xb8f011a0, 0x10fa3d98, 0xfd2183b8, 0x4afcb56c, 0x2dd1d35b,
+    0x9a53e479, 0xb6f84565, 0xd28e49bc, 0x4bfb9790, 0xe1ddf2da, 0xa4cb7e33,
+    0x62fb1341, 0xcee4c6e8, 0xef20cada, 0x36774c01, 0xd07e9efe, 0x2bf11fb4,
+    0x95dbda4d, 0xae909198, 0xeaad8e71, 0x6b93d5a0, 0xd08ed1d0, 0xafc725e0,
+    0x8e3c5b2f, 0x8e7594b7, 0x8ff6e2fb, 0xf2122b64, 0x8888b812, 0x900df01c,
+    0x4fad5ea0, 0x688fc31c, 0xd1cff191, 0xb3a8c1ad, 0x2f2f2218, 0xbe0e1777,
+    0xea752dfe, 0x8b021fa1, 0xe5a0cc0f, 0xb56f74e8, 0x18acf3d6, 0xce89e299,
+    0xb4a84fe0, 0xfd13e0b7, 0x7cc43b81, 0xd2ada8d9, 0x165fa266, 0x80957705,
+    0x93cc7314, 0x211a1477, 0xe6ad2065, 0x77b5fa86, 0xc75442f5, 0xfb9d35cf,
+    0xebcdaf0c, 0x7b3e89a0, 0xd6411bd3, 0xae1e7e49, 0x00250e2d, 0x2071b35e,
+    0x226800bb, 0x57b8e0af, 0x2464369b, 0xf009b91e, 0x5563911d, 0x59dfa6aa,
+    0x78c14389, 0xd95a537f, 0x207d5ba2, 0x02e5b9c5, 0x83260376, 0x6295cfa9,
+    0x11c81968, 0x4e734a41, 0xb3472dca, 0x7b14a94a, 0x1b510052, 0x9a532915,
+    0xd60f573f, 0xbc9bc6e4, 0x2b60a476, 0x81e67400, 0x08ba6fb5, 0x571be91f,
+    0xf296ec6b, 0x2a0dd915, 0xb6636521, 0xe7b9f9b6, 0xff34052e, 0xc5855664,
+    0x53b02d5d, 0xa99f8fa1, 0x08ba4799, 0x6e85076a }, // shortened for brevity
+        { 0x4b7a70e9, 0xb5b32944, 0xdb75092e, 0xc4192623, 0xad6ea6b0, 0x49a7df7d,
     0x9cee60b8, 0x8fedb266, 0xecaa8c71, 0x699a17ff, 0x5664526c, 0xc2b19ee1,
     0x193602a5, 0x75094c29, 0xa0591340, 0xe4183a3e, 0x3f54989a, 0x5b429d65,
     0x6b8fe4d6, 0x99f73fd6, 0xa1d29c07, 0xefe830f5, 0x4d2d38e6, 0xf0255dc1,
@@ -82,12 +104,8 @@ namespace ZKR.Pages
     0xe8efd855, 0x61d99735, 0xa969a7aa, 0xc50c06c2, 0x5a04abfc, 0x800bcadc,
     0x9e447a2e, 0xc3453484, 0xfdd56705, 0x0e1e9ec9, 0xdb73dbd3, 0x105588cd,
     0x675fda79, 0xe3674340, 0xc5c43465, 0x713e38d8, 0x3d28f89e, 0xf16dff20,
-    0x153e21e7, 0x8fb03d4a, 0xe6e39f2b, 0xdb83adf7
-};
-
-
-        private uint[] Sbox2 = {
-    0xe93d5a68, 0x948140f7, 0xf64c261c, 0x94692934, 0x411520f7, 0x7602d4f7, 0xbcf46b2e, 0xd4a20068,
+    0x153e21e7, 0x8fb03d4a, 0xe6e39f2b, 0xdb83adf7 },
+        { 0xe93d5a68, 0x948140f7, 0xf64c261c, 0x94692934, 0x411520f7, 0x7602d4f7, 0xbcf46b2e, 0xd4a20068,
     0xd4082471, 0x3320f46a, 0x43b7d4b7, 0x500061af, 0x1e39f62e, 0x97244546, 0x14214f74, 0xbf8b8840,
     0x4d95fc1d, 0x96b591af, 0x70f4ddd3, 0x66a02f45, 0xbfbc09ec, 0x03bd9785, 0x7fac6dd0, 0x31cb8504,
     0x96eb27b3, 0x55fd3941, 0xda2547e6, 0xabca0a9a, 0x28507825, 0x530429f4, 0x0a2c86da, 0xe9b66dfb,
@@ -118,11 +136,8 @@ namespace ZKR.Pages
     0x11e69ed7, 0x2338ea63, 0x53c2dd94, 0xc2c21634, 0xbbcbee56, 0x90bcb6de, 0xebfc7da1, 0xce591d76,
     0x6f05e409, 0x4b7c0188, 0x39720a3d, 0x7c927c24, 0x86e3725f, 0x724d9db9, 0x1ac15bb4, 0xd39eb8fc,
     0xed545578, 0x08fca5b5, 0xd83d7cd3, 0x4dad0fc4, 0x1e50ef5e, 0xb161e6f8, 0xa28514d9, 0x6c51133c,
-    0x6fd5c7e7, 0x56e14ec4, 0x362abfce, 0xddc6c837, 0xd79a3234, 0x92638212, 0x670efa8e, 0x406000e0};
-
-
-        private uint[] Sbox3 = {
-0x3a39ce37, 0xd3faf5cf, 0xabc27737, 0x5ac52d1b, 0x5cb0679e, 0x4fa33742,
+    0x6fd5c7e7, 0x56e14ec4, 0x362abfce, 0xddc6c837, 0xd79a3234, 0x92638212, 0x670efa8e, 0x406000e0},
+        { 0x3a39ce37, 0xd3faf5cf, 0xabc27737, 0x5ac52d1b, 0x5cb0679e, 0x4fa33742,
 0xd3822740, 0x99bc9bbe, 0xd5118e9d, 0xbf0f7315, 0xd62d1c7e, 0xc700c47b,
 0xb78c1b6b, 0x21a19045, 0xb26eb1be, 0x6a366eb4, 0x5748ab2f, 0xbc946e79,
 0xc6a376d2, 0x6549c2c8, 0x530ff8ee, 0x468dde7d, 0xd5730a1d, 0x4cd04dc6,
@@ -164,59 +179,223 @@ namespace ZKR.Pages
 0x38abbd60, 0x2547adf0, 0xba38209c, 0xf746ce76, 0x77afa1c5, 0x20756060,
 0x85cbfe4e, 0x8ae88dd8, 0x7aaaf9b0, 0x4cf9aa7e, 0x1948c25c, 0x02fb8a8c,
 0x01c36ae4, 0xd6ebe1f9, 0x90d4f869, 0xa65cdea0, 0x3f09252d, 0xc208e69f,
-0xb74e6132, 0xce77e25b, 0x578fdfe3, 0x3ac372e6};
+0xb74e6132, 0xce77e25b, 0x578fdfe3, 0x3ac372e6 }
+    };
+        private uint[] P = new uint[18];
+        private uint[,] S = new uint[4, 256];
 
+        [BindProperty]
+        public string PlainText { get; set; }
 
-        // Subkeys initialisation with digits of pi.
+        [BindProperty]
+        public string Key { get; set; }
 
-        public uint[] P = new uint[18];
-        public uint[,] S0;
-        public uint[,] S1;
-        public uint[,] S2;
-        public uint[,] S3;
-
-
-        public void OnPost(string text, string key)
+        [BindProperty]
+        public string EncryptedText { get; set; }
+        [BindProperty]
+        public string DecryptedText { get; set; }
+        private bool padding = false;
+        public void OnPost()
         {
+            InitializeArrays();
+            KeySchedule(Encoding.UTF8.GetBytes(Key));
+            var action = Request.Form["action"];
 
-            plainText = text;
-            secretKey = System.Text.Encoding.UTF8.GetBytes(key);
-            for (int i = 0; i < 10; i++)
+            if (action == "Encrypt")
             {
-                System.Diagnostics.Debug.WriteLine(PArray[i]);
-
+                Encrypt();
             }
-            System.Diagnostics.Debug.WriteLine("Secret ----------------");
-            for (int i = 0; i < 10; i++)
+            else if (action == "Decrypt")
             {
-                System.Diagnostics.Debug.WriteLine(secretKey[i]);
-
-            }
-        }
-        public void Blowfish()
-        {
-            // Copy initial P-array and S-boxes
-            Array.Copy(PArray, P, PArray.Length);
-            Array.Copy(Sbox0, S0, Sbox0.Length);
-            Array.Copy(Sbox1, S1, Sbox1.Length);
-            Array.Copy(Sbox2, S2, Sbox2.Length);
-            Array.Copy(Sbox3, S3, Sbox3.Length);
-
-
-            // Perform key expansion
-            KeyExpansion(secretKey);
-        }
-        public void KeyExpansion(byte[] secretKey)
-        {
-            System.Diagnostics.Debug.WriteLine(P);
-            for (int i = 0; i < 10; i++)
-            {
-                System.Diagnostics.Debug.WriteLine(P[i]);
+                Decrypt();
             }
         }
-       
+        private void InitializeArrays()
+        {
+            for (int i = 0; i < P_ORIG.Length; i++)
+            {
+                P[i] = P_ORIG[i];
+            }
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = 0; j < S_BOX_SIZE; j++)
+                {
+                    S[i, j] = S_ORIG[i, j];
+                }
+            }
+        }
 
-       
-       
+        private void KeySchedule(byte[] key)
+        {
+            int keyIndex = 0;
+
+            for (int i = 0; i < P_ORIG.Length; i++)
+            {
+                uint data = 0;
+                for (int j = 0; j < 4; j++)
+                {
+                    data = (data << 8) | key[keyIndex];
+                    keyIndex = (keyIndex + 1) % key.Length;
+                }
+                P[i] ^= data;
+            }
+
+            uint L = 0, R = 0;
+
+            for (int i = 0; i < P_ORIG.Length; i += 2)
+            {
+                uint[] encrypted = EncryptBlock(L, R);
+                L = encrypted[0];
+                R = encrypted[1];
+                P[i] = L;
+                P[i + 1] = R;
+            }
+
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = 0; j < S_BOX_SIZE; j += 2)
+                {
+                    uint[] encrypted = EncryptBlock(L, R);
+                    L = encrypted[0];
+                    R = encrypted[1];
+                    S[i, j] = L;
+                    S[i, j + 1] = R;
+                }
+            }
+        }
+
+        private uint F(uint x)
+        {
+            byte[] chunks = SplitString(BitConverter.GetBytes(x), 4);
+            byte a = chunks[3];
+            byte b = chunks[2];
+            byte c = chunks[1];
+            byte d = chunks[0];
+
+            uint y = ModularAdd((ModularAdd(S[0, a], S[1, b]) ^ S[2, c]), S[3, d]);
+            return y;
+        }
+        public byte[] SplitString(byte[] data, int numberOfChunks)
+        {
+
+            int chunkSize = data.Length / numberOfChunks;
+
+            byte[] chunks = new byte[numberOfChunks];
+
+            for (int i = 0; i < numberOfChunks; i++)
+            {
+                int start = i * chunkSize;
+                chunks[i] = data[start];
+            }
+            return chunks;
+        }
+        public uint ModularAdd(uint a, uint b)
+        {
+            return ((uint)((a + b) % Math.Pow(2, 32)));
+        }
+        public uint[] EncryptBlock(uint L, uint R)
+        {
+            for (int i = 0; i < 16; i++)
+            {
+                uint temp = L ^= P[i];
+                L = R ^= F(L);
+                R = temp;
+            }
+
+            uint temp2 = L;
+            L = R;
+            R = temp2;
+
+
+            return new uint[] { L ^= P[17], R ^= P[16]
+        };
+        }
+
+        public uint[] DecryptBlock(uint L, uint R)
+        {
+            for (int i = 17; i > 1; i--)
+            {
+                L ^= P[i];
+                R ^= F(L);
+
+                uint temp = L;
+                L = R;
+                R = temp;
+            }
+
+            uint temp2 = L;
+            L = R;
+            R = temp2;
+
+            R ^= P[1];
+            L ^= P[0];
+
+            return new uint[] { L, R };
+        }
+        public byte[] AddPadding(byte[] data)
+        {
+            int paddingSize = 8 - (data.Length % 8);
+            byte[] paddedData = new byte[data.Length + paddingSize];
+            Array.Copy(data, paddedData, data.Length);
+            for (int i = data.Length; i < paddedData.Length; i++)
+            {
+                paddedData[i] = (byte)paddingSize;
+            }
+            return paddedData;
+        }
+        public void Encrypt()
+        {
+            byte[] inputBytes = Encoding.UTF8.GetBytes(PlainText);
+            if (inputBytes.Length % 8 >= 1)
+            {
+                inputBytes = AddPadding(inputBytes);
+                padding = true;
+            }
+            else
+            {
+                padding = false;
+            }
+            byte[] encryptedBytes = new byte[inputBytes.Length];
+            for (int i = 0; i < inputBytes.Length; i += 8)
+            {
+                uint L = BitConverter.ToUInt32(inputBytes, i);
+                uint R = BitConverter.ToUInt32(inputBytes, i + 4);
+                uint[] encrypted = EncryptBlock(L, R);
+                Buffer.BlockCopy(BitConverter.GetBytes(encrypted[0]), 0, encryptedBytes, i, 4);
+                Buffer.BlockCopy(BitConverter.GetBytes(encrypted[1]), 0, encryptedBytes, i + 4, 4);
+            }
+            EncryptedText = BitConverter.ToString(encryptedBytes);
+        }
+
+        public void Decrypt()
+        {
+            string editedText = EncryptedText.Replace("-", "");
+            byte[] ciphertext = new byte[editedText.Length / 2];
+            for (int i = 0; i < editedText.Length; i += 2)
+            {
+                ciphertext[i / 2] = Convert.ToByte(editedText.Substring(i, 2), 16);
+            }
+
+            if (ciphertext.Length % 8 == 1) ciphertext = AddPadding(ciphertext);
+            byte[] decryptedBytes = new byte[ciphertext.Length];
+            for (int i = 0; i < ciphertext.Length; i += 8)
+            {
+                uint L = BitConverter.ToUInt32(ciphertext, i);
+                uint R = BitConverter.ToUInt32(ciphertext, i + 4);
+                uint[] decrypted = DecryptBlock(L, R);
+                Buffer.BlockCopy(BitConverter.GetBytes(decrypted[0]), 0, decryptedBytes, i, 4);
+                Buffer.BlockCopy(BitConverter.GetBytes(decrypted[1]), 0, decryptedBytes, i + 4, 4);
+            }
+
+            byte[] unpaddedPlaintext = new byte[2];
+            if (padding)
+            {
+                int paddingSize = decryptedBytes[decryptedBytes.Length - 1]; // Get padding size from last byte
+                unpaddedPlaintext = new byte[decryptedBytes.Length - paddingSize]; // Create unpadded plaintext array
+                Array.Copy(decryptedBytes, unpaddedPlaintext, unpaddedPlaintext.Length);
+            }
+            DecryptedText = Encoding.UTF8.GetString(padding ? unpaddedPlaintext:decryptedBytes);
+
+        }
     }
 }

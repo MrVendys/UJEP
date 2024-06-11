@@ -1,21 +1,17 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\vasik\\Projects\\UJEP\\2.year\\2.semestr\\ZKR\\ZKR\\",
+  "WorkspaceRootPath": "C:\\Users\\Venca\\Projects\\UJEP\\UJEP\\2.year\\2.semestr\\ZKR\\ZKR\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E4FB19ED-9F56-4D6D-8948-CAE7FA643E73}|ZKR\\ZKR.csproj|c:\\users\\vasik\\projects\\ujep\\2.year\\2.semestr\\zkr\\zkr\\zkr\\pages\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E4FB19ED-9F56-4D6D-8948-CAE7FA643E73}|ZKR\\ZKR.csproj|solutionrelative:zkr\\pages\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E4FB19ED-9F56-4D6D-8948-CAE7FA643E73}|ZKR\\ZKR.csproj|c:\\users\\vasik\\projects\\ujep\\2.year\\2.semestr\\zkr\\zkr\\zkr\\pages\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{E4FB19ED-9F56-4D6D-8948-CAE7FA643E73}|ZKR\\ZKR.csproj|c:\\users\\venca\\projects\\ujep\\ujep\\2.year\\2.semestr\\zkr\\zkr\\zkr\\pages\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{E4FB19ED-9F56-4D6D-8948-CAE7FA643E73}|ZKR\\ZKR.csproj|solutionrelative:zkr\\pages\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E4FB19ED-9F56-4D6D-8948-CAE7FA643E73}|ZKR\\ZKR.csproj|c:\\users\\vasik\\projects\\ujep\\2.year\\2.semestr\\zkr\\zkr\\zkr\\pages\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{E4FB19ED-9F56-4D6D-8948-CAE7FA643E73}|ZKR\\ZKR.csproj|solutionrelative:zkr\\pages\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{E4FB19ED-9F56-4D6D-8948-CAE7FA643E73}|ZKR\\ZKR.csproj|c:\\users\\venca\\projects\\ujep\\ujep\\2.year\\2.semestr\\zkr\\zkr\\zkr\\pages\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E4FB19ED-9F56-4D6D-8948-CAE7FA643E73}|ZKR\\ZKR.csproj|solutionrelative:zkr\\pages\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E4FB19ED-9F56-4D6D-8948-CAE7FA643E73}|ZKR\\ZKR.csproj|c:\\users\\vasik\\projects\\ujep\\2.year\\2.semestr\\zkr\\zkr\\zkr\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{E4FB19ED-9F56-4D6D-8948-CAE7FA643E73}|ZKR\\ZKR.csproj|c:\\users\\venca\\projects\\ujep\\ujep\\2.year\\2.semestr\\zkr\\zkr\\zkr\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E4FB19ED-9F56-4D6D-8948-CAE7FA643E73}|ZKR\\ZKR.csproj|solutionrelative:zkr\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -26,30 +22,30 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Index.cshtml.cs",
-              "DocumentMoniker": "C:\\Users\\vasik\\Projects\\UJEP\\2.year\\2.semestr\\ZKR\\ZKR\\ZKR\\Pages\\Index.cshtml.cs",
+              "DocumentMoniker": "C:\\Users\\Venca\\Projects\\UJEP\\UJEP\\2.year\\2.semestr\\ZKR\\ZKR\\ZKR\\Pages\\Index.cshtml.cs",
               "RelativeDocumentMoniker": "ZKR\\Pages\\Index.cshtml.cs",
-              "ToolTip": "C:\\Users\\vasik\\Projects\\UJEP\\2.year\\2.semestr\\ZKR\\ZKR\\ZKR\\Pages\\Index.cshtml.cs",
+              "ToolTip": "C:\\Users\\Venca\\Projects\\UJEP\\UJEP\\2.year\\2.semestr\\ZKR\\ZKR\\ZKR\\Pages\\Index.cshtml.cs",
               "RelativeToolTip": "ZKR\\Pages\\Index.cshtml.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAIAAAA",
+              "ViewState": "AQIAALgAAAAAAAAAAAAqwMgAAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-08T06:37:06.067Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\vasik\\Projects\\UJEP\\2.year\\2.semestr\\ZKR\\ZKR\\ZKR\\Pages\\Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\Venca\\Projects\\UJEP\\UJEP\\2.year\\2.semestr\\ZKR\\ZKR\\ZKR\\Pages\\Index.cshtml",
               "RelativeDocumentMoniker": "ZKR\\Pages\\Index.cshtml",
-              "ToolTip": "C:\\Users\\vasik\\Projects\\UJEP\\2.year\\2.semestr\\ZKR\\ZKR\\ZKR\\Pages\\Index.cshtml",
+              "ToolTip": "C:\\Users\\Venca\\Projects\\UJEP\\UJEP\\2.year\\2.semestr\\ZKR\\ZKR\\ZKR\\Pages\\Index.cshtml",
               "RelativeToolTip": "ZKR\\Pages\\Index.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAABZAAAA",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAAACoAAAAGAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-06-08T06:25:40.25Z",
               "EditorCaption": ""
@@ -57,26 +53,15 @@
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "_ViewStart.cshtml",
-              "DocumentMoniker": "C:\\Users\\vasik\\Projects\\UJEP\\2.year\\2.semestr\\ZKR\\ZKR\\ZKR\\Pages\\_ViewStart.cshtml",
-              "RelativeDocumentMoniker": "ZKR\\Pages\\_ViewStart.cshtml",
-              "ToolTip": "C:\\Users\\vasik\\Projects\\UJEP\\2.year\\2.semestr\\ZKR\\ZKR\\ZKR\\Pages\\_ViewStart.cshtml",
-              "RelativeToolTip": "ZKR\\Pages\\_ViewStart.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-06-08T06:24:40.384Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
               "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\vasik\\Projects\\UJEP\\2.year\\2.semestr\\ZKR\\ZKR\\ZKR\\Program.cs",
+              "DocumentMoniker": "C:\\Users\\Venca\\Projects\\UJEP\\UJEP\\2.year\\2.semestr\\ZKR\\ZKR\\ZKR\\Program.cs",
               "RelativeDocumentMoniker": "ZKR\\Program.cs",
-              "ToolTip": "C:\\Users\\vasik\\Projects\\UJEP\\2.year\\2.semestr\\ZKR\\ZKR\\ZKR\\Program.cs",
+              "ToolTip": "C:\\Users\\Venca\\Projects\\UJEP\\UJEP\\2.year\\2.semestr\\ZKR\\ZKR\\ZKR\\Program.cs",
               "RelativeToolTip": "ZKR\\Program.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABgAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-08T06:23:52.466Z"
+              "WhenOpened": "2024-06-08T06:23:52.466Z",
+              "EditorCaption": ""
             }
           ]
         }
