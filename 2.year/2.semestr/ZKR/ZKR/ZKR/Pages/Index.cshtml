@@ -31,12 +31,16 @@
                 <p>@Model.PlainText</p>
             </div>
             <div class="mt-2">
-                <label class="font-weight-bold">HashText:</label>
+                <label class="font-weight-bold">Encrypted Text:</label>
                 <p>@Model.EncryptedText</p>
             </div>
             <div class="mt-2">
                 <label class="font-weight-bold">Decrypted Text:</label>
                 <p>@Model.DecryptedText</p>
+            </div>
+            <div class="mt-2">
+                <label class="font-weight-bold"><p style="color:red">@Model.ErrorText</p></label>
+                
             </div>
         </form>
     </div>
