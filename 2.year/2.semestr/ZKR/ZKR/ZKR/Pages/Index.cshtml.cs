@@ -10,7 +10,7 @@ namespace ZKR.Pages
     {
         private const int S_BOX_SIZE = 256;
 
-
+        //Initialized Pboxes
         private static readonly uint[] P_ORIG = {
         0x243F6A88, 0x85A308D3, 0x13198A2E, 0x03707344,
         0xA4093822, 0x299F31D0, 0x082EFA98, 0xEC4E6C89,
@@ -18,7 +18,7 @@ namespace ZKR.Pages
         0xC0AC29B7, 0xC97C50DD, 0x3F84D5B5, 0xB5470917,
         0x9216D5D9, 0x8979FB1B
     };
-
+        //Initialized Sboxes
         private static readonly uint[,] S_ORIG = {
         { 0xd1310ba6, 0x98dfb5ac, 0x2ffd72db, 0xd01adfb7, 0xb8e1afed, 0x6a267e96,
     0xba7c9045, 0xf12c7f99, 0x24a19947, 0xb3916cf7, 0x0801f2e2, 0x858efc16,
@@ -182,7 +182,9 @@ namespace ZKR.Pages
 0x01c36ae4, 0xd6ebe1f9, 0x90d4f869, 0xa65cdea0, 0x3f09252d, 0xc208e69f,
 0xb74e6132, 0xce77e25b, 0x578fdfe3, 0x3ac372e6 }
     };
+        //Subkeys
         private uint[] P = new uint[18];
+        //New Sboxes
         private uint[,] S = new uint[4, 256];
 
         [BindProperty]
@@ -197,6 +199,7 @@ namespace ZKR.Pages
         public string DecryptedText { get; set; }
         [BindProperty]
         public string ErrorText { get; set; }
+        //Autocall on every POST method
         public void OnPost()
         {
             
@@ -248,6 +251,7 @@ namespace ZKR.Pages
             }
         }
 
+        //Generate subkeys and fill P and S boxes with new values
         private void KeySchedule(byte[] key)
         {
             int keyIndex = 0;
@@ -257,13 +261,13 @@ namespace ZKR.Pages
                 uint data = 0;
                 for (int j = 0; j < 4; j++)
                 {
-                    data = (data << 8) | key[keyIndex];
+                    data = data ^ key[keyIndex];
                     keyIndex = (keyIndex + 1) % key.Length;
                 }
                 P[i] ^= data;
             }
 
-            /*uint L = 0, R = 0;
+            uint L = 0000, R = 0000;
 
             for (int i = 0; i < P_ORIG.Length; i += 2)
             {
@@ -273,7 +277,7 @@ namespace ZKR.Pages
                 P[i] = L;
                 P[i + 1] = R;
             }
-
+            
             for (int i = 0; i < 4; i++)
             {
                 for (int j = 0; j < S_BOX_SIZE; j += 2)
@@ -284,7 +288,7 @@ namespace ZKR.Pages
                     S[i, j] = L;
                     S[i, j + 1] = R;
                 }
-            }*/
+            }
         }
 
         private uint F(uint x)
