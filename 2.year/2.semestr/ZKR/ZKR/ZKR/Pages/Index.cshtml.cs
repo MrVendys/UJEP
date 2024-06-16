@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.DataProtection.KeyManagement;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Runtime.InteropServices;
 using System.Text;
 
 namespace ZKR.Pages
@@ -9,7 +10,7 @@ namespace ZKR.Pages
     {
         private const int S_BOX_SIZE = 256;
 
-
+        //Initialized Pboxes
         private static readonly uint[] P_ORIG = {
         0x243F6A88, 0x85A308D3, 0x13198A2E, 0x03707344,
         0xA4093822, 0x299F31D0, 0x082EFA98, 0xEC4E6C89,
@@ -17,7 +18,7 @@ namespace ZKR.Pages
         0xC0AC29B7, 0xC97C50DD, 0x3F84D5B5, 0xB5470917,
         0x9216D5D9, 0x8979FB1B
     };
-
+        //Initialized Sboxes
         private static readonly uint[,] S_ORIG = {
         { 0xd1310ba6, 0x98dfb5ac, 0x2ffd72db, 0xd01adfb7, 0xb8e1afed, 0x6a267e96,
     0xba7c9045, 0xf12c7f99, 0x24a19947, 0xb3916cf7, 0x0801f2e2, 0x858efc16,
@@ -181,7 +182,9 @@ namespace ZKR.Pages
 0x01c36ae4, 0xd6ebe1f9, 0x90d4f869, 0xa65cdea0, 0x3f09252d, 0xc208e69f,
 0xb74e6132, 0xce77e25b, 0x578fdfe3, 0x3ac372e6 }
     };
+        //Subkeys
         private uint[] P = new uint[18];
+        //New Sboxes
         private uint[,] S = new uint[4, 256];
 
         [BindProperty]
@@ -194,21 +197,44 @@ namespace ZKR.Pages
         public string EncryptedText { get; set; }
         [BindProperty]
         public string DecryptedText { get; set; }
-        private bool padding = false;
+        [BindProperty]
+        public string ErrorText { get; set; }
+        //Autocall on every POST method
         public void OnPost()
         {
-            InitializeArrays();
-            KeySchedule(Encoding.UTF8.GetBytes(Key));
+            
             var action = Request.Form["action"];
+
 
             if (action == "Encrypt")
             {
-                Encrypt();
+                if (PlainText == null || Key == null)
+                {
+                    ErrorText += "CHYBA! Nezadán text pro šifrování nebo klíč.";
+                }
+                else
+                {
+                    InitializeArrays();
+                    KeySchedule(Encoding.UTF8.GetBytes(Key));
+                    ErrorText = "";
+                    Encrypt();
+                }
             }
-            else if (action == "Decrypt")
+            if (action == "Decrypt")
             {
-                Decrypt();
+                if (EncryptedText == null || Key == null)
+                {
+                    ErrorText += "CHYBA! Nezadán text pro dešifrování nebo klíč.";
+                }
+                else
+                {
+                    InitializeArrays();
+                    KeySchedule(Encoding.UTF8.GetBytes(Key));
+                    ErrorText = "";
+                    Decrypt();
+                }
             }
+            
         }
         private void InitializeArrays()
         {
@@ -225,6 +251,7 @@ namespace ZKR.Pages
             }
         }
 
+        //Generate subkeys and fill P and S boxes with new values
         private void KeySchedule(byte[] key)
         {
             int keyIndex = 0;
@@ -234,13 +261,13 @@ namespace ZKR.Pages
                 uint data = 0;
                 for (int j = 0; j < 4; j++)
                 {
-                    data = (data << 8) | key[keyIndex];
+                    data = data ^ key[keyIndex];
                     keyIndex = (keyIndex + 1) % key.Length;
                 }
                 P[i] ^= data;
             }
 
-            uint L = 0, R = 0;
+            uint L = 0000, R = 0000;
 
             for (int i = 0; i < P_ORIG.Length; i += 2)
             {
@@ -250,7 +277,7 @@ namespace ZKR.Pages
                 P[i] = L;
                 P[i + 1] = R;
             }
-
+            
             for (int i = 0; i < 4; i++)
             {
                 for (int j = 0; j < S_BOX_SIZE; j += 2)
@@ -266,7 +293,7 @@ namespace ZKR.Pages
 
         private uint F(uint x)
         {
-            byte[] chunks = SplitString(BitConverter.GetBytes(x), 4);
+            byte[] chunks = Split(BitConverter.GetBytes(x), 4); //Split for s-boxes
             byte a = chunks[3];
             byte b = chunks[2];
             byte c = chunks[1];
@@ -275,7 +302,11 @@ namespace ZKR.Pages
             uint y = ModularAdd((ModularAdd(S[0, a], S[1, b]) ^ S[2, c]), S[3, d]);
             return y;
         }
-        public byte[] SplitString(byte[] data, int numberOfChunks)
+        public uint ModularAdd(uint a, uint b)
+        {
+            return ((uint)((a + b) % Math.Pow(2, 32)));
+        }
+        public byte[] Split(byte[] data, int numberOfChunks)
         {
 
             int chunkSize = data.Length / numberOfChunks;
@@ -289,9 +320,33 @@ namespace ZKR.Pages
             }
             return chunks;
         }
-        public uint ModularAdd(uint a, uint b)
+        
+        
+        public byte[] AddPadding(byte[] data, int? customPaddingSize = null)
         {
-            return ((uint)((a + b) % Math.Pow(2, 32)));
+            int paddingSize = 8 - (data.Length % 8);
+            byte[] paddedData = new byte[data.Length + paddingSize];
+            Array.Copy(data, paddedData, data.Length);
+            for (int i = data.Length; i < paddedData.Length; i++)
+            {
+                paddedData[i] = customPaddingSize == null ? (byte)paddingSize : (byte)customPaddingSize;
+            }
+            return paddedData;
+        }
+        public void Encrypt()
+        {
+            byte[] inputBytes = Encoding.UTF8.GetBytes(PlainText);
+            if (inputBytes.Length % 8 >= 1) inputBytes = AddPadding(inputBytes);
+            byte[] encryptedBytes = new byte[inputBytes.Length];
+            for (int i = 0; i < inputBytes.Length; i += 8)
+            {
+                uint L = BitConverter.ToUInt32(inputBytes, i);
+                uint R = BitConverter.ToUInt32(inputBytes, i + 4);
+                uint[] encrypted = EncryptBlock(L, R);
+                Buffer.BlockCopy(BitConverter.GetBytes(encrypted[0]), 0, encryptedBytes, i, 4);
+                Buffer.BlockCopy(BitConverter.GetBytes(encrypted[1]), 0, encryptedBytes, i + 4, 4);
+            }
+            EncryptedText = BitConverter.ToString(encryptedBytes);
         }
         public uint[] EncryptBlock(uint L, uint R)
         {
@@ -311,6 +366,35 @@ namespace ZKR.Pages
         };
         }
 
+        public void Decrypt()
+        {
+            string editedText = EncryptedText.Replace("-", "");
+            byte[] ciphertext = new byte[editedText.Length / 2];
+            for (int i = 0; i < editedText.Length; i += 2)
+            {
+                ciphertext[i / 2] = Convert.ToByte(editedText.Substring(i, 2), 16);
+            }
+
+            byte[] decryptedBytes = new byte[ciphertext.Length]; 
+            for (int i = 0; i < ciphertext.Length; i += 8)
+            {
+                uint L = BitConverter.ToUInt32(ciphertext, i);
+                uint R = BitConverter.ToUInt32(ciphertext, i + 4);
+                uint[] decrypted = DecryptBlock(L, R);
+                Buffer.BlockCopy(BitConverter.GetBytes(decrypted[0]), 0, decryptedBytes, i, 4);
+                Buffer.BlockCopy(BitConverter.GetBytes(decrypted[1]), 0, decryptedBytes, i + 4, 4);
+            }
+
+            byte[] unpaddedPlaintext = new byte[2];
+            int paddingSize = decryptedBytes[decryptedBytes.Length - 1]; // Get padding size from last byte
+            if (paddingSize < 8)
+            {
+                unpaddedPlaintext = new byte[decryptedBytes.Length - paddingSize]; // Create unpadded plaintext array
+                Array.Copy(decryptedBytes, unpaddedPlaintext, unpaddedPlaintext.Length);
+                DecryptedText = Encoding.UTF8.GetString(unpaddedPlaintext);
+            }
+            else DecryptedText = Encoding.UTF8.GetString(decryptedBytes);
+        }
         public uint[] DecryptBlock(uint L, uint R)
         {
             for (int i = 17; i > 1; i--)
@@ -331,71 +415,6 @@ namespace ZKR.Pages
             L ^= P[0];
 
             return new uint[] { L, R };
-        }
-        public byte[] AddPadding(byte[] data)
-        {
-            int paddingSize = 8 - (data.Length % 8);
-            byte[] paddedData = new byte[data.Length + paddingSize];
-            Array.Copy(data, paddedData, data.Length);
-            for (int i = data.Length; i < paddedData.Length; i++)
-            {
-                paddedData[i] = (byte)paddingSize;
-            }
-            return paddedData;
-        }
-        public void Encrypt()
-        {
-            byte[] inputBytes = Encoding.UTF8.GetBytes(PlainText);
-            if (inputBytes.Length % 8 >= 1)
-            {
-                inputBytes = AddPadding(inputBytes);
-                padding = true;
-            }
-            else
-            {
-                padding = false;
-            }
-            byte[] encryptedBytes = new byte[inputBytes.Length];
-            for (int i = 0; i < inputBytes.Length; i += 8)
-            {
-                uint L = BitConverter.ToUInt32(inputBytes, i);
-                uint R = BitConverter.ToUInt32(inputBytes, i + 4);
-                uint[] encrypted = EncryptBlock(L, R);
-                Buffer.BlockCopy(BitConverter.GetBytes(encrypted[0]), 0, encryptedBytes, i, 4);
-                Buffer.BlockCopy(BitConverter.GetBytes(encrypted[1]), 0, encryptedBytes, i + 4, 4);
-            }
-            EncryptedText = BitConverter.ToString(encryptedBytes);
-        }
-
-        public void Decrypt()
-        {
-            string editedText = EncryptedText.Replace("-", "");
-            byte[] ciphertext = new byte[editedText.Length / 2];
-            for (int i = 0; i < editedText.Length; i += 2)
-            {
-                ciphertext[i / 2] = Convert.ToByte(editedText.Substring(i, 2), 16);
-            }
-
-            if (ciphertext.Length % 8 == 1) ciphertext = AddPadding(ciphertext);
-            byte[] decryptedBytes = new byte[ciphertext.Length];
-            for (int i = 0; i < ciphertext.Length; i += 8)
-            {
-                uint L = BitConverter.ToUInt32(ciphertext, i);
-                uint R = BitConverter.ToUInt32(ciphertext, i + 4);
-                uint[] decrypted = DecryptBlock(L, R);
-                Buffer.BlockCopy(BitConverter.GetBytes(decrypted[0]), 0, decryptedBytes, i, 4);
-                Buffer.BlockCopy(BitConverter.GetBytes(decrypted[1]), 0, decryptedBytes, i + 4, 4);
-            }
-
-            byte[] unpaddedPlaintext = new byte[2];
-            if (padding)
-            {
-                int paddingSize = decryptedBytes[decryptedBytes.Length - 1]; // Get padding size from last byte
-                unpaddedPlaintext = new byte[decryptedBytes.Length - paddingSize]; // Create unpadded plaintext array
-                Array.Copy(decryptedBytes, unpaddedPlaintext, unpaddedPlaintext.Length);
-            }
-            DecryptedText = Encoding.UTF8.GetString(padding ? unpaddedPlaintext:decryptedBytes);
-
         }
     }
 }
