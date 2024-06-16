@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Game List Website</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            padding-top: 4.5rem; /* Offset the fixed navbar height */
+        }
+        .footer {
+            text-align: center;
+            padding: 1rem;
+            background-color: #f8f9fa;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="#">PC Game List</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Index</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="games.html">Game List</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="search.html">Search</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="add_game.html">Add Game</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+<main role="main" class="container">
+    <div class="jumbotron">
+        <h1>Welcome to Game List!</h1>
+        <p class="lead">Explore our collection of games and find your next favorite.</p>
+        <a class="btn btn-success btn-lg" href="games.html" role="button">View Games</a>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <h2>About Us</h2>
+            <p>This website aims to provide a comprehensive list of games along with their details such as developers, publishers, platforms, release dates, and genres.</p>
+        </div>
+        <div class="col-md-4">
+            <h2>Our Mission</h2>
+            <p>We strive to make gaming information accessible and easy to navigate, helping gamers discover new and exciting titles.</p>
+        </div>
+        <div class="col-md-4">
+            <h2>Contact Us</h2>
+            <p>Have questions or feedback? Reach out to us at contact@gamelist.com.</p>
+        </div>
+    </div>
+
+</main>
+
+<footer class="footer">
+    <div class="container">
+        <span class="text-muted">© 2024 Game List</span>
+    </div>
+</footer>
+
+<!-- Bootstrap JS and dependencies (jQuery, Popper.js) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Game Details</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            padding-top: 4.5rem; /* Offset the fixed navbar height */
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="#">PC Game List</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Index</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="games.html">Game List</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="search.html">Search</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="add_game.html">Add Game</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+<main role="main" class="container">
+    <h1 class="mt-5">Edit Game Details</h1>
+    <form id="editGameForm" method="post" action="process_edit_game.php">
+        <div class="form-group">
+            <label for="title">Title:</label>
+            <input type="text" class="form-control" id="title" name="title" readonly>
+        </div>
+        <div class="form-group">
+            <label for="developer">Developer:</label>
+            <input type="text" class="form-control" id="developer" name="developer" required>
+        </div>
+        <div class="form-group">
+            <label for="publisher">Publisher:</label>
+            <input type="text" class="form-control" id="publisher" name="publisher" required>
+        </div>
+        <div class="form-group">
+            <label for="platform">Platform:</label>
+            <input type="text" class="form-control" id="platform" name="platform" required>
+        </div>
+        <div class="form-group">
+            <label for="release_date">Release Date:</label>
+            <input type="date" class="form-control" id="release_date" name="release_date" required>
+        </div>
+        <div class="form-group">
+            <label for="genre">Genre:</label>
+            <input type="text" class="form-control" id="genre" name="genre" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+    </form>
+</main>
+
+<!-- Bootstrap JS and dependencies (jQuery, Popper.js) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<!-- Script to populate form fields based on game title -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var gameTitle = getParameterByName('game');
+        if (gameTitle) {
+            loadXMLDoc('games.xml', function(xmlDoc) {
+                var game = findGameDetails(xmlDoc, gameTitle);
+                if (game) {
+                    populateForm(game);
+                } else {
+                    displayErrorMessage();
+                }
+            });
+        } else {
+            displayNoGameSelectedMessage();
+        }
+    });
+
+    function loadXMLDoc(url, callback) {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                var xmlDoc = this.responseXML;
+                callback(xmlDoc);
+            }
+        };
+        xhttp.open('GET', url, true);
+        xhttp.send();
+    }
+
+    function findGameDetails(xmlDoc, gameTitle) {
+        var games = xmlDoc.getElementsByTagName('game');
+        for (var i = 0; i < games.length; i++) {
+            var title = games[i].getElementsByTagName('title')[0].textContent;
+            if (title === gameTitle) {
+                return {
+                    title: title,
+                    developer: games[i].getElementsByTagName('developer')[0].textContent,
+                    publisher: games[i].getElementsByTagName('publisher')[0].textContent,
+                    platform: games[i].getElementsByTagName('platform')[0].textContent,
+                    release_date: games[i].getElementsByTagName('release_date')[0].textContent,
+                    genre: games[i].getElementsByTagName('genre')[0].textContent
+                };
+            }
+        }
+        return null;
+    }
+
+    function populateForm(game) {
+        document.getElementById('title').value = game.title;
+        document.getElementById('developer').value = game.developer;
+        document.getElementById('publisher').value = game.publisher;
+        document.getElementById('platform').value = game.platform;
+        document.getElementById('release_date').value = game.release_date;
+        document.getElementById('genre').value = game.genre;
+    }
+
+    function displayErrorMessage() {
+        var form = document.getElementById('editGameForm');
+        form.innerHTML = '<p>Game details not found.</p>';
+    }
+
+    function displayNoGameSelectedMessage() {
+        var form = document.getElementById('editGameForm');
+        form.innerHTML = '<p>No game selected.</p>';
+    }
+
+    function getParameterByName(name) {
+        var urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(name);
+    }
+</script>
+
+</body>
+</html>
