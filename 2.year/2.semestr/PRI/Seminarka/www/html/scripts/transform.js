@@ -11,10 +11,6 @@ document.addEventListener('DOMContentLoaded', function() {
     xslhttp.send();
     var xslDoc = xslhttp.responseXML;
 
-    // Validate XML against XSD (optional)
-    // Note: JavaScript does not have built-in XML schema validation, so this typically
-    //       happens on the server-side in PHP or other server-side languages.
-
     // Transform XML using XSLT
     var processor = new XSLTProcessor();
     processor.importStylesheet(xslDoc);

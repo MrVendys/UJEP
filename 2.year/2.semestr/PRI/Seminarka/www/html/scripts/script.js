@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+// Sends a GET request to the specified URL to load an XML document.
 function loadXMLDoc(url, callback) {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {

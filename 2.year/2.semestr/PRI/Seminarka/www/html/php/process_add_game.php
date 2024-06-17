@@ -29,7 +29,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $genre = htmlspecialchars($_POST['genre']);
     
     // Validate and sanitize data (add more validation as needed)
-    // Example: Check if required fields are not empty
     if (empty($title) || empty($developer) || empty($publisher) || empty($platform) || empty($release_date) || empty($genre)) {
         $notification = "All fields are required.";
     } else {
