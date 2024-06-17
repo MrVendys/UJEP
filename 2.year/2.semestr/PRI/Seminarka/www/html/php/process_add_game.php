@@ -34,8 +34,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $notification = "All fields are required.";
     } else {
         // Validate XML against XSD
-        $xmlFile = 'games.xml';
-        $xsdFile = 'games.xsd';
+        $xmlFile = '../xml/games.xml';
+        $xsdFile = '../xml/games.xsd';
         if (!validateXML($xmlFile, $xsdFile)) {
             $notification = "Failed to validate XML against XSD.";
         } else {
@@ -58,9 +58,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $xml->documentElement->appendChild($newGame);
             
             // Save updated XML back to file
-            if ($xml->save('games.xml')) {
+            if ($xml->save('../xml/games.xml')) {
                 // Redirect back to game list page on success
-                header('Location: games.html');
+                header('Location: ../games.html');
                 exit;
             } else {
                 $notification = "Failed to save game data.";

@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var gameTitle = getParameterByName('game');
     
     if (gameTitle) {
-        loadXMLDoc('games.xml', function(xmlDoc) {
+        loadXMLDoc('xml/games.xml', function(xmlDoc) {
             var game = findGameDetails(xmlDoc, gameTitle);
             if (game) {
                 displayGameDetails(game);

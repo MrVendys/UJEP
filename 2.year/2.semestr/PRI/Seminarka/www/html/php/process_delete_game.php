@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     // Load XML file
     $xml = new DOMDocument();
-    $xml->load('games.xml');
+    $xml->load('../xml/games.xml');
     
     // Find the game node to delete
     $xpath = new DOMXPath($xml);
@@ -24,14 +24,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $gameNode->parentNode->removeChild($gameNode);
     
     // Save the updated XML back to file
-    $xml->save('games.xml');
+    $xml->save('../xml/games.xml');
     
     // Respond with success
-    header('Location: games.html');
+    header('Location: ../games.html');
     echo "Game deleted successfully.";
 } else {
     // Handle if request method is not POST
-    header('Location: games.html');
+    header('Location: ../games.html');
     echo "Invalid request method.";
 }
 ?>

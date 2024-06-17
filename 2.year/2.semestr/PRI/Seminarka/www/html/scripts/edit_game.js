@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function searchGame(title) {
-    loadXMLDoc('games.xml', function(xmlDoc) {
+    loadXMLDoc('../xml/games.xml', function(xmlDoc) {
         var games = xmlDoc.getElementsByTagName('game');
         var results = [];
 
@@ -77,7 +77,7 @@ function deleteGame(title) {
                 }
             }
         };
-        xhr.open('POST', 'process_delete_game.php', true);
+        xhr.open('POST', 'php/process_delete_game.php', true);
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         xhr.send('title=' + encodeURIComponent(title));
     }

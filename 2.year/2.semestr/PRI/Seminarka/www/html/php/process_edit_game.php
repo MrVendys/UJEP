@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     // Load current games.xml
     $xml = new DOMDocument();
-    $xml->load('games.xml');
+    $xml->load('../xml/games.xml');
     
     // Find and update <game> element
     $games = $xml->getElementsByTagName('game');
@@ -39,8 +39,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     // Save updated XML back to file if game was updated
     if ($gameUpdated) {
-        $xml->save('games.xml');
-        header('Location: games.html');
+        $xml->save('../xml/games.xml');
+        header('Location: ../games.html');
         echo "Game details updated successfully.";
     } else {
         echo "Failed to update game details.";
@@ -50,5 +50,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Handle if form is not submitted
     echo "Form not submitted.";
 }
-header('Location: games.html');
+header('Location: ../games.html');
 ?>
