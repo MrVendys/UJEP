@@ -1,27 +1,16 @@
-## 📜 Úvod
-
-V tomto souboru jsou některé projekty, pomocí kterých nás spolužáci učili nové technologie z oblasti programování.
-### 🎓 Cíle projektu
-
-- FastAPI a AIO
-- React_FastAPI
-- SQLAlchemy
-
-- # Projekty ze Střední Školy
-
 ## 📚 Úvod
 
 Tento repozitář obasuje projekty z předmětu	Programování pro GUI. Dvojice studentů si zvolili používanou technologii z oblasti programování a úkolem bylo ji naučit ostatní účastníky kurzu.
 
 ## 🖥️ Seznam projektů
 
-1. **2048 Game**
+1. **FastAPI a AIO**
    - [Přejít na projekt](./FastApi)
 
-2. **BruteForce Password Cracker**
+2. **React_FastAPI**
    - [Přejít na projekt](./React_FastAPI)
 
-3. **Game of Life**
+3. **SQLAlchemy**
    - [Přejít na projekt](./SQLAlchemy)
 
 ## 🎯 Cíle projektů
