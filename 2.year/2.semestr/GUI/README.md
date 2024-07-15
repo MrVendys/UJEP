@@ -1,14 +1,3 @@
-## 📜 Úvod
-
-V tomto souboru jsou některé projekty, pomocí kterých nás spolužáci učili nové technologie z oblasti programování.
-### 🎓 Cíle projektu
-
-- FastAPI a AIO
-- React_FastAPI
-- SQLAlchemy
-
-- # Projekty ze Střední Školy
-
 ## 📚 Úvod
 
 Tento repozitář obasuje projekty z předmětu	Programování pro GUI. Dvojice studentů si zvolili používanou technologii z oblasti programování a úkolem bylo ji naučit ostatní účastníky kurzu.
