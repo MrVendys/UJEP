@@ -1,10 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <games>
-    
-    
+<game id="0">
+    <title>Zapocet vs ja</title>
+    <developer>Venca Ptak</developer>
+    <publisher>Venca games</publisher>
+    <platforms>
+        <platform>Playstaton</platform>
+    </platforms>
+    <release_date>2024-02-01</release_date>
+    <genre>RTS</genre>
+</game>
+<game id="1">
+    <title>Back at pracak</title>
+    <developer>Vaclav Ptak</developer>
+    <publisher>Venca games</publisher>
+    <platforms>
+        <platform>Playstaton</platform>
+    </platforms>
+    <release_date>2024-06-30</release_date>
+    <genre>Platform shooter</genre>
+</game>
+<game id="2">
+    <title>Mafia</title>
+    <developer>Illusion Softworks</developer>
+    <publisher>Gathering of Developers</publisher>
+    <platforms>
+        <platform>Xbox</platform>
+        <platform>Xbox</platform>
+        <platform>Playstation</platform>
+    </platforms>
+    <release_date>2002-08-28</release_date>
+    <genre>TPS</genre>
+</game>
 
-<game><title>Zapocet vs ja</title><developer>Venca Ptak</developer><publisher>Venca games</publisher><platform>PC</platform><release_date>2024-06-16</release_date><genre>drama</genre></game>
-<game><title>Back at pracak</title><developer>Vaclav Ptak</developer><publisher>Venca games</publisher><platform>Playstation</platform><release_date>2024-06-30</release_date><genre>Platform shooter</genre></game>
 
-
-</games>
+<game id="3"><title>God of War</title><developer>SIE Santa Monica Studio</developer><publisher>Sony Interactive Entertainment</publisher><platforms><platform>Pc</platform><platform>Playstation</platform></platforms><release_date>2018-04-20</release_date><genre>adventure</genre></game></games>

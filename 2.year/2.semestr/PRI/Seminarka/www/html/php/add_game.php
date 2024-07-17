@@ -24,12 +24,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $title = htmlspecialchars($_POST['title']);
     $developer = htmlspecialchars($_POST['developer']);
     $publisher = htmlspecialchars($_POST['publisher']);
-    $platform = htmlspecialchars($_POST['platform']);
+    $platforms = htmlspecialchars($_POST['platform']);
     $release_date = htmlspecialchars($_POST['release_date']);
     $genre = htmlspecialchars($_POST['genre']);
     
-    // Validate and sanitize data (add more validation as needed)
-    if (empty($title) || empty($developer) || empty($publisher) || empty($platform) || empty($release_date) || empty($genre)) {
+    // Validate and sanitize data
+    if (empty($title) || empty($developer) || empty($publisher) || empty($platforms) || empty($release_date) || empty($genre)) {
         $notification = "All fields are required.";
     } else {
         // Validate XML against XSD
@@ -42,14 +42,46 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $xml = new DOMDocument();
             $xml->load($xmlFile);
             
+            $root = $xml->documentElement;
+            $maxId = 0;
+
+            // Find the highest id in the existing game elements
+            $gameElements = $root->getElementsByTagName('game');
+            foreach ($gameElements as $game) {
+                $id = $game->getAttribute('id');
+                if ($id !== null && $id !== '') {
+                    $maxId = max($maxId, intval($id));
+                }
+            }
+
+            // Calculate the new ID
+            $newId = $maxId + 1;
+
             // Create new <game> element
             $newGame = $xml->createElement('game');
-            
+            $newGame->setAttribute('id', $newId);
+
             // Create child elements and append to <game> element
             $newGame->appendChild($xml->createElement('title', $title));
             $newGame->appendChild($xml->createElement('developer', $developer));
             $newGame->appendChild($xml->createElement('publisher', $publisher));
-            $newGame->appendChild($xml->createElement('platform', $platform));
+
+            // Create <platforms> element to hold multiple platform entries
+            $platformsElement = $xml->createElement('platforms');
+
+            // Split the platforms string into an array
+            $platformList = explode(',', $platforms);
+
+            // Trim whitespace and create individual <platform> elements
+            foreach ($platformList as $platform) {
+                $platform = trim(ucfirst(strtolower($platform)));
+                $platformElement = $xml->createElement('platform', $platform);
+                $platformsElement->appendChild($platformElement);
+            }
+
+            // Append the <platforms> element to the new <game> element
+            $newGame->appendChild($platformsElement);
+
             $newGame->appendChild($xml->createElement('release_date', $release_date));
             $newGame->appendChild($xml->createElement('genre', $genre));
             

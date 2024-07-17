@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $release_date = htmlspecialchars($_POST['release_date']);
     $genre = htmlspecialchars($_POST['genre']);
     
-    // Validate and sanitize data (add more validation as needed)
+    // Validate and sanitize data
     if (empty($title) || empty($developer) || empty($publisher) || empty($platform) || empty($release_date) || empty($genre)) {
         die("All fields are required.");
     }

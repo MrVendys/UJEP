@@ -20,7 +20,13 @@
                             <td><xsl:value-of select="title"/></td>
                             <td><xsl:value-of select="developer"/></td>
                             <td><xsl:value-of select="publisher"/></td>
-                            <td><xsl:value-of select="platform"/></td>
+                            <td>
+                                <xsl:for-each select="platforms/platform">
+                                    <xsl:sort select="." order="ascending" />
+                                    <xsl:if test="position() != 1">, </xsl:if>
+                                    <xsl:value-of select="." />
+                                </xsl:for-each>
+                            </td>
                             <td><xsl:value-of select="release_date"/></td>
                             <td><xsl:value-of select="genre"/></td>
                         </tr>

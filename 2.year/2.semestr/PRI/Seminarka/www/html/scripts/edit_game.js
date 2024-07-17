@@ -61,7 +61,7 @@ function displaySearchResults(results) {
 
 function editGame(title) {
     // Redirect to edit_game_details.html with game title as a query parameter
-    window.location.href = `edit_game_details.html?game=${encodeURIComponent(title)}`;
+    window.location.href = `../edit_game_details.html?game=${encodeURIComponent(title)}`;
 }
 
 function deleteGame(title) {
@@ -77,7 +77,7 @@ function deleteGame(title) {
                 }
             }
         };
-        xhr.open('POST', 'php/process_delete_game.php', true);
+        xhr.open('POST', '../php/delete_game.php', true);
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         xhr.send('title=' + encodeURIComponent(title));
     }
