@@ -17,7 +17,6 @@ Vybral jsem si algoritmus **BlowFish** v programovacím jazyce **C#**
 ## 📂 Struktura projektu
 
 - **📂ZKR**: Obsahuje logickou a i grafickou stránku projektu
-- **📂ZKR_code**: Obsahuje pouze logickou stránku projektu
 
 
 ## 🛠️ Instalace
