@@ -194,26 +194,31 @@ namespace ZKR.Pages
         public string Key { get; set; }
 
         [BindProperty]
+        //Zašifrovaný text
         public string EncryptedText { get; set; }
         [BindProperty]
+        //Dešifrovaný text
         public string DecryptedText { get; set; }
         [BindProperty]
+        //Error text
         public string ErrorText { get; set; }
-        //Autocall on every POST method
+
+        //Automaticky zavolaná funkce při každé Post metodě
         public void OnPost()
         {
-            
+            //Zjištění, zda bylo kliknuto na tlačítko Šifrovat nebo Dešifrovat
             var action = Request.Form["action"];
-
 
             if (action == "Encrypt")
             {
+                //Kontrolování textu
                 if (PlainText == null || Key == null)
                 {
                     ErrorText += "CHYBA! Nezadán text pro šifrování nebo klíč.";
                 }
                 else
                 {
+                    //Naplnění polí, vygenerování subklíčů a začátek šifrování
                     InitializeArrays();
                     KeySchedule(Encoding.UTF8.GetBytes(Key));
                     ErrorText = "";
@@ -228,6 +233,7 @@ namespace ZKR.Pages
                 }
                 else
                 {
+                    //Naplnění polí, vygenerování subklíčů a začátek dešifrování
                     InitializeArrays();
                     KeySchedule(Encoding.UTF8.GetBytes(Key));
                     ErrorText = "";
@@ -238,6 +244,7 @@ namespace ZKR.Pages
         }
         private void InitializeArrays()
         {
+            //Naplnění S a P boxů
             for (int i = 0; i < P_ORIG.Length; i++)
             {
                 P[i] = P_ORIG[i];
@@ -251,7 +258,7 @@ namespace ZKR.Pages
             }
         }
 
-        //Generate subkeys and fill P and S boxes with new values
+        //Generování subklíčů a doplnění P a S boxů s pozměněnými hodnoty
         private void KeySchedule(byte[] key)
         {
             int keyIndex = 0;
@@ -291,9 +298,11 @@ namespace ZKR.Pages
             }
         }
 
+        //Funkce F
         private uint F(uint x)
         {
-            byte[] chunks = Split(BitConverter.GetBytes(x), 4); //Split for s-boxes
+            //Rozdělení s boxů na 4
+            byte[] chunks = Split(BitConverter.GetBytes(x), 4);
             byte a = chunks[3];
             byte b = chunks[2];
             byte c = chunks[1];
@@ -302,10 +311,12 @@ namespace ZKR.Pages
             uint y = ModularAdd((ModularAdd(S[0, a], S[1, b]) ^ S[2, c]), S[3, d]);
             return y;
         }
+        //Modulární sčítání
         public uint ModularAdd(uint a, uint b)
         {
             return ((uint)((a + b) % Math.Pow(2, 32)));
         }
+        //Rozdělění bytů na určitý počet
         public byte[] Split(byte[] data, int numberOfChunks)
         {
 
@@ -321,7 +332,7 @@ namespace ZKR.Pages
             return chunks;
         }
         
-        
+        //Přidání paddingu pro splnění délky bloku
         public byte[] AddPadding(byte[] data, int? customPaddingSize = null)
         {
             int paddingSize = 8 - (data.Length % 8);
@@ -333,6 +344,7 @@ namespace ZKR.Pages
             }
             return paddedData;
         }
+        //Začátek algoritmu
         public void Encrypt()
         {
             byte[] inputBytes = Encoding.UTF8.GetBytes(PlainText);
@@ -348,6 +360,7 @@ namespace ZKR.Pages
             }
             EncryptedText = BitConverter.ToString(encryptedBytes);
         }
+        //Přímé šifrování
         public uint[] EncryptBlock(uint L, uint R)
         {
             for (int i = 0; i < 16; i++)
@@ -365,7 +378,7 @@ namespace ZKR.Pages
             return new uint[] { L ^= P[17], R ^= P[16]
         };
         }
-
+        //Začátek algoritmu pro dešifrování
         public void Decrypt()
         {
             string editedText = EncryptedText.Replace("-", "");
@@ -395,6 +408,7 @@ namespace ZKR.Pages
             }
             else DecryptedText = Encoding.UTF8.GetString(decryptedBytes);
         }
+        //Přímé dešifrování
         public uint[] DecryptBlock(uint L, uint R)
         {
             for (int i = 17; i > 1; i--)
