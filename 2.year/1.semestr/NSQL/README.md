@@ -16,9 +16,6 @@ Obsah projektu spočívá v jednoduchém záznamníku inspirovaném hrou Dungeon
 - Mazání spellů
   
 
-
-
-
 ## 🧠 Použité techniky
 
 - Docker
@@ -31,9 +28,10 @@ Obsah projektu spočívá v jednoduchém záznamníku inspirovaném hrou Dungeon
 
 ## 🔧 Požadavky
 - Python (3.11)
-- Docker
+- [Docker](https://www.docker.com/products/docker-desktop/)
 
 ## 🛠️ Instalace
+- Pro spuštění je potřeba nainstalovat Docker (pro běh databáze)
 ### .exe souboru
 - Tento projekt neobsahuje .exe soubor
 - Spustit lze jen přes kód
@@ -42,8 +40,25 @@ Obsah projektu spočívá v jednoduchém záznamníku inspirovaném hrou Dungeon
 - Vrátit se zpět na [repozitář UJEP](../)
 - Stáhnout repozitář
 - Otevřít si NSQL složku ve Visual Code (Případně jiné IDE)
-- 
-
+- Vytvořit si v terminálu virtuální prostředí (venv) na nainstalování knihoven (neni potřeba, ale doporučeno. Jinak se budou stahovat přímo do počítače)
+```
+  pip -m venv venv
+```
+Aktivovat
+- Musíte být ve stejném adresáři, jako je vytvořený venv.. jinak tato cesta nebude funovat
+```
+  venv\script\activate
+```
+Stáhnutí knihoven
+```
+pip install requirements.txt
+```
+Zapnutí aplikace přes Docker
+```
+cd app
+docker-compose up
+```
+Webová aplikace běží na adrese localhost:5000
 ## 📸 Ukázka simulace
 
 ![Video NSQL](https://github.com/user-attachments/assets/16a8bce2-77b5-41dc-9f3a-73f62a4e5258)
