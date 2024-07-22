@@ -3,8 +3,6 @@
 Tento projekt slouží jako vyučovací materiál pro seznámení s FastAPI. 
 Na projektu se podílel Václav Pták (já) a Jakub Kepi
 
-
-
 ## ⚙️ Funkce
 
 - Vysvětlení API
@@ -15,30 +13,16 @@ Na projektu se podílel Václav Pták (já) a Jakub Kepi
 ## 📂 Struktura projektu
 
 - **INTRODUCTION.md**: Vysvětlení pojmů API, FastAPI
-- **CLASS_README.md**: Instruktáž k naistalování a práci s FastAPI
-- **main.dart**: Hlavní vstup aplikace.
-- **📂app**: Kód aplikace.
-- **📂models**: Třídy, nesouvisející s konkrétní stránkou.
-- **📂modules**: Složka obsahující jednotlivé stránky.
-- **📂modules\dices**: Řešení stránky dices. Obsahuje:
-  - **📂controllers/dices_controller.dart**: Logické řešení stránky.
-  - **📂view/dices_view.dart**: Grafické řešení stránky.
-- **📂routes**: Navigace na view stránky.
-- **📂services**: Pomocné třídy komunikující s více stránkami.
-- **📂shared**: Sdílená data a widgety všem stránkám.
+- **FASTAPI_README.md**: Instruktáž k naistalování a práci s FastAPI
+- **AIO-README.md**: Senzámení s python knihovnou "Asyncio"
+- **📂code\app**: výukový kód
 
-## 🚀 Technologie
-
-- **Dart**: Programovací jazyk
-- **Flutter**: Programovací prostředí
 
 ## 🛠️ Instalace
-### .apk souboru
-- Zde odkaz na Google Drive, kde si můžete stáhnout Kostky.apk soubor.
-- Je nutné povolit na mobilním zařízení "Instalace z neznámých zdrojů"
-- Testováno na Android - Samsung S10+
-- https://drive.google.com/file/d/1uWf35dAy1dB3D6OYQXDQ796nW32rkK93/view?usp=sharing
-### Celé řešení
-- Vrátit se zpět na [repozitář SPSUL](../)
+### .exe souboru
+- Tento projekt neobsahuje žádnou aplikaci na stažení.
+- Jednotlivé soubory si můžete prohlédnout kliknutím na něj
+### Celé řešení (kód)
+- Vrátit se zpět na [repozitář UJEP](../)
 
 
