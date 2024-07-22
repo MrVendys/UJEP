@@ -67,7 +67,7 @@ cd app
 docker-compose up
 ```
 Webová aplikace běží na adrese localhost:5000
-## 📸 Ukázka simulace
+## 📸 Ukázka
 
 ![Video NSQL](https://github.com/user-attachments/assets/16a8bce2-77b5-41dc-9f3a-73f62a4e5258)
 
