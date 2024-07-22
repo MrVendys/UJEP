@@ -21,8 +21,8 @@ Vybral jsem si algoritmus **BlowFish** v programovacím jazyce **C#**
 
 ## 🛠️ Instalace
 ### .exe souboru
-- Ve tomto adresáři kliknout na ZKR.exe
-- Vpravo nahoře tlačítko "Download raw file"
+- Tento projekt neobsahuje .exe soubor
+- Projekt běží na lokálním webu
 
 ### Celé řešení (kód)
 - Vrátit se zpět na [repozitář UJEP](../)
