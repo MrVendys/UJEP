@@ -7,6 +7,7 @@ using Cafe.Strategy.Payments;
 
 namespace Cafe.States
 {
+    //Definice PayState
     internal class PayState : State
     {
         private IPaymentStrategy _strategy;

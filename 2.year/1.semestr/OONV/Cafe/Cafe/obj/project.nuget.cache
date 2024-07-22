@@ -1,14 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "VAlC8MOGmFEJF0LFcHHmsmjwSsP4WBCOTJMTHKk6g23HLQXcPSbLwNMGNdHHJnuy769RHGVIrVPDOiiV8dEWpA==",
+  "dgSpecHash": "eVj6trE0Vn8=",
   "success": true,
-  "projectFilePath": "C:\\Users\\vasik\\OneDrive\\OONV\\Cafe\\Cafe\\Cafe.csproj",
+  "projectFilePath": "C:\\Users\\Venca\\Projects\\UJEP\\UJEP\\2.year\\1.semestr\\OONV\\Cafe\\Cafe\\Cafe.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\vasik\\.nuget\\packages\\dotliquid\\2.2.692\\dotliquid.2.2.692.nupkg.sha512",
-    "C:\\Users\\vasik\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.27\\microsoft.windowsdesktop.app.ref.6.0.27.nupkg.sha512",
-    "C:\\Users\\vasik\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.27\\microsoft.netcore.app.ref.6.0.27.nupkg.sha512",
-    "C:\\Users\\vasik\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.27\\microsoft.aspnetcore.app.ref.6.0.27.nupkg.sha512",
-    "C:\\Users\\vasik\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\6.0.27\\microsoft.netcore.app.host.win-x64.6.0.27.nupkg.sha512"
+    "C:\\Users\\Venca\\.nuget\\packages\\dotliquid\\2.2.692\\dotliquid.2.2.692.nupkg.sha512"
   ],
   "logs": []
 }
