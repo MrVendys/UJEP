@@ -19,10 +19,6 @@ Vybral jsem si algoritmus **BlowFish** v programovacím jazyce **C#**
 - **📂ZKR**: Obsahuje logickou a i grafickou stránku projektu
 
 
-
-
-
-
 ## 🛠️ Instalace
 ### .exe souboru
 - Ve tomto adresáři kliknout na ZKR.exe
@@ -32,7 +28,7 @@ Vybral jsem si algoritmus **BlowFish** v programovacím jazyce **C#**
 - Vrátit se zpět na [repozitář UJEP](../)
 
 
-Webová aplikace běží na adrese localhost:5000
+Webová aplikace běží na adrese localhost:7007
 ## 📸 Ukázka
 
 ![Video ZKR](https://github.com/user-attachments/assets/502ce5a8-7591-43da-824a-b094ad600423)
