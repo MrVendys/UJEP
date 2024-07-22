@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect, flash, url_for, mak
 from bson import json_util
 from pymongo import MongoClient
 
-#Fill the specified collections with predefined data lists.
+#Naplní zadané kolekce předdefinovanými seznamy dat.
 def fill_data(col_list):
 
     weapons = [
@@ -85,7 +85,7 @@ def fill_data(col_list):
         value.insert_many(data_list[list(col_list.keys()).index(key)])
     return data_list
 
-# Filter the list of dictionaries based on the provided IDs.
+# Filtrování seznamu slovníků na základě zadaných ID.
 def getData(dictId,dictValues):
     mylist = []
 

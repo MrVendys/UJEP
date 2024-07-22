@@ -3,7 +3,7 @@ import pymongo
 from bson import json_util
 from pymongo import MongoClient
 
-# Connects to the MongoDB and creates necessary collections/indexes.
+# Připojí se k MongoDB a vytvoří potřebné kolekce/indexy.
 def create_db():
     myclient = pymongo.MongoClient("mongodb://admin:admin@mongodb:27017", connect=False)
     db = myclient['DnD']
