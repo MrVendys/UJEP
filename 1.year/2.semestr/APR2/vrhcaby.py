@@ -72,7 +72,7 @@ def main():
                     else:         
                         # Kliknutí na hrací kámen      
                         for piece in playerW.listOfPieces:
-                            if (pygame.draw.circle(WIN, piece.color, piece.positions, piece.radius).collidepoint(click_x, click_y)):
+                            if (pygame.draw.circle(WIN, piece.color, piece.position, piece.radius).collidepoint(click_x, click_y)):
                                 highlightPiece(piece)
             else:
                 #Hraje počítač
@@ -95,6 +95,7 @@ def AIPlay():
     if(len(succesCounter) >= 3):
         skipTurn()
         return
+    #TODO: predelat na list availablePieces
     while(succes == False):
         if(board.dice1.numberOnDice !=0 or board.dice2.numberOnDice != 0):
             #AI zkusí hrát s první kostkou

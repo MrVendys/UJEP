@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Venca\\Projects\\UJEP\\UJEP\\2.year\\2.semestr\\ZKR\\ZKR_code\\ZKR_code\\ZKR_code.csproj": {}
+    "C:\\Users\\vasik\\Projects\\UJEP\\2.year\\2.semestr\\ZKR\\ZKR_code\\ZKR_code\\ZKR_code.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Venca\\Projects\\UJEP\\UJEP\\2.year\\2.semestr\\ZKR\\ZKR_code\\ZKR_code\\ZKR_code.csproj": {
+    "C:\\Users\\vasik\\Projects\\UJEP\\2.year\\2.semestr\\ZKR\\ZKR_code\\ZKR_code\\ZKR_code.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Venca\\Projects\\UJEP\\UJEP\\2.year\\2.semestr\\ZKR\\ZKR_code\\ZKR_code\\ZKR_code.csproj",
+        "projectUniqueName": "C:\\Users\\vasik\\Projects\\UJEP\\2.year\\2.semestr\\ZKR\\ZKR_code\\ZKR_code\\ZKR_code.csproj",
         "projectName": "ZKR_code",
-        "projectPath": "C:\\Users\\Venca\\Projects\\UJEP\\UJEP\\2.year\\2.semestr\\ZKR\\ZKR_code\\ZKR_code\\ZKR_code.csproj",
-        "packagesPath": "C:\\Users\\Venca\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Venca\\Projects\\UJEP\\UJEP\\2.year\\2.semestr\\ZKR\\ZKR_code\\ZKR_code\\obj\\",
+        "projectPath": "C:\\Users\\vasik\\Projects\\UJEP\\2.year\\2.semestr\\ZKR\\ZKR_code\\ZKR_code\\ZKR_code.csproj",
+        "packagesPath": "C:\\Users\\vasik\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\vasik\\Projects\\UJEP\\2.year\\2.semestr\\ZKR\\ZKR_code\\ZKR_code\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Venca\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\vasik\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -26,7 +22,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -65,7 +60,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200\\RuntimeIdentifierGraph.json"
         }
       }
     }
