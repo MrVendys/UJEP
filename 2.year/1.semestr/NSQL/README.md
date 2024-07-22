@@ -15,6 +15,10 @@ Obsah projektu spočívá v jednoduchém záznamníku inspirovaném hrou Dungeon
 - Přidávání spellů
 - Mazání spellů
   
+
+
+
+
 ## 🧠 Použité techniky
 
 - Docker
@@ -42,5 +46,5 @@ Obsah projektu spočívá v jednoduchém záznamníku inspirovaném hrou Dungeon
 
 ## 📸 Ukázka simulace
 
-![Video NSQL](NSQL_capture.mp4)
+![Video NSQL](https://github.com/user-attachments/assets/16a8bce2-77b5-41dc-9f3a-73f62a4e5258)
 
