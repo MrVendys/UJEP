@@ -27,6 +27,7 @@ Já jsem využil "Factory", "States", "Strategy", "Singleton"
 ## 🧠 Použité techniky
 
 - Návrhové vzory
+- Dědění
 - Konzolová aplikace
 - Zapisování do souboru (User/Documents/Menu.txt, když tak si ho potom smažte)
 
