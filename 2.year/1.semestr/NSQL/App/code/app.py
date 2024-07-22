@@ -39,6 +39,7 @@ def load_user(username):
     return None
 
 # Modify the login route to authenticate based on the username
+@app.route("/",methods=['GET', 'POST'])
 @app.route("/login", methods=['GET', 'POST'])
 def login():
     
