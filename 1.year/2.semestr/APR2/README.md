@@ -1,5 +1,5 @@
 # Vrhcáby (Backgammon)
-
+#DODĚLAT
 ## 📜 Popis projektu
 
 Tento projekt je implementací populární deskové hry **Vrhcáby (Backgammon)** v jazyce **Python**. 
