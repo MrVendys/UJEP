@@ -23,9 +23,16 @@ Obsah projektu spočívá v jednoduchém záznamníku inspirovaném hrou Dungeon
 - Flask
 
 ## 🎮 Ovládání
-
+- Klikání na jednotlivé záložky přepínáte zobrazované stránky
+- viz video
 ## 📂 Struktura projektu
-
+- **📂App**: Řešení celé aplikace
+- **📂code**: Kód
+- **📂static**: Grafika aplikace pomocí css a bootstrapu
+- **app.py**: Hlavní vstup aplikace
+- **data.py**: Předvytvořená data
+- **db.py**: Vytvoření a napojení na databázi
+- 
 ## 🔧 Požadavky
 - Python (3.11)
 - [Docker](https://www.docker.com/products/docker-desktop/)
@@ -35,7 +42,7 @@ Obsah projektu spočívá v jednoduchém záznamníku inspirovaném hrou Dungeon
 ### .exe souboru
 - Tento projekt neobsahuje .exe soubor
 - Spustit lze jen přes kód
-- 
+
 ### Celé řešení (kód)
 - Vrátit se zpět na [repozitář UJEP](../)
 - Stáhnout repozitář
