@@ -1,5 +1,5 @@
 # FASTAPI
-## Pro seznámení s FastAPI si nejdříve přečtětě [instruction](./INTRODUCTION.md)
+## Pro seznámení s FastAPI si nejdříve přečtěte [seznámení](./INTRODUCTION.md)
 # Návod na instalaci  
 
 :one: Vytvoření virtuálního prostředí
