@@ -3,7 +3,7 @@
 Tento projekt slouží jako vyučovací materiál pro seznámení s FastAPI. 
 Na projektu se podílel Václav Pták (já) a Jakub Kepi
 
-> **⚠️ Tento repozitář neobsahuje spustitelné projekty. Slouží pouze pro seznámení s danou technologií a jako opora pro její výuku na semináři!**
+
 
 ## ⚙️ Funkce
 
