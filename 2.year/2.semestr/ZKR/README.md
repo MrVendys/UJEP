@@ -21,9 +21,14 @@ Vybral jsem si algoritmus **BlowFish** v programovacím jazyce **C#**
 
 ## 🛠️ Instalace
 ### .exe souboru
-- Tento projekt neobsahuje žádnou aplikaci na stažení.
-- Jednotlivé soubory si můžete prohlédnout kliknutím na něj
+- Tento projekt neobsahuje .exe soubor
+- Projekt běží na lokálním webu
+
 ### Celé řešení (kód)
 - Vrátit se zpět na [repozitář UJEP](../)
 
 
+Webová aplikace běží na adrese localhost:7007
+## 📸 Ukázka
+
+![Video ZKR](https://github.com/user-attachments/assets/502ce5a8-7591-43da-824a-b094ad600423)
