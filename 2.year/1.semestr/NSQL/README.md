@@ -61,6 +61,7 @@ Stáhnutí knihoven
 pip install requirements.txt
 ```
 Zapnutí aplikace přes Docker
+- přesunutí do adresáže "app", protože v něm se nachází soubory pro spuštění Dockeru
 ```
 cd app
 docker-compose up
