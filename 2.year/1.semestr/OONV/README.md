@@ -8,21 +8,20 @@ Já jsem využil "Factory", "States", "Strategy", "Singleton"
 ## ⚙️ Funkce
 
 - Projekt je jednoduchá konzolová aplikace na téma kavárny
-- V kavárně (Singleton) pracuje "barista", který využívá vzor "States"
-- Pomocí jednotlivých "States" jsou implementovány další vzory "Factory" a "Strategy"
+- V kavárně (Singleton) pracuje "barista", který využívá vzor **States**
+- Pomocí jednotlivých "States" jsou implementovány další vzory **Factory** a **Strategy**
   - "Čeká" na příchod zákazníka
   - "Dělá kávu" ("Factory")
   - "Sprocesuje typ platby" ("Strategy")
-- Dělání kávy je řešeno přes vzor "Factory"
+- Dělání kávy je řešeno přes vzor **Factory**
   - Jednotlivé kávy mají svůj vlastní "kávovar" (Factory)
-  - "Espresso" -> "EspressoMachine"
-  - "CaffeLatte" -> "CaffeLatteMachine"
-  - ...
-- Na typ platby je využit vzor "Strategy"
+  - **Espresso** -> **EspressoMachine**
+  - **CaffeLatte** -> **CaffeLatteMachine**
+- Na typ platby je využit vzor **Strategy**
   - Jednotlivé možnosti placení dědí "IPaymentStrategy" a přispůsobují si ho podle sebe
-  - "PaymentByBank"
-  - "PaymentByCash"
-  - "PaymentByCreditCard"
+  - **PaymentByBank**
+  - **PaymentByCash**
+  - **PaymentByCreditCard**
   
 ## 🧠 Použité techniky
 
