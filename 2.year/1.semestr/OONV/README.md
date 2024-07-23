@@ -10,9 +10,9 @@ Já jsem využil "Factory", "States", "Strategy", "Singleton"
 - Projekt je jednoduchá konzolová aplikace na téma kavárny
 - V kavárně (Singleton) pracuje "barista", který využívá vzor **States**
 - Pomocí jednotlivých "States" jsou implementovány další vzory **Factory** a **Strategy**
-  - "Čeká" na příchod zákazníka
-  - "Dělá kávu" ("Factory")
-  - "Sprocesuje typ platby" ("Strategy")
+  - **Čeká** na příchod zákazníka
+  - **Dělá kávu** ("Factory")
+  - **Sprocesuje typ platby** ("Strategy")
 - Dělání kávy je řešeno přes vzor **Factory**
   - Jednotlivé kávy mají svůj vlastní "kávovar" (Factory)
   - **Espresso** -> **EspressoMachine**
