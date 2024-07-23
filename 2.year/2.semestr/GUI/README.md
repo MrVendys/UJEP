@@ -1,6 +1,7 @@
 ## 📚 Úvod
 
-Tento repozitář obasuje projekty z předmětu	Programování pro GUI. Dvojice studentů si zvolili používanou technologii z oblasti programování a úkolem bylo ji naučit ostatní účastníky kurzu.
+Tento repozitář obasuje projekty z předmětu "Programování pro GUI". 
+Dvojice studentů si zvolili moderní technologii z oblasti programování a úkolem bylo s danou technologií seznámit ostatní účastníky kurzu.
 
 > **⚠️ Tento repozitář neobsahuje spustitelné projekty, pouze kód. Slouží pouze pro seznámení s danou technologií a jako opora pro výuku na semináři!**
 
