@@ -42,18 +42,33 @@ Využívat XML na ukládání a načítání dat. Validovat pomocí XSD a XSL.
 - **index.html**: Úvodní stránka
 - **search.html**: Stránka na vyhledávání hry
 
+## 🔧 Požadavky
+- Visual Studio Code
+- [Docker](https://www.docker.com/products/docker-desktop/)
+
 ## 🛠️ Instalace
 ### .exe souboru
 - Tento projekt neobsahuje .exe soubor
-- Projekt běží na lokálním webu
+- Projekt běží na lokálním webu a jde spusti jedině přes běžící kód (viz níže)
 
 ### Celé řešení (kód)
+- K spuštění je třeba nainstalovat Visual Studio Code (Nebo jiné IDE) a Docker
 - Vrátit se zpět na [repozitář UJEP](../)
-
+- Stáhnout repozitář
+- Spusti Docker
+- Otevřít si PRI složku ve Visual Code (Případně jiné IDE)
+- Otevřít si terminál (Buď přímo v počítači nebo ve Visual studiu Code -> Vlevo nahoře **Terminal** -> **New Terminal**
+- V terminálu se dosta do složky "Seminarka"
+```
+cd seminarka
+```
+Spustit aplikaci přes Docker
+```
+docker-compose up
+```
 
 Webová aplikace běží na adrese localhost:8000
 ## 📸 Ukázka
-
 
 https://github.com/user-attachments/assets/122fa4ba-1c47-470b-91af-61454177eeea
 
