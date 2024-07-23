@@ -18,17 +18,23 @@ Vybral jsem si algoritmus **BlowFish** v programovacím jazyce **C#**
 
 - **📂ZKR**: Obsahuje logickou a i grafickou stránku projektu
 
+## 🔧 Požadavky
+- .NET Framework 4.7.2 nebo vyšší
+- Visual Studio 2019 nebo novější
 
 ## 🛠️ Instalace
 ### .exe souboru
 - Tento projekt neobsahuje .exe soubor
-- Projekt běží na lokálním webu
+- Projekt běží na lokálním webu a je spustitelný pouze přes běžící kód (viz níže)
 
 ### Celé řešení (kód)
 - Vrátit se zpět na [repozitář UJEP](../)
+- Stáhnot repozitář
+- Otevřít aplikaci ZKR/ZKR/ZKR.sln ve Visual Studio
+- Spustit aplikaci (zelené tlačítko nahoře)
 
 
 Webová aplikace běží na adrese localhost:7007
 ## 📸 Ukázka
 
-![Video ZKR](https://github.com/user-attachments/assets/502ce5a8-7591-43da-824a-b094ad600423)
+https://github.com/user-attachments/assets/502ce5a8-7591-43da-824a-b094ad600423
