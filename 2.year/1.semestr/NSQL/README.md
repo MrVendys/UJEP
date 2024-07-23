@@ -24,8 +24,16 @@ Na projektu jsem pracoval se spolužákem: Bao Kieu Quank
 - Flask
 
 ## 🎮 Ovládání
-- Klikání na jednotlivé záložky přepínáte zobrazované stránky
-- viz video
+- Při spuštění se zobrazí "Log in" stránka
+  - Přihlásti se můžete pomocí uložených uživatelů ("venca" nebo "bao")
+- Po Přihlášení se objeví stránka profilu uživatele.
+- Profil obsahuje několik záložek, kliknutím na něj přepínáte mezi stránkami:
+  - **Home**: Přesměruje na hlavní stránku prodilu
+  - **My Spells**: Zobrazí hráčovi naučené spelly
+  - **Inventory**: Zobrazí hráčovi itemy
+  - **Spells Library**: Zobrazí všechny spelly ve hře
+  - **Log out**: Odhlásí uživatele a přesměruje zpět na stránku "Log in"
+
 ## 📂 Struktura projektu
 - **📂App**: Řešení celé aplikace
 - **📂code**: Kód
@@ -70,5 +78,5 @@ docker-compose up
 Webová aplikace běží na adrese localhost:5000
 ## 📸 Ukázka
 
-![Video NSQL](https://github.com/user-attachments/assets/16a8bce2-77b5-41dc-9f3a-73f62a4e5258)
+https://github.com/user-attachments/assets/16a8bce2-77b5-41dc-9f3a-73f62a4e5258
 
