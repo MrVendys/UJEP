@@ -7,6 +7,7 @@ Pro náš projekt jsme si vybrali databázový systém MongoDB
 
 Obsah projektu spočívá v jednoduchém záznamníku inspirovaném hrou Dungeons & Dragons.
 
+Na projektu jsem pracoval se spolužákem: Bao Kieu Quank
 
 ## ⚙️ Funkce
 
