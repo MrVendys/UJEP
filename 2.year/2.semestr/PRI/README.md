@@ -57,6 +57,3 @@ Webová aplikace běží na adrese localhost:8000
 
 https://github.com/user-attachments/assets/122fa4ba-1c47-470b-91af-61454177eeea
 
-
-![Video PRI](https://github.com/user-attachments/assets/122fa4ba-1c47-470b-91af-61454177eeea
-)
