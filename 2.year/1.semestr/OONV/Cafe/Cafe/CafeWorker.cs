@@ -1,4 +1,4 @@
-﻿using Cafe.States;
+using Cafe.States;
 using DotLiquid.Util;
 using System;
 using System.Collections.Generic;
