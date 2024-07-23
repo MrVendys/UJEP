@@ -15,6 +15,7 @@ namespace Cafe
         {
 
         }
+        //Implementace vzoru "Singleton"
         private static CafeShop instance;
         public static CafeShop GetInstance()
         {
@@ -26,10 +27,13 @@ namespace Cafe
         }
         public void Open()
         {
+            //Vytvoření třídy worker a menu
+            //Workerovi rovnou přiřadit stav "Čekat na zákazníka"
             worker = new CafeWorker(new WaitState());
             menu = new Menu();
             worker.WaitingForCustomer();
         }
+        //Funkce spracovávající vstup uživatele a měnění stavu Workera
         public void CustomerComes()
         {
             Console.WriteLine("Dobrý den. Vítejte v kávovém stánku ForRest Cafe, copak si dáte? (menu)");

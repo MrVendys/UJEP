@@ -11,19 +11,18 @@ namespace Cafe
     internal class CafeWorker
     {
         private State state;
+        //Implementace vzoru "State"
         public CafeWorker(State state)
         {
             this.TransitionTo(state);
         }
         public void TransitionTo(State state)
         {
-            //Console.WriteLine($"Context: Transition to {state.GetType().Name}.");
             this.state = state;
             this.state.SetState(this);
         }
 
-        // The Context delegates part of its behavior to the current State
-        // object.
+
         public void WaitingForCustomer()
         {
             this.state.onWaiting();

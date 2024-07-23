@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect, flash, url_for, mak
 from bson import json_util
 from pymongo import MongoClient
 
-#Fill the specified collections with predefined data lists.
+#Naplní zadané kolekce předdefinovanými seznamy dat.
 def fill_data(col_list):
 
     weapons = [
@@ -42,7 +42,7 @@ def fill_data(col_list):
    "race": "Half-elf", 
    "class": "Ranger", 
    "level": "3", 
-   "profile_img": "https://i.pinimg.com/736x/98/51/75/985175b84cf1a5f4c2f782592574c0da.jpg",
+   "profile_img": "https://media.tenor.com/EloqEPT0SNYAAAAM/frieren-owo-moment-lil-cat-face.gif",
    "char_stats":{"strength": {"stat":"5", "bonus":"1"},
                  "dexterity": {"stat":"6", "bonus":"2"},
                  "constitution": {"stat":"7", "bonus":"3"},
@@ -62,7 +62,7 @@ def fill_data(col_list):
    "race": "Elf", 
    "class": "Warrior", 
    "level": "3", 
-   "profile_img": "https://media.tenor.com/EloqEPT0SNYAAAAM/frieren-owo-moment-lil-cat-face.gif",
+   "profile_img": "https://i.pinimg.com/736x/98/51/75/985175b84cf1a5f4c2f782592574c0da.jpg",
    "char_stats":{"strength": {"stat":"5", "bonus":"1"},
                  "dexterity": {"stat":"6", "bonus":"2"},
                  "constitution": {"stat":"7", "bonus":"3"},
@@ -85,7 +85,7 @@ def fill_data(col_list):
         value.insert_many(data_list[list(col_list.keys()).index(key)])
     return data_list
 
-# Filter the list of dictionaries based on the provided IDs.
+# Filtrování seznamu slovníků na základě zadaných ID.
 def getData(dictId,dictValues):
     mylist = []
 

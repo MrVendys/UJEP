@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Cafe.States
 {
+    //Definice WaitState
     internal class WaitState : State
     {
         CafeShop CafeShop = CafeShop.GetInstance();

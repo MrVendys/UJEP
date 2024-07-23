@@ -1,0 +1,241 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Venca\\Projects\\UJEP\\UJEP\\2.year\\1.semestr\\OONV\\Cafe\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{F50877BE-F60F-4C14-8D88-FF37C6F62FB5}|Cafe\\Cafe.csproj|c:\\users\\venca\\projects\\ujep\\ujep\\2.year\\1.semestr\\oonv\\cafe\\cafe\\factory\\coffee\\caffelatte.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F50877BE-F60F-4C14-8D88-FF37C6F62FB5}|Cafe\\Cafe.csproj|solutionrelative:cafe\\factory\\coffee\\caffelatte.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F50877BE-F60F-4C14-8D88-FF37C6F62FB5}|Cafe\\Cafe.csproj|c:\\users\\venca\\projects\\ujep\\ujep\\2.year\\1.semestr\\oonv\\cafe\\cafe\\states\\waitstate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F50877BE-F60F-4C14-8D88-FF37C6F62FB5}|Cafe\\Cafe.csproj|solutionrelative:cafe\\states\\waitstate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F50877BE-F60F-4C14-8D88-FF37C6F62FB5}|Cafe\\Cafe.csproj|c:\\users\\venca\\projects\\ujep\\ujep\\2.year\\1.semestr\\oonv\\cafe\\cafe\\states\\paystate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F50877BE-F60F-4C14-8D88-FF37C6F62FB5}|Cafe\\Cafe.csproj|solutionrelative:cafe\\states\\paystate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F50877BE-F60F-4C14-8D88-FF37C6F62FB5}|Cafe\\Cafe.csproj|c:\\users\\venca\\projects\\ujep\\ujep\\2.year\\1.semestr\\oonv\\cafe\\cafe\\states\\state.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F50877BE-F60F-4C14-8D88-FF37C6F62FB5}|Cafe\\Cafe.csproj|solutionrelative:cafe\\states\\state.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F50877BE-F60F-4C14-8D88-FF37C6F62FB5}|Cafe\\Cafe.csproj|c:\\users\\venca\\projects\\ujep\\ujep\\2.year\\1.semestr\\oonv\\cafe\\cafe\\cafeshop.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F50877BE-F60F-4C14-8D88-FF37C6F62FB5}|Cafe\\Cafe.csproj|solutionrelative:cafe\\cafeshop.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F50877BE-F60F-4C14-8D88-FF37C6F62FB5}|Cafe\\Cafe.csproj|c:\\users\\venca\\projects\\ujep\\ujep\\2.year\\1.semestr\\oonv\\cafe\\cafe\\menu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F50877BE-F60F-4C14-8D88-FF37C6F62FB5}|Cafe\\Cafe.csproj|solutionrelative:cafe\\menu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F50877BE-F60F-4C14-8D88-FF37C6F62FB5}|Cafe\\Cafe.csproj|c:\\users\\venca\\projects\\ujep\\ujep\\2.year\\1.semestr\\oonv\\cafe\\cafe\\states\\makestate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F50877BE-F60F-4C14-8D88-FF37C6F62FB5}|Cafe\\Cafe.csproj|solutionrelative:cafe\\states\\makestate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F50877BE-F60F-4C14-8D88-FF37C6F62FB5}|Cafe\\Cafe.csproj|c:\\users\\venca\\projects\\ujep\\ujep\\2.year\\1.semestr\\oonv\\cafe\\cafe\\cafeworker.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F50877BE-F60F-4C14-8D88-FF37C6F62FB5}|Cafe\\Cafe.csproj|solutionrelative:cafe\\cafeworker.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F50877BE-F60F-4C14-8D88-FF37C6F62FB5}|Cafe\\Cafe.csproj|c:\\users\\venca\\projects\\ujep\\ujep\\2.year\\1.semestr\\oonv\\cafe\\cafe\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F50877BE-F60F-4C14-8D88-FF37C6F62FB5}|Cafe\\Cafe.csproj|solutionrelative:cafe\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F50877BE-F60F-4C14-8D88-FF37C6F62FB5}|Cafe\\Cafe.csproj|c:\\users\\venca\\projects\\ujep\\ujep\\2.year\\1.semestr\\oonv\\cafe\\cafe\\factory\\machines\\coffeemachine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F50877BE-F60F-4C14-8D88-FF37C6F62FB5}|Cafe\\Cafe.csproj|solutionrelative:cafe\\factory\\machines\\coffeemachine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F50877BE-F60F-4C14-8D88-FF37C6F62FB5}|Cafe\\Cafe.csproj|c:\\users\\venca\\projects\\ujep\\ujep\\2.year\\1.semestr\\oonv\\cafe\\cafe\\factory\\machines\\cappucinomachine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F50877BE-F60F-4C14-8D88-FF37C6F62FB5}|Cafe\\Cafe.csproj|solutionrelative:cafe\\factory\\machines\\cappucinomachine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F50877BE-F60F-4C14-8D88-FF37C6F62FB5}|Cafe\\Cafe.csproj|c:\\users\\venca\\projects\\ujep\\ujep\\2.year\\1.semestr\\oonv\\cafe\\cafe\\factory\\machines\\espressomachine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F50877BE-F60F-4C14-8D88-FF37C6F62FB5}|Cafe\\Cafe.csproj|solutionrelative:cafe\\factory\\machines\\espressomachine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F50877BE-F60F-4C14-8D88-FF37C6F62FB5}|Cafe\\Cafe.csproj|c:\\users\\venca\\projects\\ujep\\ujep\\2.year\\1.semestr\\oonv\\cafe\\cafe\\factory\\machines\\doppiomachine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F50877BE-F60F-4C14-8D88-FF37C6F62FB5}|Cafe\\Cafe.csproj|solutionrelative:cafe\\factory\\machines\\doppiomachine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "CaffeLatte.cs",
+              "DocumentMoniker": "C:\\Users\\Venca\\Projects\\UJEP\\UJEP\\2.year\\1.semestr\\OONV\\Cafe\\Cafe\\Factory\\Coffee\\CaffeLatte.cs",
+              "RelativeDocumentMoniker": "Cafe\\Factory\\Coffee\\CaffeLatte.cs",
+              "ToolTip": "C:\\Users\\Venca\\Projects\\UJEP\\UJEP\\2.year\\1.semestr\\OONV\\Cafe\\Cafe\\Factory\\Coffee\\CaffeLatte.cs",
+              "RelativeToolTip": "Cafe\\Factory\\Coffee\\CaffeLatte.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-22T18:50:43.349Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "WaitState.cs",
+              "DocumentMoniker": "C:\\Users\\Venca\\Projects\\UJEP\\UJEP\\2.year\\1.semestr\\OONV\\Cafe\\Cafe\\States\\WaitState.cs",
+              "RelativeDocumentMoniker": "Cafe\\States\\WaitState.cs",
+              "ToolTip": "C:\\Users\\Venca\\Projects\\UJEP\\UJEP\\2.year\\1.semestr\\OONV\\Cafe\\Cafe\\States\\WaitState.cs",
+              "RelativeToolTip": "Cafe\\States\\WaitState.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAYAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-22T18:50:20.151Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "State.cs",
+              "DocumentMoniker": "C:\\Users\\Venca\\Projects\\UJEP\\UJEP\\2.year\\1.semestr\\OONV\\Cafe\\Cafe\\States\\State.cs",
+              "RelativeDocumentMoniker": "Cafe\\States\\State.cs",
+              "ToolTip": "C:\\Users\\Venca\\Projects\\UJEP\\UJEP\\2.year\\1.semestr\\OONV\\Cafe\\Cafe\\States\\State.cs",
+              "RelativeToolTip": "Cafe\\States\\State.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAYAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-22T18:48:01.924Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "PayState.cs",
+              "DocumentMoniker": "C:\\Users\\Venca\\Projects\\UJEP\\UJEP\\2.year\\1.semestr\\OONV\\Cafe\\Cafe\\States\\PayState.cs",
+              "RelativeDocumentMoniker": "Cafe\\States\\PayState.cs",
+              "ToolTip": "C:\\Users\\Venca\\Projects\\UJEP\\UJEP\\2.year\\1.semestr\\OONV\\Cafe\\Cafe\\States\\PayState.cs",
+              "RelativeToolTip": "Cafe\\States\\PayState.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAA0AAAAvAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-22T18:39:04.21Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "MakeState.cs",
+              "DocumentMoniker": "C:\\Users\\Venca\\Projects\\UJEP\\UJEP\\2.year\\1.semestr\\OONV\\Cafe\\Cafe\\States\\MakeState.cs",
+              "RelativeDocumentMoniker": "Cafe\\States\\MakeState.cs",
+              "ToolTip": "C:\\Users\\Venca\\Projects\\UJEP\\UJEP\\2.year\\1.semestr\\OONV\\Cafe\\Cafe\\States\\MakeState.cs",
+              "RelativeToolTip": "Cafe\\States\\MakeState.cs",
+              "ViewState": "AQIAAAUAAAAAAAAAAAAQwAUAAAAeAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-22T18:14:35.748Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "CafeWorker.cs",
+              "DocumentMoniker": "C:\\Users\\Venca\\Projects\\UJEP\\UJEP\\2.year\\1.semestr\\OONV\\Cafe\\Cafe\\CafeWorker.cs",
+              "RelativeDocumentMoniker": "Cafe\\CafeWorker.cs",
+              "ToolTip": "C:\\Users\\Venca\\Projects\\UJEP\\UJEP\\2.year\\1.semestr\\OONV\\Cafe\\Cafe\\CafeWorker.cs",
+              "RelativeToolTip": "Cafe\\CafeWorker.cs",
+              "ViewState": "AQIAAAsAAAAAAAAAAAAQwA0AAAAeAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-22T18:14:16.343Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "EspressoMachine.cs",
+              "DocumentMoniker": "C:\\Users\\Venca\\Projects\\UJEP\\UJEP\\2.year\\1.semestr\\OONV\\Cafe\\Cafe\\Factory\\Machines\\EspressoMachine.cs",
+              "RelativeDocumentMoniker": "Cafe\\Factory\\Machines\\EspressoMachine.cs",
+              "ToolTip": "C:\\Users\\Venca\\Projects\\UJEP\\UJEP\\2.year\\1.semestr\\OONV\\Cafe\\Cafe\\Factory\\Machines\\EspressoMachine.cs",
+              "RelativeToolTip": "Cafe\\Factory\\Machines\\EspressoMachine.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-22T18:13:38.342Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "CappucinoMachine.cs",
+              "DocumentMoniker": "C:\\Users\\Venca\\Projects\\UJEP\\UJEP\\2.year\\1.semestr\\OONV\\Cafe\\Cafe\\Factory\\Machines\\CappucinoMachine.cs",
+              "RelativeDocumentMoniker": "Cafe\\Factory\\Machines\\CappucinoMachine.cs",
+              "ToolTip": "C:\\Users\\Venca\\Projects\\UJEP\\UJEP\\2.year\\1.semestr\\OONV\\Cafe\\Cafe\\Factory\\Machines\\CappucinoMachine.cs",
+              "RelativeToolTip": "Cafe\\Factory\\Machines\\CappucinoMachine.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-22T18:13:36.362Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "DoppioMachine.cs",
+              "DocumentMoniker": "C:\\Users\\Venca\\Projects\\UJEP\\UJEP\\2.year\\1.semestr\\OONV\\Cafe\\Cafe\\Factory\\Machines\\DoppioMachine.cs",
+              "RelativeDocumentMoniker": "Cafe\\Factory\\Machines\\DoppioMachine.cs",
+              "ToolTip": "C:\\Users\\Venca\\Projects\\UJEP\\UJEP\\2.year\\1.semestr\\OONV\\Cafe\\Cafe\\Factory\\Machines\\DoppioMachine.cs",
+              "RelativeToolTip": "Cafe\\Factory\\Machines\\DoppioMachine.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-22T18:13:34.51Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Venca\\Projects\\UJEP\\UJEP\\2.year\\1.semestr\\OONV\\Cafe\\Cafe\\Program.cs",
+              "RelativeDocumentMoniker": "Cafe\\Program.cs",
+              "ToolTip": "C:\\Users\\Venca\\Projects\\UJEP\\UJEP\\2.year\\1.semestr\\OONV\\Cafe\\Cafe\\Program.cs",
+              "RelativeToolTip": "Cafe\\Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAzAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-22T18:11:45.232Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "CafeShop.cs",
+              "DocumentMoniker": "C:\\Users\\Venca\\Projects\\UJEP\\UJEP\\2.year\\1.semestr\\OONV\\Cafe\\Cafe\\CafeShop.cs",
+              "RelativeDocumentMoniker": "Cafe\\CafeShop.cs",
+              "ToolTip": "C:\\Users\\Venca\\Projects\\UJEP\\UJEP\\2.year\\1.semestr\\OONV\\Cafe\\Cafe\\CafeShop.cs",
+              "RelativeToolTip": "Cafe\\CafeShop.cs",
+              "ViewState": "AQIAABsAAAAAAAAAAAAowCMAAABGAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-22T18:04:20.743Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Menu.cs",
+              "DocumentMoniker": "C:\\Users\\Venca\\Projects\\UJEP\\UJEP\\2.year\\1.semestr\\OONV\\Cafe\\Cafe\\Menu.cs",
+              "RelativeDocumentMoniker": "Cafe\\Menu.cs",
+              "ToolTip": "C:\\Users\\Venca\\Projects\\UJEP\\UJEP\\2.year\\1.semestr\\OONV\\Cafe\\Cafe\\Menu.cs",
+              "RelativeToolTip": "Cafe\\Menu.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAAAsAAAApAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-22T18:03:24.189Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "CoffeeMachine.cs",
+              "DocumentMoniker": "C:\\Users\\Venca\\Projects\\UJEP\\UJEP\\2.year\\1.semestr\\OONV\\Cafe\\Cafe\\Factory\\Machines\\CoffeeMachine.cs",
+              "RelativeDocumentMoniker": "Cafe\\Factory\\Machines\\CoffeeMachine.cs",
+              "ToolTip": "C:\\Users\\Venca\\Projects\\UJEP\\UJEP\\2.year\\1.semestr\\OONV\\Cafe\\Cafe\\Factory\\Machines\\CoffeeMachine.cs",
+              "RelativeToolTip": "Cafe\\Factory\\Machines\\CoffeeMachine.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-22T18:27:54.805Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect, flash, url_for, make_response
+from flask import render_template
 from flask_login import LoginManager, login_user, UserMixin, login_required, logout_user, current_user
 import pymongo
 from bson import json_util
@@ -7,96 +8,91 @@ import data
 import db
 import sys
 
-#create database and collections
+#Vytvoreni databaze a kolekci
 col_list = db.create_db()
 
-#fill collections with data
+#naplneni kolekci daty
 data_list = data.fill_data(col_list)
 app = Flask(__name__, template_folder='static/templates')
 app.secret_key = "super secret key"
 
 #--------------------------Login----------------------------------
-# Define a mock user class for demonstration purposes
+# Definovani user tridy
 class User(UserMixin):
     def __init__(self, id):
         self.id = id
 
-# Initialize the login manager
+# vytvoreni loginu
 login_manager = LoginManager()
 login_manager.init_app(app)
 
-# Specify a custom unauthorized handler to redirect users to the login page
+# Specifikace vlastního spravce, ktery uzivatele presmeruje na prihlasovaci stranku
 @login_manager.unauthorized_handler
 def unauthorized_callback():
     return redirect(url_for('login'))
 
 # Load user from the database based on username
+# nacteni uzivatele z databaze podle jmena
 @login_manager.user_loader
 def load_user(username):
     player = col_list["players"].find_one({"username": username})
     if player:
-        return User(username)  # Assuming the username is unique and can be used as the user ID
+        return User(username)  # Predpoklada se, ze jmeno je v databazi jedinecne
     return None
 
 # Modify the login route to authenticate based on the username
+# Reseni prihlasovani na specifickych routach
+@app.route("/",methods=['GET', 'POST'])
 @app.route("/login", methods=['GET', 'POST'])
 def login():
-    
+    # Prihlasovani podle jmena
     global logged_user_id
     if request.method == 'POST':
         username = request.form['username'].lower()
-
+        #Najde hrace podle jmena
         player = next((p for p in col_list["players"].find({"username": {"$regex": f"^{username}$", "$options": "i"}})), None)
         if player:
-            login_user(User(username))  # Log in the user
+            login_user(User(username))  # Prihlasi hrace
             logged_user_id = player["id"]
+            # Presmeruje na route index
             return redirect(url_for('index'))
         else:
             return "Invalid username or password"
     else:
         return render_template('login.html')
 
-# Example of a route that requires login
-@app.route("/logout")
-@login_required
-def logout():
-    logout_user()   # Log out the user
-    return redirect(url_for('index'))
 #-----------------------------------------------------------------
 
 
-from flask import render_template
-#This function fetches the player data for the logged in user and renders the index.html template with the player data.
+
+#Tato funkce nacte data hrace pro prihlaseneho uzivatele a vykresli aablonu index.html s daty hrace.
 @app.route("/home")
 @app.route("/index")
 @login_required
 def index():
-    # logged_user_id = "1" 
     player = col_list["players"].find_one({"id": logged_user_id})
     
     return render_template("index.html", player=player)
-#Renders the spells page with player information and spell lists
+
+#Vytvoří stránku kouzel s informacemi o hráči a seznamy kouzel
 @app.route('/spells')
 @login_required
 def spells():
-    # logged_user_id = "1"
     player = col_list["players"].find_one({"id": logged_user_id})
     cantrips = list(col_list["cantrips"].find())
     spellslvl1 = list(col_list["spellslvl1"].find())
     spellslvl2 = list(col_list["spellslvl2"].find())
     return render_template('spells.html', cantrips=cantrips, spellslvl1=spellslvl1,spellslvl2=spellslvl2, player = player)
 
-#Render the my_spells.html template with the player's spells and spell lists.
-#Allows the player to update their spell lists using POST method.
+#Renderování šablony my_spells.html s kouzly a seznamy kouzel hráče.
+#Umožňuje hráči aktualizovat seznamy kouzel pomocí metody POST.
 @app.route("/my_spells", methods=['GET', 'POST'])
 @login_required
 def my_spells():
-    
-    # logged_user_id = "1"
+    # Najde hrace pomoci logged_user_id
     player = col_list["players"].find_one({"id": logged_user_id})
     if request.method == 'POST':
         key_value = list(request.form.keys())
-        print("key",*request.form.items(),file=sys.stderr)
         new_data_list = []
         for key,value in request.form.items():
             for item in request.form.getlist(key_value[0]):
@@ -115,11 +111,10 @@ def my_spells():
     splvl2 = data.getData(player["spells"]["spellslvl2"],col_list["spellslvl2"].find())
     return render_template("my_spells.html", player = player, cantrips = splcn, spellslvl1 = splvl1, spellslvl2 = splvl2, spells_list = spells_list)
 
-#Same as my_spells() but for the player's inventory.
+#Stejné jako my_spells(), ale pro inventář hráče.
 @app.route("/inventory", methods=['GET', 'POST'])
 @login_required
 def invetory():
-    # logged_user_id = "1"
     player = col_list["players"].find_one({"id": logged_user_id})
     if request.method == 'POST':
         key_value = list(request.form.keys())

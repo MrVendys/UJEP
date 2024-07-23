@@ -1,14 +1,9 @@
 ﻿using Cafe.Factory.Machines;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace Cafe.States
 {
     internal class MakeState : State
     {
+        //Definice "MakeState"
         private CoffeeMachine machine;
         public override void onMaking(string order)
         {
@@ -38,7 +33,9 @@ namespace Cafe.States
                 worker.TransitionTo(new PayState());
             }
             coffee = machine.MakingCoffee(); ;
+
             Console.WriteLine($"Nápoj {coffee} je hotový.");
+
             worker.TransitionTo(new PayState());
         }
 

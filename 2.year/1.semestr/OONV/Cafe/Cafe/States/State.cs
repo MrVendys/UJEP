@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Cafe.States
 {
+    //Děděná třída State
     abstract class State
     {
         protected CafeWorker worker;
