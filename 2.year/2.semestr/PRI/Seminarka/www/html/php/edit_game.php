@@ -1,25 +1,25 @@
 <?php
-// Check if form is submitted
+// Kontrola, zda byl formulář odeslán
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
-    // Retrieve form data
+    // Získání dat z formuláře
     $title = htmlspecialchars($_POST['title']);
     $developer = htmlspecialchars($_POST['developer']);
     $publisher = htmlspecialchars($_POST['publisher']);
-    $platform = htmlspecialchars($_POST['platform']);
+    $platforms = htmlspecialchars($_POST['platform']);
     $release_date = htmlspecialchars($_POST['release_date']);
     $genre = htmlspecialchars($_POST['genre']);
     
-    // Validate and sanitize data
-    if (empty($title) || empty($developer) || empty($publisher) || empty($platform) || empty($release_date) || empty($genre)) {
-        die("All fields are required.");
+    // Validace a sanitizace dat
+    if (empty($title) || empty($developer) || empty($publisher) || empty($platforms) || empty($release_date) || empty($genre)) {
+        die("Všechna pole jsou povinná.");
     }
     
-    // Load current games.xml
+    // Načtení aktuálního games.xml
     $xml = new DOMDocument();
     $xml->load('../xml/games.xml');
     
-    // Find and update <game> element
+    // Nalezení a aktualizace elementu <game>
     $games = $xml->getElementsByTagName('game');
     $gameUpdated = false;
 
@@ -28,7 +28,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($gameTitle === $title) {
             $game->getElementsByTagName('developer')->item(0)->textContent = $developer;
             $game->getElementsByTagName('publisher')->item(0)->textContent = $publisher;
-            $game->getElementsByTagName('platform')->item(0)->textContent = $platform;
+            $platformsNode = $game->getElementsByTagName('platforms')->item(0);
+
+            // Odstranění existujících platforem
+            while ($platformsNode->hasChildNodes()) {
+                $platformsNode->removeChild($platformsNode->firstChild);
+            }
+
+            // Rozdělení platforem podle "," a vytvoření odpovídajících elementů <platform>
+            $platformArray = explode(',', $platforms);
+            foreach ($platformArray as $platformItem) {
+                $platformItem = trim($platformItem); 
+                $newPlatformElement = $xml->createElement('platform', $platformItem);
+                $platformsNode->appendChild($newPlatformElement);
+            }
             $game->getElementsByTagName('release_date')->item(0)->textContent = $release_date;
             $game->getElementsByTagName('genre')->item(0)->textContent = $genre;
             $gameUpdated = true;
@@ -36,18 +49,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
     
-    // Save updated XML back to file if game was updated
+    // Uložení aktualizovaného XML zpět do souboru, pokud byla hra aktualizována
     if ($gameUpdated) {
         $xml->save('../xml/games.xml');
         header('Location: ../games.html');
-        echo "Game details updated successfully.";
+        echo "Detaily hry byly úspěšně aktualizovány.";
     } else {
-        echo "Failed to update game details.";
+        echo "Nepodařilo se aktualizovat detaily hry.";
     }
     
 } else {
-    // Handle if form is not submitted
-    echo "Form not submitted.";
+    // Ošetření, pokud formulář nebyl odeslán
+    echo "Formulář nebyl odeslán.";
 }
 header('Location: ../games.html');
 ?>

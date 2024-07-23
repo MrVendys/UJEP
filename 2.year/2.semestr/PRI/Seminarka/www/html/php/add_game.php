@@ -1,5 +1,5 @@
 <?php
-// Function to validate XML against XSD
+// Validace XML dokumentu proti XSL
 function validateXML($xmlFile, $xsdFile) {
     $xml = new DOMDocument();
     $xml->load($xmlFile);
@@ -8,19 +8,19 @@ function validateXML($xmlFile, $xsdFile) {
     $xsd->load($xsdFile);
 
     if ($xml->schemaValidate($xsdFile)) {
-        return true; // XML is valid according to the schema
+        return true; // XML je v pořádku podle schématu XSL
     } else {
-        return false; // XML is not valid according to the schema
+        return false; // XML není v pořádku podle schématu XSL
     }
 }
 
-// Check if form is submitted
+// Kontrola, jestli byl form odeslán
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
-    // Initialize notification variable
+    // Inicializace proměnné pro notifikaci
     $notification = "";
     
-    // Retrieve form data
+    // Získání dat z formuláře
     $title = htmlspecialchars($_POST['title']);
     $developer = htmlspecialchars($_POST['developer']);
     $publisher = htmlspecialchars($_POST['publisher']);
@@ -28,24 +28,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $release_date = htmlspecialchars($_POST['release_date']);
     $genre = htmlspecialchars($_POST['genre']);
     
-    // Validate and sanitize data
+    // Validování dat
     if (empty($title) || empty($developer) || empty($publisher) || empty($platforms) || empty($release_date) || empty($genre)) {
         $notification = "All fields are required.";
     } else {
-        // Validate XML against XSD
+        // Validace XML proti XSD
         $xmlFile = '../xml/games.xml';
         $xsdFile = '../xml/games.xsd';
         if (!validateXML($xmlFile, $xsdFile)) {
             $notification = "Failed to validate XML against XSD.";
         } else {
-            // Load current games.xml
+            // Načtení XML games.xml
             $xml = new DOMDocument();
             $xml->load($xmlFile);
             
             $root = $xml->documentElement;
             $maxId = 0;
 
-            // Find the highest id in the existing game elements
+            // Naleznutí elementu s největším id (tudíž poslední element)
             $gameElements = $root->getElementsByTagName('game');
             foreach ($gameElements as $game) {
                 $id = $game->getAttribute('id');
@@ -54,43 +54,43 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 }
             }
 
-            // Calculate the new ID
+            // Počítání nového ID
             $newId = $maxId + 1;
 
-            // Create new <game> element
+            // Vytvoření nového <game> elementu
             $newGame = $xml->createElement('game');
             $newGame->setAttribute('id', $newId);
 
-            // Create child elements and append to <game> element
+            // Vytvoření dětského elementu a přidání do <game> elementu
             $newGame->appendChild($xml->createElement('title', $title));
             $newGame->appendChild($xml->createElement('developer', $developer));
             $newGame->appendChild($xml->createElement('publisher', $publisher));
 
-            // Create <platforms> element to hold multiple platform entries
+            // Vytvoření elementu <plarforms> na uložení více elementu <platform> (Pc, Xbox..)
             $platformsElement = $xml->createElement('platforms');
 
-            // Split the platforms string into an array
+            // Rozdělení textu hracích platforem podle ","
             $platformList = explode(',', $platforms);
-
-            // Trim whitespace and create individual <platform> elements
+            
+            // Oddělení prázdných znaků
             foreach ($platformList as $platform) {
                 $platform = trim(ucfirst(strtolower($platform)));
                 $platformElement = $xml->createElement('platform', $platform);
                 $platformsElement->appendChild($platformElement);
             }
 
-            // Append the <platforms> element to the new <game> element
+            // Přidání elementu <platforms> do nového elementu <game>
             $newGame->appendChild($platformsElement);
 
             $newGame->appendChild($xml->createElement('release_date', $release_date));
             $newGame->appendChild($xml->createElement('genre', $genre));
             
-            // Append <game> to <games> element
+            // Přidání <game> do hlavního (kořenového) elementu <games>
             $xml->documentElement->appendChild($newGame);
             
-            // Save updated XML back to file
+            // Uložení aktualizovaného xml dokumentu
             if ($xml->save('../xml/games.xml')) {
-                // Redirect back to game list page on success
+                // Přesměrování zpátky na stránku games.html
                 header('Location: ../games.html');
                 exit;
             } else {
@@ -99,14 +99,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
     
-    // Display notification if there was an error
+    // Zobrazení notifikace při nějkém problému
     if (!empty($notification)) {
         echo '<script>alert("' . $notification . '"); window.history.back();</script>';
         exit;
     }
     
 } else {
-    // Handle if form is not submitted
     echo "Form not submitted.";
 }
 ?>

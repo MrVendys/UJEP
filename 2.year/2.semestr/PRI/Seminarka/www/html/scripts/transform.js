@@ -1,25 +1,25 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Load XML file
+    // Načtení souboru XML
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.open('GET', '../xml/games.xml', false);
     xmlhttp.send();
     var xmlDoc = xmlhttp.responseXML;
 
-    // Load XSL file
+    // Načtení souboru XSL
     var xslhttp = new XMLHttpRequest();
     xslhttp.open('GET', '../xml/games.xsl', false);
     xslhttp.send();
     var xslDoc = xslhttp.responseXML;
 
-    // Transform XML using XSLT
+    // Transformace XML pomocí XSLT
     var processor = new XSLTProcessor();
     processor.importStylesheet(xslDoc);
     var resultDoc = processor.transformToDocument(xmlDoc);
 
-    // Extract transformed HTML content
+    // Extrakce transformovaného HTML obsahu
     var htmlContent = new XMLSerializer().serializeToString(resultDoc);
 
-    // Display transformed content in the table body
+    // Zobrazení transformovaného obsahu v těle tabulky
     var gameList = document.getElementById('gameList');
     gameList.innerHTML = htmlContent;
 });

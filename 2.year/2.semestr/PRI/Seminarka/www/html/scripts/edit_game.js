@@ -6,11 +6,12 @@ document.addEventListener('DOMContentLoaded', function() {
         if (searchTitle) {
             searchGame(searchTitle);
         } else {
-            alert('Please enter a game title to search.');
+            alert('Prosím zadejte název hry k vyhledání.');
         }
     });
 });
 
+// Funkce pro vyhledání hry podle názvu
 function searchGame(title) {
     loadXMLDoc('../xml/games.xml', function(xmlDoc) {
         var games = xmlDoc.getElementsByTagName('game');
@@ -34,46 +35,49 @@ function searchGame(title) {
     });
 }
 
+// Funkce pro zobrazení výsledků vyhledávání
 function displaySearchResults(results) {
     var searchResultsDiv = document.getElementById('searchResults');
     if (results.length > 0) {
-        var html = '<h2>Search Results</h2><ul class="list-group">';
+        var html = '<h2>Výsledky vyhledávání</h2><ul class="list-group">';
         results.forEach(function(game) {
             html += `
                 <li class="list-group-item">
                     <h4>${game.title}</h4>
-                    <p><strong>Developer:</strong> ${game.developer}</p>
-                    <p><strong>Publisher:</strong> ${game.publisher}</p>
-                    <p><strong>Platform:</strong> ${game.platform}</p>
-                    <p><strong>Release Date:</strong> ${game.release_date}</p>
-                    <p><strong>Genre:</strong> ${game.genre}</p>
-                    <button class="btn btn-success" onclick="editGame('${game.title}')">Edit</button>
-                    <button class="btn btn-danger ml-2" onclick="deleteGame('${game.title}')">Delete</button>
+                    <p><strong>Vývojář:</strong> ${game.developer}</p>
+                    <p><strong>Vydavatel:</strong> ${game.publisher}</p>
+                    <p><strong>Platforma:</strong> ${game.platform}</p>
+                    <p><strong>Datum vydání:</strong> ${game.release_date}</p>
+                    <p><strong>Žánr:</strong> ${game.genre}</p>
+                    <button class="btn btn-success" onclick="editGame('${game.title}')">Editovat</button>
+                    <button class="btn btn-danger ml-2" onclick="deleteGame('${game.title}')">Smazat</button>
                 </li>
             `;
         });
         html += '</ul>';
         searchResultsDiv.innerHTML = html;
     } else {
-        searchResultsDiv.innerHTML = '<p>No results found.</p>';
+        searchResultsDiv.innerHTML = '<p>Žádné výsledky nebyly nalezeny.</p>';
     }
 }
 
+// Funkce pro úpravu hry
 function editGame(title) {
-    // Redirect to edit_game_details.html with game title as a query parameter
+    // Přesměrování na edit_game_details.html s názvem hry jako parametrem dotazu
     window.location.href = `../edit_game_details.html?game=${encodeURIComponent(title)}`;
 }
 
+// Funkce pro smazání hry
 function deleteGame(title) {
-    if (confirm(`Are you sure you want to delete the game "${title}"?`)) {
+    if (confirm(`Opravdu chcete smazat hru "${title}"?`)) {
         var xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function() {
             if (this.readyState == 4) {
                 if (this.status == 200) {
-                    alert('Game deleted successfully.');
-                    removeGameFromUI(title); // Update UI
+                    alert('Hra byla úspěšně smazána.');
+                    removeGameFromUI(title); // Aktualizace UI
                 } else {
-                    alert('Error deleting game.');
+                    alert('Chyba při mazání hry.');
                 }
             }
         };
@@ -83,6 +87,7 @@ function deleteGame(title) {
     }
 }
 
+// Funkce pro odstranění hry z UI
 function removeGameFromUI(title) {
     var gameElements = document.querySelectorAll('.list-group-item');
     gameElements.forEach(function(gameElement) {
@@ -92,7 +97,7 @@ function removeGameFromUI(title) {
     });
 }
 
-
+// Funkce pro načtení XML dokumentu
 function loadXMLDoc(url, callback) {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {

@@ -1,37 +1,37 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Retrieve title of the game to delete
+    // Získání názvu hry k odstranění
     $title = htmlspecialchars($_POST['title']);
     
     if (empty($title)) {
-        die("Game title is required.");
+        die("Název hry je povinný.");
     }
     
-    // Load XML file
+    // Načtení souboru XML
     $xml = new DOMDocument();
     $xml->load('../xml/games.xml');
     
-    // Find the game node to delete
+    // Nalezení uzlu hry k odstranění
     $xpath = new DOMXPath($xml);
     $query = "//game[title='" . $title . "']";
     $gameNode = $xpath->query($query)->item(0);
     
     if (!$gameNode) {
-        die("Game not found.");
+        die("Hra nebyla nalezena.");
     }
     
-    // Remove the game node
+    // Odstranění uzlu hry
     $gameNode->parentNode->removeChild($gameNode);
     
-    // Save the updated XML back to file
+    // Uložení aktualizovaného XML zpět do souboru
     $xml->save('../xml/games.xml');
     
-    // Respond with success
+    // Odpověď s úspěchem
     header('Location: ../games.html');
-    echo "Game deleted successfully.";
+    echo "Hra byla úspěšně odstraněna.";
 } else {
-    // Handle if request method is not POST
+    // Ošetření, pokud metoda požadavku není POST
     header('Location: ../games.html');
-    echo "Invalid request method.";
+    echo "Neplatná metoda požadavku.";
 }
 ?>
