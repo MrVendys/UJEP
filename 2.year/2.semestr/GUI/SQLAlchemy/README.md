@@ -10,9 +10,11 @@ Pojekt je prací jiné dvojice studentů v rámci kurzu "Programování pro GUI"
 
 ## 🛠️ Instalace
 ### .exe souboru
-- Tento projekt neobsahuje žádnou aplikaci na stažení.
-- Jednotlivé soubory si můžete prohlédnout kliknutím na něj
+- Tento projekt neobsahuje žádnou spustitelnou aplikaci, pouze kód pro výuku
+- Jednotlivé soubory si můžete prohlédnout kliknutím na ně
 ### Celé řešení (kód)
 - Vrátit se zpět na [repozitář UJEP](../)
+- Pokračování návodu v "README.MD" sekce "Instalace"
+
 
 
