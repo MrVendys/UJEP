@@ -55,13 +55,9 @@ Cílem hry je dostat své "kameny" přes celou hrací desku až do svého "dome�
 
 ## 🛠️ Instalace
 ### .exe souboru
-- V této složce soubor 2048.exe
-- Kliknout na něj
-- Vpravo nahoře tlačítko "Download raw file"
-### Celé řešení
-- Vrátit se zpět na [repozitář SPSUL](../)
+- Tento projekt neobsahuje .ex soubor
+- Spusti lze pouze přes spustitelný kód ve Visual Code (Prozatím nelze spustit)
+### Celé řešení (kód)
+- Vrátit se zpět na [repozitář UJEP](../)
 
-## 📸 Ukázka hry
-
-![Screenshot hry 2048](2048_screenshot.png)
 
