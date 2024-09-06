@@ -1,0 +1,28 @@
+C:\Users\Venca\Projects\UJEP\UJEP\2.year\2.semestr\GUI\GUI - Canban\bin\Debug\net8.0-windows\GUI - Canban.exe
+C:\Users\Venca\Projects\UJEP\UJEP\2.year\2.semestr\GUI\GUI - Canban\bin\Debug\net8.0-windows\GUI - Canban.deps.json
+C:\Users\Venca\Projects\UJEP\UJEP\2.year\2.semestr\GUI\GUI - Canban\bin\Debug\net8.0-windows\GUI - Canban.runtimeconfig.json
+C:\Users\Venca\Projects\UJEP\UJEP\2.year\2.semestr\GUI\GUI - Canban\bin\Debug\net8.0-windows\GUI - Canban.dll
+C:\Users\Venca\Projects\UJEP\UJEP\2.year\2.semestr\GUI\GUI - Canban\bin\Debug\net8.0-windows\GUI - Canban.pdb
+C:\Users\Venca\Projects\UJEP\UJEP\2.year\2.semestr\GUI\GUI - Canban\obj\Debug\net8.0-windows\MainWindow.g.cs
+C:\Users\Venca\Projects\UJEP\UJEP\2.year\2.semestr\GUI\GUI - Canban\obj\Debug\net8.0-windows\View\UserControls\Column.g.cs
+C:\Users\Venca\Projects\UJEP\UJEP\2.year\2.semestr\GUI\GUI - Canban\obj\Debug\net8.0-windows\View\UserControls\Task.g.cs
+C:\Users\Venca\Projects\UJEP\UJEP\2.year\2.semestr\GUI\GUI - Canban\obj\Debug\net8.0-windows\App.g.cs
+C:\Users\Venca\Projects\UJEP\UJEP\2.year\2.semestr\GUI\GUI - Canban\obj\Debug\net8.0-windows\GUI - Canban_MarkupCompile.cache
+C:\Users\Venca\Projects\UJEP\UJEP\2.year\2.semestr\GUI\GUI - Canban\obj\Debug\net8.0-windows\GUI - Canban_MarkupCompile.lref
+C:\Users\Venca\Projects\UJEP\UJEP\2.year\2.semestr\GUI\GUI - Canban\obj\Debug\net8.0-windows\MainWindow.baml
+C:\Users\Venca\Projects\UJEP\UJEP\2.year\2.semestr\GUI\GUI - Canban\obj\Debug\net8.0-windows\View\UserControls\Column.baml
+C:\Users\Venca\Projects\UJEP\UJEP\2.year\2.semestr\GUI\GUI - Canban\obj\Debug\net8.0-windows\View\UserControls\Task.baml
+C:\Users\Venca\Projects\UJEP\UJEP\2.year\2.semestr\GUI\GUI - Canban\obj\Debug\net8.0-windows\GUI - Canban.g.resources
+C:\Users\Venca\Projects\UJEP\UJEP\2.year\2.semestr\GUI\GUI - Canban\obj\Debug\net8.0-windows\GUI - Canban.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Venca\Projects\UJEP\UJEP\2.year\2.semestr\GUI\GUI - Canban\obj\Debug\net8.0-windows\GUI - Canban.AssemblyInfoInputs.cache
+C:\Users\Venca\Projects\UJEP\UJEP\2.year\2.semestr\GUI\GUI - Canban\obj\Debug\net8.0-windows\GUI - Canban.AssemblyInfo.cs
+C:\Users\Venca\Projects\UJEP\UJEP\2.year\2.semestr\GUI\GUI - Canban\obj\Debug\net8.0-windows\GUI - Canban.csproj.CoreCompileInputs.cache
+C:\Users\Venca\Projects\UJEP\UJEP\2.year\2.semestr\GUI\GUI - Canban\obj\Debug\net8.0-windows\GUI - Canban.sourcelink.json
+C:\Users\Venca\Projects\UJEP\UJEP\2.year\2.semestr\GUI\GUI - Canban\obj\Debug\net8.0-windows\GUI - Canban.dll
+C:\Users\Venca\Projects\UJEP\UJEP\2.year\2.semestr\GUI\GUI - Canban\obj\Debug\net8.0-windows\refint\GUI - Canban.dll
+C:\Users\Venca\Projects\UJEP\UJEP\2.year\2.semestr\GUI\GUI - Canban\obj\Debug\net8.0-windows\GUI - Canban.pdb
+C:\Users\Venca\Projects\UJEP\UJEP\2.year\2.semestr\GUI\GUI - Canban\obj\Debug\net8.0-windows\GUI - Canban.genruntimeconfig.cache
+C:\Users\Venca\Projects\UJEP\UJEP\2.year\2.semestr\GUI\GUI - Canban\obj\Debug\net8.0-windows\ref\GUI - Canban.dll
+C:\Users\Venca\Projects\UJEP\UJEP\2.year\2.semestr\GUI\GUI - Canban\obj\Debug\net8.0-windows\GeneratedInternalTypeHelper.g.cs
+C:\Users\Venca\Projects\UJEP\UJEP\2.year\2.semestr\GUI\GUI - Canban\obj\Debug\net8.0-windows\View\Windows\TaskWindow.g.cs
+C:\Users\Venca\Projects\UJEP\UJEP\2.year\2.semestr\GUI\GUI - Canban\obj\Debug\net8.0-windows\View\Windows\TaskWindow.baml

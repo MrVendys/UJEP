@@ -1,0 +1,85 @@
+﻿<Window x:Class="Canban.View.Windows.TaskWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Canban.View.Windows"
+        mc:Ignorable="d"
+        Title="TaskWindow" Height="450" Width="300">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="4*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="3*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" VerticalAlignment="Center" Text="Title"/>
+        <TextBlock Grid.Row="1" VerticalAlignment="Center" Text="Status:"/>
+        <TextBlock Grid.Row="2" VerticalAlignment="Center" Text="Assignee:"/>
+        <TextBlock Grid.Row="3" VerticalAlignment="Center" Text="Started:"/>
+        <TextBlock Grid.Row="4" VerticalAlignment="Center" Text="Ended:"/>
+        <TextBlock Grid.Row="5" VerticalAlignment="Center" Text="Deadline:"/>
+        <TextBlock Grid.Row="6" VerticalAlignment="Center" Text="Tags:"/>
+        <TextBlock Grid.Row="7" Grid.ColumnSpan="2">Description</TextBlock>
+
+        <TextBox Grid.Column="1" VerticalAlignment="Center" Margin="5" FontSize="20">asd</TextBox>
+        <Grid Grid.Column="1" Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            
+            <ScrollViewer Grid.Column="0" HorizontalScrollBarVisibility="Disabled"
+          VerticalScrollBarVisibility="Auto"
+          HorizontalAlignment="Left" VerticalAlignment="Center"
+          Width="190" Height="60">
+                <ItemsControl ItemsSource="{Binding SelectedItems}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <!-- StackPanel with horizontal orientation for side-by-side layout -->
+                            <WrapPanel Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+
+                    <!-- Define the item template for each selected item -->
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderBrush="Black" BorderThickness="1" Margin="5">
+                                <TextBlock Text="{Binding}"/>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+
+            <ComboBox x:Name="AssigneeComboBox" Width="25"
+                Grid.Column="1" 
+                VerticalAlignment="Center" 
+                FontSize="20"
+                DropDownClosed="AssigneeComboBox_DropDownClosed"
+                  ItemsSource="{Binding AvailableItems}"
+                  SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+                  SelectionChanged="AssigneeComboBox_SelectionChanged"/>
+        </Grid>
+        <ComboBox ItemsSource="{Binding StatusItems}"
+                  x:Name="StatusCombobox"
+                  Grid.Column="1" 
+                  Grid.Row="1" 
+                  VerticalAlignment="Center" 
+                  Margin="5,0,5,0" FontSize="20" SelectionChanged="StatusCombobox_SelectionChanged" Width="227"/>
+        <DatePicker x:Name="StartedDatePicker" Grid.Column="1" Grid.Row="3" VerticalAlignment="Center"/>
+        <DatePicker x:Name="EndedDatePicker" Grid.Column="1" Grid.Row="4" VerticalAlignment="Center"/>
+        <DatePicker x:Name="DeadlineDatePicker" Grid.Column="1" Grid.Row="5" VerticalAlignment="Center"/>
+        <RichTextBox x:Name="DescRTextBox" Grid.Column="1" Grid.Row="7" />
+
+
+    </Grid>
+</Window>

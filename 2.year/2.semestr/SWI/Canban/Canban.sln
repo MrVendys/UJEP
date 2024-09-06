@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35027.167
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Canban", "Canban.csproj", "{C8008D95-68F9-438D-AA43-583F308B5B21}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C8008D95-68F9-438D-AA43-583F308B5B21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8008D95-68F9-438D-AA43-583F308B5B21}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8008D95-68F9-438D-AA43-583F308B5B21}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8008D95-68F9-438D-AA43-583F308B5B21}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {73EA6C15-8E67-4E84-AE65-F33F8B038762}
+	EndGlobalSection
+EndGlobal
