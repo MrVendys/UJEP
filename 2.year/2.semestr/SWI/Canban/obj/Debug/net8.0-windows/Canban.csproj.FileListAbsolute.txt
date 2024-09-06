@@ -1,5 +1,4 @@
 C:\Users\Venca\Projects\UJEP\UJEP\2.year\2.semestr\SWI\Canban\obj\Debug\net8.0-windows\MainWindow.g.cs
-C:\Users\Venca\Projects\UJEP\UJEP\2.year\2.semestr\SWI\Canban\obj\Debug\net8.0-windows\View\UserControls\Task.g.cs
 C:\Users\Venca\Projects\UJEP\UJEP\2.year\2.semestr\SWI\Canban\obj\Debug\net8.0-windows\View\Windows\TaskWindow.g.cs
 C:\Users\Venca\Projects\UJEP\UJEP\2.year\2.semestr\SWI\Canban\obj\Debug\net8.0-windows\App.g.cs
 C:\Users\Venca\Projects\UJEP\UJEP\2.year\2.semestr\SWI\Canban\obj\Debug\net8.0-windows\GeneratedInternalTypeHelper.g.cs
@@ -11,7 +10,6 @@ C:\Users\Venca\Projects\UJEP\UJEP\2.year\2.semestr\SWI\Canban\bin\Debug\net8.0-w
 C:\Users\Venca\Projects\UJEP\UJEP\2.year\2.semestr\SWI\Canban\bin\Debug\net8.0-windows\Canban.dll
 C:\Users\Venca\Projects\UJEP\UJEP\2.year\2.semestr\SWI\Canban\bin\Debug\net8.0-windows\Canban.pdb
 C:\Users\Venca\Projects\UJEP\UJEP\2.year\2.semestr\SWI\Canban\obj\Debug\net8.0-windows\MainWindow.baml
-C:\Users\Venca\Projects\UJEP\UJEP\2.year\2.semestr\SWI\Canban\obj\Debug\net8.0-windows\View\UserControls\Task.baml
 C:\Users\Venca\Projects\UJEP\UJEP\2.year\2.semestr\SWI\Canban\obj\Debug\net8.0-windows\View\Windows\TaskWindow.baml
 C:\Users\Venca\Projects\UJEP\UJEP\2.year\2.semestr\SWI\Canban\obj\Debug\net8.0-windows\Canban.g.resources
 C:\Users\Venca\Projects\UJEP\UJEP\2.year\2.semestr\SWI\Canban\obj\Debug\net8.0-windows\Canban.GeneratedMSBuildEditorConfig.editorconfig
@@ -24,3 +22,5 @@ C:\Users\Venca\Projects\UJEP\UJEP\2.year\2.semestr\SWI\Canban\obj\Debug\net8.0-w
 C:\Users\Venca\Projects\UJEP\UJEP\2.year\2.semestr\SWI\Canban\obj\Debug\net8.0-windows\Canban.pdb
 C:\Users\Venca\Projects\UJEP\UJEP\2.year\2.semestr\SWI\Canban\obj\Debug\net8.0-windows\Canban.genruntimeconfig.cache
 C:\Users\Venca\Projects\UJEP\UJEP\2.year\2.semestr\SWI\Canban\obj\Debug\net8.0-windows\ref\Canban.dll
+C:\Users\Venca\Projects\UJEP\UJEP\2.year\2.semestr\SWI\Canban\obj\Debug\net8.0-windows\View\UserControls\TaskControl.g.cs
+C:\Users\Venca\Projects\UJEP\UJEP\2.year\2.semestr\SWI\Canban\obj\Debug\net8.0-windows\View\UserControls\TaskControl.baml

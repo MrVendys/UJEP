@@ -17,15 +17,14 @@ using System.Windows.Shapes;
 namespace Canban.View.UserControls
 {
     /// <summary>
-    /// Interakční logika pro Task.xaml
+    /// Interakční logika pro TaskControl.xaml
     /// </summary>
-    public partial class Task : UserControl
+    public partial class TaskControl : UserControl
     {
-        public Task()
+        public TaskControl()
         {
             InitializeComponent();
         }
-
         private void NameTextBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             TaskWindow tw = new TaskWindow();
@@ -34,7 +33,7 @@ namespace Canban.View.UserControls
 
         private void RemoveBtn_Click(object sender, RoutedEventArgs e)
         {
-            
+
         }
 
         private void NameTextBox_TextChanged(object sender, TextChangedEventArgs e)

@@ -1,13 +1,5 @@
-﻿using System.Text;
+﻿using Canban.View.UserControls;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Canban
 {
@@ -19,6 +11,12 @@ namespace Canban
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void AddTaskBtn_Click(object sender, RoutedEventArgs e)
+        {
+            TaskControl t = new TaskControl();
+            TaskStackPanel.Children.Add(t);
         }
     }
 }

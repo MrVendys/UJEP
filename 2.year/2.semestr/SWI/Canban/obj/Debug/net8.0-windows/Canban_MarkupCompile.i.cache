@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
 C:\Users\Venca\Projects\UJEP\UJEP\2.year\2.semestr\SWI\Canban\App.xaml
-3210593795
+31189853324
 
-8-1262717373
+8788663949
 198-635017904
-MainWindow.xaml;View\UserControls\Task.xaml;View\Windows\TaskWindow.xaml;
+MainWindow.xaml;View\UserControls\TaskControl.xaml;View\Windows\TaskWindow.xaml;
 
-False
+True
 
