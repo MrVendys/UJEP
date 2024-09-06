@@ -31,7 +31,6 @@
                 
             </Grid.RowDefinitions>
             <StackPanel x:Name="TaskStackPanel">
-                <UserControls:TaskControl Grid.Row="0" VerticalAlignment="Top" />
             </StackPanel>
             <Button x:Name="AddTaskBtn" Grid.Row="1" Width="100" HorizontalContentAlignment="Center" FontSize="20" Content="+" Click="AddTaskBtn_Click"></Button>
         </Grid>

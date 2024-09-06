@@ -21,6 +21,7 @@ namespace Canban.View.UserControls
     /// </summary>
     public partial class TaskControl : UserControl
     {
+        public event EventHandler<EventArgs> DeleteRequested;
         public TaskControl()
         {
             InitializeComponent();
@@ -33,7 +34,7 @@ namespace Canban.View.UserControls
 
         private void RemoveBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            DeleteRequested?.Invoke(this, EventArgs.Empty);
         }
 
         private void NameTextBox_TextChanged(object sender, TextChangedEventArgs e)
