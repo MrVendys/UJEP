@@ -72,7 +72,11 @@ namespace Canban.View.Windows
             // Add the selected item to the SelectedItems collection
             */
         }
-
+        /// <summary>
+        /// Adding selected item from combo box to Bind list
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AssigneeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (SelectedItem != null && !SelectedItems.Contains(SelectedItem))

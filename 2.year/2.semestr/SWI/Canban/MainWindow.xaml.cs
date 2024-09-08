@@ -12,13 +12,14 @@ namespace Canban
         public MainWindow()
         {
             InitializeComponent();
-            CreateTask();
+            //CreateTask();
         }
         /// <summary>
         /// Calling method to create TaskControl
         /// </summary>
         /// <param name="sender">Add Task button</param>
         /// <param name="e"></param>
+        /*
         private void AddTaskBtn_Click(object sender, RoutedEventArgs e)
         {
             CreateTask();
@@ -47,5 +48,6 @@ namespace Canban
             task.DeleteRequested += UserControl_DeleteRequested;
             TaskStackPanel.Children.Add(task);
         }
+        */
     }
 }

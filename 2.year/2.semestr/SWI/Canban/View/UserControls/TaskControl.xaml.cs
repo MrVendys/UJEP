@@ -22,9 +22,11 @@ namespace Canban.View.UserControls
     public partial class TaskControl : UserControl
     {
         public event EventHandler<EventArgs> DeleteRequested;
+        public StackPanel StackPanel;
         public TaskControl()
         {
             InitializeComponent();
+            
         }
         private void NameTextBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
@@ -48,5 +50,8 @@ namespace Canban.View.UserControls
                 PlaceHolder.Visibility = Visibility.Collapsed;
             }
         }
+
+
+   
     }
 }
