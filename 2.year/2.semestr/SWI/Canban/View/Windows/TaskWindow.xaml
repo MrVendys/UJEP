@@ -4,12 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Canban.View.Windows"
-        mc:Ignorable="d"
-        Title="TaskWindow" Height="450" Width="300">
+        mc:Ignorable="d" 
+        Title="TaskWindow" Height="450" Width="300" Closing="Window_Closing" Loaded="Window_Loaded">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="31*"/>
+            <ColumnDefinition Width="28*"/>
+            <ColumnDefinition Width="240*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
@@ -21,22 +23,22 @@
             <RowDefinition Height="1*"/>
             <RowDefinition Height="3*"/>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" VerticalAlignment="Center" Text="Title"/>
-        <TextBlock Grid.Row="1" VerticalAlignment="Center" Text="Status:"/>
-        <TextBlock Grid.Row="2" VerticalAlignment="Center" Text="Assignee:"/>
-        <TextBlock Grid.Row="3" VerticalAlignment="Center" Text="Started:"/>
-        <TextBlock Grid.Row="4" VerticalAlignment="Center" Text="Ended:"/>
-        <TextBlock Grid.Row="5" VerticalAlignment="Center" Text="Deadline:"/>
-        <TextBlock Grid.Row="6" VerticalAlignment="Center" Text="Tags:"/>
-        <TextBlock Grid.Row="7" Grid.ColumnSpan="2">Description</TextBlock>
+        <TextBlock VerticalAlignment="Center" Text="Title" Grid.ColumnSpan="3"/>
+        <TextBlock Grid.Row="1" VerticalAlignment="Center" Text="Status:" Grid.ColumnSpan="3"/>
+        <TextBlock Grid.Row="2" VerticalAlignment="Center" Text="Assignee:" Grid.ColumnSpan="3"/>
+        <TextBlock Grid.Row="3" VerticalAlignment="Center" Text="Started:" Grid.ColumnSpan="3"/>
+        <TextBlock Grid.Row="4" VerticalAlignment="Center" Text="Ended:" Grid.ColumnSpan="3"/>
+        <TextBlock Grid.Row="5" VerticalAlignment="Center" Text="Deadline:" Grid.ColumnSpan="3"/>
+        <TextBlock Grid.Row="6" VerticalAlignment="Center" Text="Tags:" Grid.ColumnSpan="3"/>
+        <TextBlock Grid.Row="7" Grid.ColumnSpan="4">Description</TextBlock>
 
-        <TextBox Grid.Column="1" VerticalAlignment="Center" Margin="5" FontSize="20">asd</TextBox>
-        <Grid Grid.Column="1" Grid.Row="2">
+        <TextBox x:Name="TitleTextbox" Grid.Column="3" VerticalAlignment="Center" Margin="5,0,5,0" FontSize="20">asd</TextBox>
+        <Grid Grid.Column="3" Grid.Row="2" Margin="0,0,0,39" Grid.RowSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="5*"/>
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
-            
+
             <ScrollViewer Grid.Column="0" HorizontalScrollBarVisibility="Disabled"
           VerticalScrollBarVisibility="Auto"
           HorizontalAlignment="Left" VerticalAlignment="Center"
@@ -71,14 +73,14 @@
         </Grid>
         <ComboBox ItemsSource="{Binding StatusItems}"
                   x:Name="StatusCombobox"
-                  Grid.Column="1" 
+                  Grid.Column="3" 
                   Grid.Row="1" 
                   VerticalAlignment="Center" 
-                  Margin="5,0,5,0" FontSize="20" SelectionChanged="StatusCombobox_SelectionChanged" Width="227"/>
-        <DatePicker x:Name="StartedDatePicker" Grid.Column="1" Grid.Row="3" VerticalAlignment="Center"/>
-        <DatePicker x:Name="EndedDatePicker" Grid.Column="1" Grid.Row="4" VerticalAlignment="Center"/>
-        <DatePicker x:Name="DeadlineDatePicker" Grid.Column="1" Grid.Row="5" VerticalAlignment="Center"/>
-        <RichTextBox x:Name="DescRTextBox" Grid.Column="1" Grid.Row="7" />
+                  Margin="6,0,6,0" FontSize="20" SelectionChanged="StatusCombobox_SelectionChanged" Width="227"/>
+        <DatePicker x:Name="StartedDatePicker" Grid.Column="3" Grid.Row="3" VerticalAlignment="Center"/>
+        <DatePicker x:Name="EndedDatePicker" Grid.Column="3" Grid.Row="4" VerticalAlignment="Center"/>
+        <DatePicker x:Name="DeadlineDatePicker" Grid.Column="3" Grid.Row="5" VerticalAlignment="Center"/>
+        <RichTextBox x:Name="DescRTextBox" Grid.Column="3" Grid.Row="7" />
 
 
     </Grid>

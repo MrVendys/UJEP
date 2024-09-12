@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Canban.DB.Models;
 using System.Windows;
+using System.Linq;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Canban.View.UserControls
 {
@@ -20,11 +14,23 @@ namespace Canban.View.UserControls
     /// </summary>
     public partial class TasksGrid : UserControl
     {
-        public TasksGrid()
+        DatabaseContext db = new DatabaseContext();
+        public int id { get { return ID; } set { ID = value; } }
+        private int ID;
+        public TasksGrid(int id)
         {
+            this.ID = id;
+            db.Tasks.Load();
             InitializeComponent();
+            LoadComponents();
         }
 
+        private void LoadComponents()
+        {
+            foreach (var task in db.Tasks.Where(x => x.ColumnId == id)) {
+                CreateTaskUI(task);
+            }
+        }
         private void AddTaskBtn_Click(object sender, RoutedEventArgs e)
         {
             CreateTask();
@@ -34,20 +40,35 @@ namespace Canban.View.UserControls
             var userControl = sender as TaskControl;
             if (userControl != null)
             {
+                db.Tasks.Remove(db.Tasks.Where(x => x.Id == userControl.taskModel.Id).FirstOrDefault());
+                db.SaveChanges();
                 TaskStackPanel.Children.Remove(userControl);
             }
         }
 
-        public void CreateTask()
+        private void CreateTask()
         {
-            TaskControl task = new TaskControl();
+            TaskModel taskModel = new TaskModel()
+            {
+                Name = "Novy task",
+                StatusModel = db.Statuses.Where(s => s.Name == "To Do").First(),
+                StatusId = db.Statuses.Where(s => s.Name == "To Do").First().Id,
+                ColumnId = id
+            };
+            db.Add(taskModel);
+            db.SaveChanges();
+            CreateTaskUI(taskModel);
+        }
+        private void CreateTaskUI(TaskModel taskModel)
+        {
+            TaskControl task = new TaskControl(taskModel);
+            task.NameTextBox.Text = taskModel.Name;
             task.DeleteRequested += UserControl_DeleteRequested;
             task.MouseMove += UserControl_MouseMove;
             task.MouseDown += UserControl_MouseDown;
             task.StackPanel = TaskStackPanel;
             TaskStackPanel.Children.Add(task);
         }
-
         private void TaskStackPanel_Drop(object sender, DragEventArgs e)
         {
             var sourceUserControl = e.Data.GetData(typeof(TaskControl)) as TaskControl;
@@ -61,6 +82,8 @@ namespace Canban.View.UserControls
                 sourceUserControl.StackPanel.Children.Remove(sourceUserControl as TaskControl);
                 stackPanel.Children.Add(sourceUserControl as TaskControl);
                 sourceUserControl.StackPanel = TaskStackPanel;
+                sourceUserControl.taskModel.ColumnId = id;
+                db.UpdateTasks(sourceUserControl.taskModel.Id, new { ColumnId = id });
             }
             /*var data = e.Data.GetData("DraggedUserControlData") as DraggedTaskControlData;
             if (data != null)
@@ -104,9 +127,14 @@ namespace Canban.View.UserControls
                     {
                         Dispatcher.BeginInvoke(() =>
                         {
-                            
-                             DragDrop.DoDragDrop(userControl, userControl, DragDropEffects.Move);
-                            
+                            try
+                            {
+                                DragDrop.DoDragDrop(userControl, userControl, DragDropEffects.Move);
+
+                            }
+                            catch { }
+
+
                         });
                     }
                 }

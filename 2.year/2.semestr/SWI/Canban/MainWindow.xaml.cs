@@ -1,7 +1,9 @@
-﻿using Canban.View.UserControls;
+﻿using Canban.DB.Models;
+using Canban.View.UserControls;
+using Canban.View.Windows;
+using Microsoft.EntityFrameworkCore;
 using System.Windows;
 using System.Windows.Controls;
-
 namespace Canban
 {
     /// <summary>
@@ -9,45 +11,41 @@ namespace Canban
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        DatabaseContext db;
+        UserModel loggedUser;
+        BoardControl boardControl;
+        public MainWindow(UserModel userModel)
         {
+            db = new DatabaseContext();
+            loggedUser = userModel;
+            
             InitializeComponent();
-            //CreateTask();
+            
         }
-        /// <summary>
-        /// Calling method to create TaskControl
-        /// </summary>
-        /// <param name="sender">Add Task button</param>
-        /// <param name="e"></param>
-        /*
-        private void AddTaskBtn_Click(object sender, RoutedEventArgs e)
+
+        private void BoardWrapPanel_Loaded(object sender, RoutedEventArgs e)
         {
-            CreateTask();
+            
         }
-        /// <summary>
-        /// Deleting TaskControl from Stackpanel
-        /// </summary>
-        /// <param name="sender">TaskControl that will be deleted</param>
-        /// <param name="e"></param>
-        private void UserControl_DeleteRequested(object sender, EventArgs e)
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            var userControl = sender as TaskControl;
-            if (userControl != null)
-            {
-                TaskStackPanel.Children.Remove(userControl);
+            db.Boards.Load();
+            foreach (var board in db.Boards) {
+                BoardControl boardControl = new BoardControl(loggedUser);
+                boardControl.OpenButton.Click += OnBoardControl_Click;
+                BoardWrapPanel.Children.Add(boardControl);
             }
+            boardControl = new BoardControl(loggedUser);
+            boardControl.OpenButton.Click += OnBoardControl_Click;
+            BoardWrapPanel.Children.Add(boardControl);
         }
-        /// <summary>
-        /// Creating and adding TaskControl to StackPanel
-        /// Adding Delete method to event "DeleteRequested"
-        /// </summary>
-        /// </summary>
-        public void CreateTask()
+        private void OnBoardControl_Click(object sender, RoutedEventArgs e)
         {
-            TaskControl task = new TaskControl();
-            task.DeleteRequested += UserControl_DeleteRequested;
-            TaskStackPanel.Children.Add(task);
+            //TODO 
+            //BoardControlWindow pro vytvoreni BoardWindow a control
+            boardControl.boardWindow.Show();
+            this.Visibility = Visibility.Collapsed;
         }
-        */
     }
 }

@@ -6,13 +6,15 @@
              xmlns:local="clr-namespace:Canban.View.UserControls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" MouseMove="UserControl_MouseMove_1">
-    <Grid x:Name="TaskControlGrid" Grid.Row="2">
+    <Grid x:Name="TaskControlGrid" Grid.Row="2" Width="200" Height="430" Background="White">
         <Grid.RowDefinitions>
-            <RowDefinition/>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition />
             <RowDefinition Height="0.1*"/>
 
         </Grid.RowDefinitions>
-        <StackPanel MinHeight="50" Background="Cyan" x:Name="TaskStackPanel" Margin="5" AllowDrop="True" MouseMove="TaskStackPanel_MouseMove" Drop="TaskStackPanel_Drop"></StackPanel>
-        <Button x:Name="AddTaskBtn" Grid.Row="1" Width="100" HorizontalContentAlignment="Center" FontSize="20" Content="+" Click="AddTaskBtn_Click"></Button>
+        <TextBlock Grid.Row="0" TextAlignment="Center" FontSize="25">Nazev columnu</TextBlock>
+        <StackPanel Grid.Row="1" MinHeight="50" Background="Cyan" x:Name="TaskStackPanel" Margin="5" AllowDrop="True" MouseMove="TaskStackPanel_MouseMove" Drop="TaskStackPanel_Drop"/>
+        <Button x:Name="AddTaskBtn" Grid.Row="2" Width="100" HorizontalContentAlignment="Center" FontSize="20" Content="+" Click="AddTaskBtn_Click"></Button>
     </Grid>
 </UserControl>

@@ -6,28 +6,11 @@
         xmlns:local="clr-namespace:Canban"
         xmlns:UserControls="clr-namespace:Canban.View.UserControls"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="4*"/>
-        </Grid.RowDefinitions>
+        Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded">
 
-        <TextBox Name="TodoTextBox" Grid.Column="0" FontSize="30" TextAlignment="Center" VerticalAlignment="Center">To Do</TextBox>
-        <TextBox Name="InProgressTextBox" Grid.Column="1" FontSize="30" TextAlignment="Center" VerticalAlignment="Center">InProgress</TextBox>
-        <TextBox Name="Blocked" Grid.Column="2" FontSize="30" TextAlignment="Center" VerticalAlignment="Center">Blocked</TextBox>
-        <TextBox Name="Done" Grid.Column="3" FontSize="30" TextAlignment="Center" VerticalAlignment="Center">Done</TextBox>
-
-        <UserControls:TasksGrid Grid.Row="2"></UserControls:TasksGrid>
-        <UserControls:TasksGrid Grid.Column="1" Grid.Row="2"></UserControls:TasksGrid>
-        <UserControls:TasksGrid Grid.Column="2" Grid.Row="2"></UserControls:TasksGrid>
-        <UserControls:TasksGrid Grid.Column="3" Grid.Row="2"></UserControls:TasksGrid>
-    </Grid>
+    <WrapPanel x:Name="BoardWrapPanel" Orientation="Horizontal" Margin="20" Loaded="BoardWrapPanel_Loaded">
+        
+        
+    </WrapPanel>
         
 </Window>

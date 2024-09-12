@@ -1,7 +1,9 @@
-﻿using Canban.View.Windows;
+﻿using Canban.DB.Models;
+using Canban.View.Windows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Permissions;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -23,35 +25,30 @@ namespace Canban.View.UserControls
     {
         public event EventHandler<EventArgs> DeleteRequested;
         public StackPanel StackPanel;
-        public TaskControl()
+
+        public TaskModel taskModel;
+        private DatabaseContext db = new DatabaseContext();
+        public TaskControl(TaskModel newTaskModel)
         {
             InitializeComponent();
-            
+            this.taskModel = newTaskModel;
         }
         private void NameTextBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            TaskWindow tw = new TaskWindow();
-            tw.Show();
+            new TaskWindow(taskModel).ShowDialog();
+            var task = db.Tasks.Where(x => x.Id == taskModel.Id).FirstOrDefault();
+            NameTextBox.Text = task.Name;
         }
 
         private void RemoveBtn_Click(object sender, RoutedEventArgs e)
         {
             DeleteRequested?.Invoke(this, EventArgs.Empty);
         }
-
-        private void NameTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        public void Save()
         {
-            if (string.IsNullOrEmpty(NameTextBox.Text))
-            {
-                PlaceHolder.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                PlaceHolder.Visibility = Visibility.Collapsed;
-            }
+            var task = db.Tasks.Find(taskModel.Id);
+            db.Entry(task).CurrentValues.SetValues(taskModel);
         }
-
-
    
     }
 }

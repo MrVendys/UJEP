@@ -1,0 +1,33 @@
+﻿<Window x:Class="Canban.View.Windows.BoardWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Canban"
+        xmlns:UserControls="clr-namespace:Canban.View.UserControls"
+        mc:Ignorable="d"
+        Title="BoardWindow" Height="600" Width="800">
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+        <StackPanel>
+            <Menu Width="800" Height="20">
+                <MenuItem Header="_File">
+                    <MenuItem x:Name="AppExit" Header="E_xit" HorizontalAlignment="Left" Width="140"/>
+                </MenuItem>
+                <MenuItem Header="_Tools">
+                    <MenuItem x:Name="Options" Header="_Options" HorizontalAlignment="Left" Width="140"/>
+                </MenuItem>
+                <MenuItem Header="_Help">
+                    <MenuItem x:Name="About" Header="&amp;About" HorizontalAlignment="Left" Width="140"/>
+                </MenuItem>
+                <MenuItem Header="_LogOut" Click="MenuItem_Click" />
+            </Menu>
+            <StackPanel x:Name="MainGrid" VerticalAlignment="Center" Height="500" Orientation="Horizontal">
+
+                <Button Height="100" Width="50" Content="+" FontSize="50" Click="Button_Click"/>
+            </StackPanel>
+            
+        </StackPanel>
+        
+    </ScrollViewer>
+   
+</Window>
