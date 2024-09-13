@@ -12,7 +12,16 @@ namespace Canban.View.UserControls
     public partial class BoardControl : UserControl
     {
         DatabaseContext db;
-        public BoardWindow boardWindow;
+        public BoardModel boardModel;
+        private string BoardName = "Kanban";
+        public string boardName
+        {
+            get { return BoardName; }
+            set
+            {
+                BoardName = value;
+            }
+        }
         public BoardControl(UserModel loggedUser)
         {
             InitializeComponent();
@@ -22,7 +31,7 @@ namespace Canban.View.UserControls
             db.Boards.RemoveRange(db.Boards);
             db.SaveChanges();
             var user = db.Users.Where(x=>x.Id == loggedUser.Id).FirstOrDefault();
-            BoardModel boardModel = new BoardModel()
+            boardModel = new BoardModel()
             {
                 Name = "Kanban",
                 UserId = user.Id,
@@ -31,12 +40,7 @@ namespace Canban.View.UserControls
            
             db.Add(boardModel);
             db.SaveChanges();
-            boardWindow = new BoardWindow(boardModel.Id);
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }

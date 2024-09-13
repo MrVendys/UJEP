@@ -19,6 +19,9 @@
     <Compile Update="View\Windows\BoardWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="View\Windows\DialogWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="View\Windows\LoginWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -43,6 +46,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\Windows\BoardWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Windows\DialogWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\Windows\LoginWindow.xaml">

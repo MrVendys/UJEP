@@ -172,3 +172,4 @@ C:\Users\Venca\Projects\UJEP\UJEP\2.year\2.semestr\SWI\Canban\obj\Debug\net8.0-w
 C:\Users\Venca\Projects\UJEP\UJEP\2.year\2.semestr\SWI\Canban\obj\Debug\net8.0-windows\View\Windows\BoardWindow.g.cs
 C:\Users\Venca\Projects\UJEP\UJEP\2.year\2.semestr\SWI\Canban\obj\Debug\net8.0-windows\View\UserControls\BoardControl.baml
 C:\Users\Venca\Projects\UJEP\UJEP\2.year\2.semestr\SWI\Canban\obj\Debug\net8.0-windows\View\Windows\BoardWindow.baml
+C:\Users\Venca\Projects\UJEP\UJEP\2.year\2.semestr\SWI\Canban\obj\Debug\net8.0-windows\View\Windows\DialogWindow.g.cs

@@ -9,8 +9,8 @@
         Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded">
 
     <WrapPanel x:Name="BoardWrapPanel" Orientation="Horizontal" Margin="20" Loaded="BoardWrapPanel_Loaded">
-        
-        
+        <Button x:Name="AddButton" Width="100" Height="100" Margin="0,50,0,0" Content="+" FontSize="50" Click="AddButton_Click"/>
+
     </WrapPanel>
         
 </Window>
