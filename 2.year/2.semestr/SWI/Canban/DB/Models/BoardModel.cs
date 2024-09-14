@@ -12,6 +12,6 @@ namespace Canban.DB.Models
         public string Name { get; set; }
         //public ICollection<Collum>
         public int UserId { get; set; }
-        public UserModel CreatedBy { get; set; }
+        public virtual UserModel CreatedBy { get; set; }
     }
 }

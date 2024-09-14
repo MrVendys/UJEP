@@ -1,20 +1,9 @@
 ﻿using Canban.DB.Models;
-using Canban.View.UserControls;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Canban.View.Windows
 {
@@ -25,7 +14,6 @@ namespace Canban.View.Windows
     {
         public ObservableCollection<string> AvailableItems { get; set; }
         public ObservableCollection<string> SelectedItems { get; set; }
-        public ObservableCollection<string> StatusItems { get; set; }
         public string SelectedItem { get; set; }
         DatabaseContext db = new DatabaseContext();
         TaskModel newTaskModel;
@@ -36,9 +24,8 @@ namespace Canban.View.Windows
         public TaskWindow(TaskModel newTaskModel)
         {
             this.newTaskModel = newTaskModel;
-            db.Tasks.Load();
-            db.Statuses.Load();
             db.Users.Load();
+            db.Tasks.Load();
 
 
 
@@ -51,12 +38,8 @@ namespace Canban.View.Windows
 
             // Initialize the collection for selected items
             SelectedItems = new ObservableCollection<string>();
-            StatusItems = new ObservableCollection<string>();
-            foreach (var x in db.Statuses)
-            {
-                StatusItems.Add(x.Name);
-            }
-
+           
+            db.ChangeTracker.Clear();
             
 
             InitializeComponent();
@@ -108,26 +91,37 @@ namespace Canban.View.Windows
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             //TODO: Check null values
-            /*try
-            {
-                var task = db.Tasks.Find(newTaskModel.Id);
-                task.Name = TitleTextbox.Text;
-                var status = db.Statuses.Where(x => x.Name == StatusCombobox.SelectedItem.ToString()).FirstOrDefault();
-                //task.StatusId = status.Id;
-                //task.StatusModel = status;
-                
-                task.Started = StartedDatePicker.SelectedDate;
-                task.Deadline = DeadlineDatePicker.SelectedDate;
-                task.Desc = new TextRange(DescRTextBox.Document.ContentStart, DescRTextBox.Document.ContentEnd).Text;
-                db.SaveChanges();
-            }
-            catch (Exception ex) {
-                MessageBox.Show("Něco se pokazilo, výsledek se neuložil");
-            }*/
-            List<UserModel> users = new List<UserModel>();
+            var task = db.Tasks.Include(x => x.Users).FirstOrDefault(x => x.Id == newTaskModel.Id);
+       
+            task.Name = TitleTextbox.Text;
             foreach (var user in SelectedItems)
             {
-                users.Add(db.Users.Where(x => x.Name == user).First());
+
+                    UserModel userModel = db.Users.Where(x => x.Name == user).First();
+                //db.Users.Find(userModel.Id).TaskModels.Add(newTaskModel);
+                if (userModel != null && !task.Users.Any(c => c.Id == userModel.Id))
+                {
+                    task.Users.Add(userModel);
+                }
+                    db.SaveChanges();
+                if (task != null && !userModel.TaskModels.Any(c => c.Id == task.Id))
+                {
+                    userModel.TaskModels.Add(task);
+                }
+                
+            }
+            task.Started = StartedDatePicker.SelectedDate;
+                task.Deadline = DeadlineDatePicker.SelectedDate;
+                task.Desc = new TextRange(DescRTextBox.Document.ContentStart, DescRTextBox.Document.ContentEnd).Text;
+            db.SaveChanges();
+            /*List<UserModel> users = new List<UserModel>();
+            foreach (var user in SelectedItems)
+            {
+                UserModel userModel = db.Users.Where(x => x.Name == user).First();
+                db.Users.Find(userModel.Id).TaskModels.Add(newTaskModel);
+                db.ChangeTracker.Clear();
+                db.SaveChanges();
+                users.Add(userModel);
             }
             db.UpdateTasks(newTaskModel.Id, new { 
                     Name = TitleTextbox.Text, 
@@ -137,13 +131,13 @@ namespace Canban.View.Windows
                     Desc = new TextRange(DescRTextBox.Document.ContentStart, DescRTextBox.Document.ContentEnd).Text
             });
                 
-            
+            */
             
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            var task = db.Tasks.Where(x => x.Id == newTaskModel.Id).FirstOrDefault();
+            var task = db.Tasks.Include(x => x.Users).FirstOrDefault(x => x.Id == newTaskModel.Id);
             TitleTextbox.Text = task.Name;
             //StatusCombobox.SelectedValue = task.StatusModel != null ? task.StatusModel.Name : null;
             if (task.Users != null) {
@@ -157,6 +151,7 @@ namespace Canban.View.Windows
             DeadlineDatePicker.SelectedDate = task.Deadline;
             FlowDocument myFlowDoc = new FlowDocument(new Paragraph(new Run(task.Desc)));
             DescRTextBox.Document = myFlowDoc;
+            db.ChangeTracker.Clear();
         }
     }
 }

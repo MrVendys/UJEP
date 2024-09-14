@@ -24,14 +24,18 @@ namespace Canban.View.Windows
         DatabaseContext db;
         public LoginWindow(UserModel newUser)
         {
+            
+
             InitializeComponent();
-            DbLoad d = new DbLoad();
-            d.LoadDB();
+            db = new DatabaseContext();
+            db.Boards.Load();
             LogIn(newUser);
         }
         public LoginWindow()
         {
             InitializeComponent();
+            db = new DatabaseContext();
+            db.Boards.Load();
         }
 
         private void SubmitButton_Click(object sender, RoutedEventArgs e)

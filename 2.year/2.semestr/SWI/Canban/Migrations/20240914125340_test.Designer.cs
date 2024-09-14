@@ -3,6 +3,7 @@ using System;
 using Canban.DB.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Canban.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20240914125340_test")]
+    partial class test
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -143,21 +146,6 @@ namespace Canban.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("TaskModelUserModel", b =>
-                {
-                    b.Property<int>("TaskModelsId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("UsersId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("TaskModelsId", "UsersId");
-
-                    b.HasIndex("UsersId");
-
-                    b.ToTable("TaskModelUserModel");
-                });
-
             modelBuilder.Entity("Canban.DB.Models.BoardModel", b =>
                 {
                     b.HasOne("Canban.DB.Models.UserModel", "CreatedBy")
@@ -178,21 +166,6 @@ namespace Canban.Migrations
                         .IsRequired();
 
                     b.Navigation("Board");
-                });
-
-            modelBuilder.Entity("TaskModelUserModel", b =>
-                {
-                    b.HasOne("Canban.DB.Models.TaskModel", null)
-                        .WithMany()
-                        .HasForeignKey("TaskModelsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Canban.DB.Models.UserModel", null)
-                        .WithMany()
-                        .HasForeignKey("UsersId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

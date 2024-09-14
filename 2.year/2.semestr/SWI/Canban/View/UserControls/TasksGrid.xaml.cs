@@ -6,6 +6,7 @@ using System.Windows.Input;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System.ComponentModel;
 
 namespace Canban.View.UserControls
 {
@@ -15,13 +16,51 @@ namespace Canban.View.UserControls
     public partial class TasksGrid : UserControl
     {
         DatabaseContext db = new DatabaseContext();
+        public event PropertyChangedEventHandler? PropertyChanged;
+        private string columnName = "Column";
+        public string ColumnName
+        {
+            get { return columnName; }
+            set
+            {
+                columnName = value;
+                OnPropertyChanged("ColumnName");
+            }
+        }
         public int id { get { return ID; } set { ID = value; } }
         private int ID;
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        public TasksGrid(int boardId, string name)
+        {
+            columnName = name;
+            db.Tasks.Load();
+            db.Columns.Load();
+            ColumnModel column = new ColumnModel()
+            {
+                Name = columnName,
+                BoardId = boardId,
+                Board = db.Boards.Where(x => x.Id == boardId).First()
+
+            };
+            db.Add(column);
+            db.SaveChanges();
+            this.id = column.Id;
+            db.ChangeTracker.Clear();
+            InitializeComponent();
+           
+            DataContext = this;
+            LoadComponents();
+        }
         public TasksGrid(int id)
         {
-            this.ID = id;
-            db.Tasks.Load();
+            columnName = db.Columns.Find(id).Name;
+            this.id=id;
             InitializeComponent();
+
+            DataContext = this;
             LoadComponents();
         }
 
@@ -51,12 +90,11 @@ namespace Canban.View.UserControls
             TaskModel taskModel = new TaskModel()
             {
                 Name = "Novy task",
-                StatusModel = db.Statuses.Where(s => s.Name == "To Do").First(),
-                StatusId = db.Statuses.Where(s => s.Name == "To Do").First().Id,
                 ColumnId = id
             };
             db.Add(taskModel);
             db.SaveChanges();
+            db.ChangeTracker.Clear();
             CreateTaskUI(taskModel);
         }
         private void CreateTaskUI(TaskModel taskModel)

@@ -1,6 +1,7 @@
 ﻿using Canban.DB.Models;
 using Canban.View.UserControls;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,22 +27,36 @@ namespace Canban.View.Windows
         private int Id = 0;
         public BoardWindow(int id)
         {
+
             Id = id;
             db = new DatabaseContext();
             InitializeComponent();
-            //LoadComponents();
+            LoadComponents();
         }
        
         private void LoadComponents()
         {
-            for (int i = 0; i < 4; i++)
+            db.Columns.Load();
+            db.Boards.Load();
+            if (db.Columns.Where(x=>x.BoardId == Id).Any())
             {
-                TasksGrid tg = new TasksGrid(i);
-                Grid.SetColumn(tg, i);
-                Grid.SetRow(tg, 2);
-                MainGrid.Children.Add(tg);
-                
+                foreach (var column in db.Columns.Where(x=>x.BoardId == Id))
+                {
+                    LoadColumn(column.Id);
+                }
             }
+        }
+        private void CreateColumnControlUI(string name)
+        {
+           
+            TasksGrid tg = new TasksGrid(this.Id, name);
+            MainGrid.Children.Insert(0, tg);
+
+        }
+        private void LoadColumn(int id)
+        {
+            TasksGrid tg = new TasksGrid(id);
+            MainGrid.Children.Insert(0, tg);
         }
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
@@ -52,21 +67,19 @@ namespace Canban.View.Windows
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            db.Columns.Add(new ColumnModel()
-            {
-                Name = "Novy sloupec",
-                BoardId = Id,
-                Board = db.Boards.Where(x => x.Id == Id).First()
+            var dialog = new DialogWindow();
+            bool? result = dialog.ShowDialog();
 
-            });
-            db.SaveChanges();
-            var columns = db.Columns.OrderBy(i=>i.Id);
-            int id = 0;
-            if (columns.Any())
-                id = columns.Last().Id + 1;
-            TasksGrid tg = new TasksGrid(id);
-            MainGrid.Children.Insert(0, tg);
+            if (result == true)
+            {
+                if (!dialog.NameTextBox.Text.IsNullOrEmpty())
+                {
+                    CreateColumnControlUI(dialog.boardName);
+                }
+            }
+            
         }
+        
     }
 }
 

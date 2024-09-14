@@ -12,9 +12,9 @@ TRACE;DEBUG;NET;NET8_0;NETCOREAPP
 C:\Users\Venca\Projects\UJEP\UJEP\2.year\2.semestr\SWI\Canban\App.xaml
 91055652317
 
-371915051405
-244-330085803
+431801778004
+246-449516472
 MainWindow.xaml;View\UserControls\BoardControl.xaml;View\UserControls\TaskControl.xaml;View\UserControls\TasksGrid.xaml;View\Windows\BoardWindow.xaml;View\Windows\DialogWindow.xaml;View\Windows\LoginWindow.xaml;View\Windows\SiginWindow.xaml;View\Windows\TaskWindow.xaml;
 
-True
+False
 

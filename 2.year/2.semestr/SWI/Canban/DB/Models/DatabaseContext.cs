@@ -22,6 +22,7 @@ namespace Canban.DB.Models
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            optionsBuilder.UseLazyLoadingProxies();
             optionsBuilder.UseSqlite($"Data Source={DbPath}");
         }
         public void UpdateTasks(int id, object updatedValues)
@@ -62,6 +63,8 @@ namespace Canban.DB.Models
                         }
                     }
                 }
+                ChangeTracker.DetectChanges();
+                Console.WriteLine(ChangeTracker.DebugView.LongView);
                 SaveChanges();
             }
 

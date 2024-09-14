@@ -44,11 +44,6 @@ namespace Canban.View.UserControls
         {
             DeleteRequested?.Invoke(this, EventArgs.Empty);
         }
-        public void Save()
-        {
-            var task = db.Tasks.Find(taskModel.Id);
-            db.Entry(task).CurrentValues.SetValues(taskModel);
-        }
    
     }
 }

@@ -24,13 +24,9 @@ namespace Canban.DB.Models
         public DateTime Completed { get; set; }
         [DefaultValue(0)]
         public byte Finished { get; set; }
-        public ICollection<UserModel> Users { get; set; } = new List<UserModel>();
+        public virtual ICollection<UserModel> Users { get; set; }
         [Required]
         public int ColumnId { get; set; }
         
-        [DefaultValue(null)]
-        public int? StatusId { get; set; }
-        [DefaultValue(null)]
-        public StatusModel? StatusModel { get; set; }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Canban.DB.Models;
 using Canban.View.Windows;
 using Microsoft.EntityFrameworkCore;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -9,37 +10,33 @@ namespace Canban.View.UserControls
     /// <summary>
     /// Interakční logika pro BoardControl.xaml
     /// </summary>
-    public partial class BoardControl : UserControl
+    public partial class BoardControl : UserControl, INotifyPropertyChanged
     {
         DatabaseContext db;
         public BoardModel boardModel;
-        private string BoardName = "Kanban";
-        public string boardName
+        public event PropertyChangedEventHandler? PropertyChanged;
+        private string boardName = "Kanban";
+        public string BoardName
         {
-            get { return BoardName; }
+            get { return boardName; }
             set
             {
-                BoardName = value;
-            }
+                boardName = value;
+                OnPropertyChanged("BoardName");
+                }
         }
-        public BoardControl(UserModel loggedUser)
+        protected void OnPropertyChanged(string propertyName)
         {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        public BoardControl(string name, BoardModel boardModel)
+        {
+            boardName = name;
+            this.boardModel = boardModel;
             InitializeComponent();
+            DataContext = this;
             db = new DatabaseContext();
-            db.Boards.Load();
-            db.Users.Load();
-            db.Boards.RemoveRange(db.Boards);
-            db.SaveChanges();
-            var user = db.Users.Where(x=>x.Id == loggedUser.Id).FirstOrDefault();
-            boardModel = new BoardModel()
-            {
-                Name = "Kanban",
-                UserId = user.Id,
-                CreatedBy = user
-            };
            
-            db.Add(boardModel);
-            db.SaveChanges();
         }
 
     }

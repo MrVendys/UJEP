@@ -3,6 +3,7 @@ using Canban.View.UserControls;
 using Canban.View.Windows;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 namespace Canban
@@ -19,9 +20,43 @@ namespace Canban
         {
             db = new DatabaseContext();
             loggedUser = userModel;
+
             
             InitializeComponent();
+            LoadBoardControls();
+        }
+
+        private void LoadBoardControls()
+        {
+            db.Boards.Load();
+            if (db.Boards.Any())
+            {
+                List<BoardModel> boards = new List<BoardModel>();
+                foreach (var board in db.Boards.Where(x=>x.UserId == loggedUser.Id))
+                {
+                    boards.Add(board);
+                }
+                var tasks = db.Tasks.Include(x => x.Users);
+                
+                
+                List<int> boardsId = new List<int>();
+                foreach (var task in tasks) {
+                    var user = task.Users.Where(x => x.Id == loggedUser.Id).FirstOrDefault();
+                    BoardModel board = null;
+                    if(user != null)
+                        board = db.Boards.Find((db.Columns.Find(task.ColumnId).BoardId));
+                    if (!boards.Contains(board) && board != null)
+                    {
+                        boards.Add((board));
+                    }
+                }
+                foreach (var board in boards)
+                {
+                    CreateBoardControl(board, board.Name);
+                }
+            }
             
+           
         }
 
         private void BoardWrapPanel_Loaded(object sender, RoutedEventArgs e)
@@ -31,21 +66,17 @@ namespace Canban
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            db.Boards.Load();
-            foreach (var board in db.Boards) {
-                BoardControl boardControl = new BoardControl(loggedUser);
-                boardControl.OpenButton.Click += OnBoardControlButton_Click;
-                BoardWrapPanel.Children.Insert(0,boardControl);
-            }
+           
             /*
             boardControl = new BoardControl(loggedUser);
             boardControl.OpenButton.Click += OnBoardControlButton_Click;
             BoardWrapPanel.Children.Add(boardControl);*/
         }
-        private void CreateBoardControl(UserModel loggedUser, string name)
+
+        private void CreateBoardControl(BoardModel boardModel, string name)
         {
-            boardControl = new BoardControl(loggedUser);
-            boardControl.boardName = name;
+
+            boardControl = new BoardControl(name, boardModel);
             boardControl.OpenButton.Click += OnBoardControlButton_Click;
             BoardWrapPanel.Children.Insert(0, boardControl);
         }
@@ -55,7 +86,7 @@ namespace Canban
             //BoardControlWindow pro vytvoreni BoardWindow a control
             BoardWindow boardWindow = new BoardWindow(boardControl.boardModel.Id);
             boardWindow.Show();
-            this.Visibility = Visibility.Collapsed;
+            this.Close();
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
@@ -66,7 +97,21 @@ namespace Canban
             if (result == true) {
                 if (!dialog.NameTextBox.Text.IsNullOrEmpty())
                 {
-                    CreateBoardControl(loggedUser, dialog.boardName);
+                    db.Boards.Load();
+                    db.Users.Load();
+                    db.SaveChanges();
+
+                    var user = db.Users.Where(x => x.Id == loggedUser.Id).FirstOrDefault();
+                    BoardModel boardModel = new BoardModel()
+                    {
+                        Name = dialog.boardName,
+                        UserId = user.Id,
+                        CreatedBy = user
+                    };
+
+                    db.Add(boardModel);
+                    db.SaveChanges();
+                    CreateBoardControl(boardModel, dialog.boardName);
                 }
             }
         }

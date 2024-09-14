@@ -18,5 +18,7 @@ namespace Canban.DB.Models
         [Required]
         public string Password { get; set; }
 
+        public virtual ICollection<TaskModel> TaskModels { get; set; }
+
     }
 }
