@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Canban.DB.Models;
-using System.Collections.Generic;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using Canban.View.Windows;
+using System.Threading.Tasks;
 namespace Canban.DB.Models
 {
     class DatabaseContext : DbContext
@@ -11,14 +11,26 @@ namespace Canban.DB.Models
         public DbSet<UserModel> Users { get; set; }
         public DbSet<BoardModel> Boards { get; set; }
         public DbSet<ColumnModel> Columns { get; set; }
+        public DbSet<TaskHistoryModel> TaskHistories { get; set; }
+        TaskHistory history;
+        UserModel loggedUser;
+        public UserModel LoggedUser { 
+            get { return loggedUser; } 
+            set { loggedUser = value; } 
+        }
 
-        public string DbPath { get; }
+        private string DbPath { get; set; }
         public DatabaseContext()
+        {
+            SetContext();
+        }
+        private void SetContext()
         {
             var folder = Environment.SpecialFolder.LocalApplicationData;
             var path = Environment.GetFolderPath(folder);
             DbPath = System.IO.Path.Join(path, "blogging.db");
-
+            //history = TaskHistory.GetInstance();
+            //history.Show();
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -27,19 +39,11 @@ namespace Canban.DB.Models
         }
         public void UpdateTasks(int id, object updatedValues)
         {
-            /* var task = Tasks.Where(x => x.Id == Id).FirstOrDefault();
-             task.Name = Name;
-             var status = Statuses.Where(x => x.Name == StatusName).FirstOrDefault();
-             task.StatusId = status.Id;
-             task.StatusModel = status;
-             task.Started = Started;
-             task.Deadline = Deadline;
-             task.Desc = Desc;
-             task.ColumnId = ColumnId != null ? ColumnId : ;
-             SaveChanges();
-            */
+            Users.Load();
+            Tasks.Load();
             // Find the entity in the database
             var entity = Tasks.Find(id);
+            var oldEntity = Tasks.Find(id);
 
             if (entity != null)
             {
@@ -48,6 +52,27 @@ namespace Canban.DB.Models
 
                 foreach (var prop in properties)
                 {
+                    if(prop.Name == "Users")
+                    {
+                        /*foreach (var user in prop.GetValue(prop.Name))
+                        {
+
+                            UserModel userModel = Users.Where(x => x.Name == user).First();
+                            //db.Users.Find(userModel.Id).TaskModels.Add(newTaskModel);
+                            if (userModel != null && !task.Users.Any(c => c.Id == userModel.Id))
+                            {
+                                task.Users.Add(userModel);
+
+                            }
+                            db.SaveChanges();
+                            if (task != null && !userModel.TaskModels.Any(c => c.Id == task.Id))
+                            {
+                                userModel.TaskModels.Add(task);
+                            }
+
+                        }
+                        */
+                    }
                     // Get the value of the current property
                     var value = prop.GetValue(updatedValues);
 
@@ -63,6 +88,9 @@ namespace Canban.DB.Models
                         }
                     }
                 }
+                //history.LoadCollectionData(loggedUser, oldEntity, entity, DateTime.Now);
+
+
                 ChangeTracker.DetectChanges();
                 Console.WriteLine(ChangeTracker.DebugView.LongView);
                 SaveChanges();

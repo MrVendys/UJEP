@@ -21,12 +21,12 @@ namespace Canban.DB.Models
         [DefaultValue(null)]
         public DateTime? Started { get; set; }
         [DefaultValue(null)]
-        public DateTime Completed { get; set; }
+        public DateTime? Completed { get; set; }
         [DefaultValue(0)]
         public byte Finished { get; set; }
         public virtual ICollection<UserModel> Users { get; set; }
         [Required]
         public int ColumnId { get; set; }
-        
+
     }
 }

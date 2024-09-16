@@ -24,20 +24,27 @@ namespace Canban.View.UserControls
     public partial class TaskControl : UserControl
     {
         public event EventHandler<EventArgs> DeleteRequested;
-        public StackPanel StackPanel;
 
+        public StackPanel StackPanel;
         public TaskModel taskModel;
         private DatabaseContext db = new DatabaseContext();
+
+        private string taskName = "Novy Task";
+        public string TaskName { 
+            get { return taskName; } 
+            set { taskName = value; } 
+        }
         public TaskControl(TaskModel newTaskModel)
         {
             InitializeComponent();
             this.taskModel = newTaskModel;
+            DataContext = this;
         }
         private void NameTextBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             new TaskWindow(taskModel).ShowDialog();
             var task = db.Tasks.Where(x => x.Id == taskModel.Id).FirstOrDefault();
-            NameTextBox.Text = task.Name;
+            TaskName = task.Name;
         }
 
         private void RemoveBtn_Click(object sender, RoutedEventArgs e)

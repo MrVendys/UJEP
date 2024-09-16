@@ -5,53 +5,55 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Canban.View.Windows"
         mc:Ignorable="d" 
-        Title="TaskWindow" Height="450" Width="300" Closing="Window_Closing" Loaded="Window_Loaded">
+        Title="TaskWindow" Height="450" Width="350" Closing="Window_Closing" Loaded="Window_Loaded">
+    <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+        <Style TargetType="DatePicker">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="31*"/>
-            <ColumnDefinition Width="28*"/>
-            <ColumnDefinition Width="240*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="8*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="2*"/>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
             <RowDefinition Height="3*"/>
         </Grid.RowDefinitions>
-        <TextBlock VerticalAlignment="Center" Text="Title" Grid.ColumnSpan="3"/>
-        <TextBlock Grid.Row="1" VerticalAlignment="Center" Text="Status:" Grid.ColumnSpan="3"/>
-        <TextBlock Grid.Row="2" VerticalAlignment="Center" Text="Assignee:" Grid.ColumnSpan="3"/>
-        <TextBlock Grid.Row="3" VerticalAlignment="Center" Text="Started:" Grid.ColumnSpan="3"/>
-        <TextBlock Grid.Row="4" VerticalAlignment="Center" Text="Ended:" Grid.ColumnSpan="3"/>
-        <TextBlock Grid.Row="5" VerticalAlignment="Center" Text="Deadline:" Grid.ColumnSpan="3"/>
-        <TextBlock Grid.Row="6" VerticalAlignment="Center" Text="Tags:" Grid.ColumnSpan="3"/>
-        <TextBlock Grid.Row="7" Grid.ColumnSpan="4">Description</TextBlock>
 
-        <TextBox x:Name="TitleTextbox" Grid.Column="3" VerticalAlignment="Center" Margin="5,0,5,0" FontSize="20">asd</TextBox>
-        <Grid Grid.Column="3" Grid.Row="2" Margin="0,0,0,39" Grid.RowSpan="2">
+        <TextBlock Grid.Row="0" Text="Title"/>
+        <TextBlock Grid.Row="1" Text="Assignee:"/>
+        <TextBlock Grid.Row="2" Text="Started:"/>
+        <TextBlock Grid.Row="3" Text="Ended:"/>
+        <TextBlock Grid.Row="4" Text="Deadline:"/>
+        <TextBlock Grid.Row="6" Text="Description:"/>
+
+        <TextBox x:Name="TitleTextbox" Grid.Column="1" VerticalAlignment="Center" Margin="5,0,5,0" Text="{Binding TaskName}" FontSize="20"></TextBox>
+        <Grid Grid.Column="1" Grid.Row="1" Height="Auto" Margin="5,0,5,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="5*"/>
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
 
             <ScrollViewer Grid.Column="0" HorizontalScrollBarVisibility="Disabled"
-          VerticalScrollBarVisibility="Auto"
-          HorizontalAlignment="Left" VerticalAlignment="Center"
-          Width="190" Height="60">
+                           Width="200" Height="60"
+                        VerticalScrollBarVisibility="Auto"
+                        HorizontalAlignment="Left" VerticalAlignment="Center">
                 <ItemsControl ItemsSource="{Binding SelectedItems}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <!-- StackPanel with horizontal orientation for side-by-side layout -->
                             <WrapPanel Orientation="Horizontal" />
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
 
-                    <!-- Define the item template for each selected item -->
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <Border BorderBrush="Black" BorderThickness="1" Margin="5">
@@ -71,15 +73,10 @@
                   SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
                   SelectionChanged="AssigneeComboBox_SelectionChanged"/>
         </Grid>
-        <ComboBox ItemsSource="{Binding StatusItems}"
-                  x:Name="StatusCombobox"
-                  Grid.Column="3" 
-                  Grid.Row="1" 
-                  VerticalAlignment="Center" 
-                  Margin="6,0,6,0" FontSize="20" SelectionChanged="StatusCombobox_SelectionChanged" Width="227"/>
-        <DatePicker x:Name="StartedDatePicker" Grid.Column="3" Grid.Row="3" VerticalAlignment="Center"/>
-        <DatePicker x:Name="EndedDatePicker" Grid.Column="3" Grid.Row="4" VerticalAlignment="Center"/>
-        <DatePicker x:Name="DeadlineDatePicker" Grid.Column="3" Grid.Row="5" VerticalAlignment="Center"/>
+       
+        <DatePicker x:Name="StartedDatePicker" Grid.Column="3" Grid.Row="2" />
+        <DatePicker x:Name="EndedDatePicker" Grid.Column="3" Grid.Row="3"/>
+        <DatePicker x:Name="DeadlineDatePicker" Grid.Column="3" Grid.Row="4"/>
         <RichTextBox x:Name="DescRTextBox" Grid.Column="3" Grid.Row="7" />
 
 

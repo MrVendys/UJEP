@@ -6,28 +6,33 @@
         xmlns:local="clr-namespace:Canban"
         xmlns:UserControls="clr-namespace:Canban.View.UserControls"
         mc:Ignorable="d"
-        Title="BoardWindow" Height="600" Width="800">
-    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
-        <StackPanel>
+        Title="Kanban Boards" Height="600" Width="800">
+    
+    <StackPanel>
             <Menu Width="800" Height="20">
-                <MenuItem Header="_File">
-                    <MenuItem x:Name="AppExit" Header="E_xit" HorizontalAlignment="Left" Width="140"/>
-                </MenuItem>
-                <MenuItem Header="_Tools">
-                    <MenuItem x:Name="Options" Header="_Options" HorizontalAlignment="Left" Width="140"/>
-                </MenuItem>
-                <MenuItem Header="_Help">
-                    <MenuItem x:Name="About" Header="&amp;About" HorizontalAlignment="Left" Width="140"/>
-                </MenuItem>
                 <MenuItem Header="_LogOut" Click="MenuItem_Click" />
+                <MenuItem Header="History" Click="HistoryItem_Click" />
             </Menu>
-            <StackPanel x:Name="MainGrid" VerticalAlignment="Center" Height="500" Orientation="Horizontal">
-
-                <Button Height="100" Width="50" Content="+" FontSize="50" Click="Button_Click"/>
-            </StackPanel>
-            
-        </StackPanel>
         
-    </ScrollViewer>
+        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+            <StackPanel 
+                Height="500"
+                VerticalAlignment="Center" 
+                Orientation="Horizontal"
+                Margin="10,0,10,0">
+                <StackPanel 
+                    x:Name="MainGrid" 
+                    VerticalAlignment="Center" 
+                    Orientation="Horizontal"/>
+                <Button 
+                    Height="100" 
+                    Width="50" 
+                    Content="+" 
+                    FontSize="50" 
+                    Click="Button_Click"/>
+            </StackPanel>
+        </ScrollViewer>
+    </StackPanel>
+    
    
 </Window>

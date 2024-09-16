@@ -1,11 +1,7 @@
 ﻿using Canban.DB.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
+using System.Drawing;
+using System.Windows.Media;
 
 namespace Canban
 {
@@ -28,30 +24,30 @@ namespace Canban
                 db.Columns.RemoveRange(db.Columns);
                 db.Boards.RemoveRange(db.Boards);
                 db.SaveChanges();
-                db.ChangeTracker.Clear();
 
             UserModel userModel = new UserModel()
             {
                 Name = "Venca",
                 Email = "venca@gmail.com",
-                Password = "Password",
+                Password = "venca",
             };
             UserModel userModel2 = new UserModel()
             {
                 Name = "Bao",
                 Email = "Bao@gmail.com",
-                Password = "Password",
+                Password = "bao",
             };
             db.Users.AddRange(new List<UserModel>{ userModel, userModel2});
             db.SaveChanges();
             BoardModel board = new BoardModel()
             {
                 Name = "Kanban",
-                CreatedBy = db.Users.Where(x=>x.Name == userModel.Name).First(),
+                CreatedBy = db.Users.Where(x => x.Name == userModel.Name).First(),
                 UserId = db.Users.Where(x => x.Name == userModel.Name).First().Id
             };
             db.Boards.Add(board);
             db.SaveChanges();
+
             db.Columns.Add(new ColumnModel()
             {
                 Name = "To Do",
@@ -60,7 +56,9 @@ namespace Canban
 
             });
             db.SaveChanges();
-               
+
+            db.ChangeTracker.Clear();
+
         }
     }
 }

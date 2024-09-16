@@ -10,10 +10,10 @@
     <Compile Update="View\UserControls\BoardControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="View\UserControls\TaskControl.xaml.cs">
+    <Compile Update="View\UserControls\ColumnControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="View\UserControls\TasksGrid.xaml.cs">
+    <Compile Update="View\UserControls\TaskControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="View\Windows\BoardWindow.xaml.cs">
@@ -22,10 +22,16 @@
     <Compile Update="View\Windows\DialogWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="View\Windows\GraphWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="View\Windows\LoginWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="View\Windows\SiginWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\Windows\TaskHistory.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="View\Windows\TaskWindow.xaml.cs">
@@ -39,10 +45,10 @@
     <Page Update="View\UserControls\BoardControl.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="View\UserControls\TaskControl.xaml">
+    <Page Update="View\UserControls\ColumnControl.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="View\UserControls\TasksGrid.xaml">
+    <Page Update="View\UserControls\TaskControl.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\Windows\BoardWindow.xaml">
@@ -51,10 +57,16 @@
     <Page Update="View\Windows\DialogWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="View\Windows\GraphWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="View\Windows\LoginWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\Windows\SiginWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Windows\TaskHistory.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\Windows\TaskWindow.xaml">

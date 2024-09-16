@@ -6,6 +6,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 namespace Canban
 {
     /// <summary>
@@ -20,15 +21,16 @@ namespace Canban
         {
             db = new DatabaseContext();
             loggedUser = userModel;
-
-            
             InitializeComponent();
             LoadBoardControls();
         }
-
+        /// <summary>
+        /// Načtení z databáze již vytvořených UserControls pro jednotilvé tabule
+        /// </summary>
         private void LoadBoardControls()
         {
             db.Boards.Load();
+            db.Tasks.Load();
             if (db.Boards.Any())
             {
                 List<BoardModel> boards = new List<BoardModel>();
@@ -36,11 +38,9 @@ namespace Canban
                 {
                     boards.Add(board);
                 }
-                var tasks = db.Tasks.Include(x => x.Users);
                 
-                
-                List<int> boardsId = new List<int>();
-                foreach (var task in tasks) {
+                var tasksWithUsers = db.Tasks.Include(x => x.Users);
+                foreach (var task in tasksWithUsers) {
                     var user = task.Users.Where(x => x.Id == loggedUser.Id).FirstOrDefault();
                     BoardModel board = null;
                     if(user != null)
@@ -50,43 +50,64 @@ namespace Canban
                         boards.Add((board));
                     }
                 }
+                db.ChangeTracker.Clear();
                 foreach (var board in boards)
                 {
-                    CreateBoardControl(board, board.Name);
+                    CreateBoardControl(board);
                 }
             }
-            
            
         }
-
-        private void BoardWrapPanel_Loaded(object sender, RoutedEventArgs e)
-        {
-            
-        }
-
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-           
-            /*
-            boardControl = new BoardControl(loggedUser);
-            boardControl.OpenButton.Click += OnBoardControlButton_Click;
-            BoardWrapPanel.Children.Add(boardControl);*/
-        }
-
-        private void CreateBoardControl(BoardModel boardModel, string name)
+        /// <summary>
+        /// Vytvoreni UserControl prvku -> BoardControl
+        /// </summary>
+        /// <param name="boardModel"></param>
+        /// <param name="name"></param>
+        private void CreateBoardControl(BoardModel boardModel)
         {
 
-            boardControl = new BoardControl(name, boardModel);
+            boardControl = new BoardControl(boardModel);
             boardControl.OpenButton.Click += OnBoardControlButton_Click;
             BoardWrapPanel.Children.Insert(0, boardControl);
         }
+        /// <summary>
+        /// Vytvoreni BoardModelu, ulozeni do databaze 
+        /// a zavolani funkce na vytvoreni BoardControlu
+        /// </summary>
+        /// <param name="boardName"></param>
+        private void CreateBoard(string boardName)
+        {
+            db.Boards.Load();
+            db.Users.Load();
+
+            var user = db.Users.Where(x => x.Id == loggedUser.Id).FirstOrDefault();
+            BoardModel boardModel = new BoardModel()
+            {
+                Name = boardName,
+                UserId = user.Id,
+                CreatedBy = user
+            };
+
+            db.Add(boardModel);
+            db.SaveChanges();
+            db.ChangeTracker.Clear();
+            CreateBoardControl(boardModel);
+        }
+        
+        private void ShowWindow(Window window)
+        {
+            window.Show();
+            this.Close();
+        }
         private void OnBoardControlButton_Click(object sender, RoutedEventArgs e)
         {
-            //TODO 
-            //BoardControlWindow pro vytvoreni BoardWindow a control
             BoardWindow boardWindow = new BoardWindow(boardControl.boardModel.Id);
-            boardWindow.Show();
-            this.Close();
+            ShowWindow(boardWindow);
+        }
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            LoginWindow loginWindow = new LoginWindow();
+            ShowWindow(loginWindow);
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
@@ -95,23 +116,9 @@ namespace Canban
             bool? result = dialog.ShowDialog();
 
             if (result == true) {
-                if (!dialog.NameTextBox.Text.IsNullOrEmpty())
+                if (!dialog.InputTextBox.Text.IsNullOrEmpty())
                 {
-                    db.Boards.Load();
-                    db.Users.Load();
-                    db.SaveChanges();
-
-                    var user = db.Users.Where(x => x.Id == loggedUser.Id).FirstOrDefault();
-                    BoardModel boardModel = new BoardModel()
-                    {
-                        Name = dialog.boardName,
-                        UserId = user.Id,
-                        CreatedBy = user
-                    };
-
-                    db.Add(boardModel);
-                    db.SaveChanges();
-                    CreateBoardControl(boardModel, dialog.boardName);
+                    CreateBoard(dialog.inputName);
                 }
             }
         }

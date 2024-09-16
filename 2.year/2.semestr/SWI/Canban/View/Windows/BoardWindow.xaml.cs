@@ -24,47 +24,79 @@ namespace Canban.View.Windows
     public partial class BoardWindow : Window
     {
         private DatabaseContext db;
-        private int Id = 0;
+        private int dbId = 0;
+        TaskHistory history;
         public BoardWindow(int id)
         {
-
-            Id = id;
+            history = TaskHistory.GetInstance();
+            dbId = id;
             db = new DatabaseContext();
             InitializeComponent();
             LoadComponents();
         }
-       
+        /// <summary>
+        /// Nacteni sloupcu
+        /// </summary>
         private void LoadComponents()
         {
             db.Columns.Load();
             db.Boards.Load();
-            if (db.Columns.Where(x=>x.BoardId == Id).Any())
+            if (db.Columns.Where(x=>x.BoardId == dbId).Any())
             {
-                foreach (var column in db.Columns.Where(x=>x.BoardId == Id))
+                foreach (var column in db.Columns.Where(x=>x.BoardId == dbId))
                 {
-                    LoadColumn(column.Id);
+                    CreateColumnControlUI(column);
                 }
             }
         }
-        private void CreateColumnControlUI(string name)
+
+        /// <summary>
+        /// Vytvoreni UserControlu pro sloupec -> ColumnControl
+        /// </summary>
+        /// <param name="name"></param>
+        private void CreateColumnControlUI(ColumnModel columnModel)
         {
-           
-            TasksGrid tg = new TasksGrid(this.Id, name);
-            MainGrid.Children.Insert(0, tg);
+            ColumnControl columnControl = new ColumnControl(columnModel);
+            MainGrid.Children.Add(columnControl);
 
         }
-        private void LoadColumn(int id)
+        /// <summary>
+        /// Vytvoreni databazoveho modelu sloupce 
+        /// a zavolani funkce pro vytvoreni UserControlu
+        /// </summary>
+        /// <param name="columnName">Nazev sloupce</param>
+        private void CreateColumn(string columnName, string columnColor)
         {
-            TasksGrid tg = new TasksGrid(id);
-            MainGrid.Children.Insert(0, tg);
+            db.Tasks.Load();
+            db.Columns.Load();
+            ColumnModel column = new ColumnModel()
+            {
+                Name = columnName,
+                Color = columnColor,
+                BoardId = this.dbId,
+                Board = db.Boards.Where(x => x.Id == this.dbId).First()
+            };
+            db.Add(column);
+            db.SaveChanges();
+            db.ChangeTracker.Clear();
+            CreateColumnControlUI(column);
         }
+        /// <summary>
+        /// Funkce volana tlacitkem v menu pro odhlaseni
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
             LoginWindow loginWindow = new LoginWindow();
             loginWindow.Show();
             this.Close();
         }
-
+        /// <summary>
+        /// Funkce volana tlaciktem na vytvoreni sloupce
+        /// </summary>
+        /// <param name="sender">Tlacitko na BoardWindow</param>
+        /// <param name="e"></param>
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var dialog = new DialogWindow();
@@ -72,14 +104,19 @@ namespace Canban.View.Windows
 
             if (result == true)
             {
-                if (!dialog.NameTextBox.Text.IsNullOrEmpty())
+                if (!dialog.inputName.IsNullOrEmpty())
                 {
-                    CreateColumnControlUI(dialog.boardName);
+                    CreateColumn(dialog.inputName, dialog.colorName);
                 }
             }
             
         }
-        
+
+        private void HistoryItem_Click(object sender, RoutedEventArgs e)
+        {
+            history.Show();
+            history.Visibility = Visibility.Visible;
+        }
     }
 }
 

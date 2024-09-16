@@ -12,7 +12,6 @@ namespace Canban.View.UserControls
     /// </summary>
     public partial class BoardControl : UserControl, INotifyPropertyChanged
     {
-        DatabaseContext db;
         public BoardModel boardModel;
         public event PropertyChangedEventHandler? PropertyChanged;
         private string boardName = "Kanban";
@@ -29,14 +28,12 @@ namespace Canban.View.UserControls
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-        public BoardControl(string name, BoardModel boardModel)
+        public BoardControl(BoardModel boardModel)
         {
-            boardName = name;
+            boardName = boardModel.Name;
             this.boardModel = boardModel;
             InitializeComponent();
             DataContext = this;
-            db = new DatabaseContext();
-           
         }
 
     }

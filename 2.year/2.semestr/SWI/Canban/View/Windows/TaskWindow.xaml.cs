@@ -15,8 +15,15 @@ namespace Canban.View.Windows
         public ObservableCollection<string> AvailableItems { get; set; }
         public ObservableCollection<string> SelectedItems { get; set; }
         public string SelectedItem { get; set; }
+        private string taskName = "Novy Task";
+        public string TaskName
+        {
+            get { return taskName; }
+            set { taskName = value; }
+        }
         DatabaseContext db = new DatabaseContext();
         TaskModel newTaskModel;
+        TaskHistory thistory;
         /// <summary>
         /// 
         /// </summary>
@@ -27,7 +34,7 @@ namespace Canban.View.Windows
             db.Users.Load();
             db.Tasks.Load();
 
-
+            thistory = TaskHistory.GetInstance();
 
             // Initialize the available items for the ComboBox
             AvailableItems = new ObservableCollection<string>();
@@ -90,10 +97,11 @@ namespace Canban.View.Windows
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            //TODO: Check null values
+            db.Tasks.Load();
+            var oldTask = db.Tasks.Include(x => x.Users).FirstOrDefault(x => x.Id == newTaskModel.Id);
             var task = db.Tasks.Include(x => x.Users).FirstOrDefault(x => x.Id == newTaskModel.Id);
-       
-            task.Name = TitleTextbox.Text;
+
+            task.Name = TaskName;
             foreach (var user in SelectedItems)
             {
 
@@ -102,6 +110,7 @@ namespace Canban.View.Windows
                 if (userModel != null && !task.Users.Any(c => c.Id == userModel.Id))
                 {
                     task.Users.Add(userModel);
+                   
                 }
                     db.SaveChanges();
                 if (task != null && !userModel.TaskModels.Any(c => c.Id == task.Id))
@@ -110,35 +119,24 @@ namespace Canban.View.Windows
                 }
                 
             }
-            task.Started = StartedDatePicker.SelectedDate;
-                task.Deadline = DeadlineDatePicker.SelectedDate;
-                task.Desc = new TextRange(DescRTextBox.Document.ContentStart, DescRTextBox.Document.ContentEnd).Text;
-            db.SaveChanges();
-            /*List<UserModel> users = new List<UserModel>();
-            foreach (var user in SelectedItems)
+            db.UpdateTasks(newTaskModel.Id, new
             {
-                UserModel userModel = db.Users.Where(x => x.Name == user).First();
-                db.Users.Find(userModel.Id).TaskModels.Add(newTaskModel);
-                db.ChangeTracker.Clear();
-                db.SaveChanges();
-                users.Add(userModel);
-            }
-            db.UpdateTasks(newTaskModel.Id, new { 
-                    Name = TitleTextbox.Text, 
-                    Users = users, 
-                    Started = StartedDatePicker.SelectedDate, 
-                    Deadline = DeadlineDatePicker.SelectedDate,
-                    Desc = new TextRange(DescRTextBox.Document.ContentStart, DescRTextBox.Document.ContentEnd).Text
+                Started = StartedDatePicker.SelectedDate,
+                Deadline = DeadlineDatePicker.SelectedDate,
+                Completed = EndedDatePicker.SelectedDate,
+                Desc = new TextRange(DescRTextBox.Document.ContentStart, DescRTextBox.Document.ContentEnd).Text,
+                Users = SelectedItems
             });
-                
-            */
+            db.SaveChanges();
             
+            db.ChangeTracker.Clear();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            db.Tasks.Load();
             var task = db.Tasks.Include(x => x.Users).FirstOrDefault(x => x.Id == newTaskModel.Id);
-            TitleTextbox.Text = task.Name;
+            TaskName = task.Name;
             //StatusCombobox.SelectedValue = task.StatusModel != null ? task.StatusModel.Name : null;
             if (task.Users != null) {
                 foreach (var user in task.Users)
@@ -149,6 +147,7 @@ namespace Canban.View.Windows
             
             StartedDatePicker.SelectedDate = task.Started;
             DeadlineDatePicker.SelectedDate = task.Deadline;
+            EndedDatePicker.SelectedDate = task.Completed;
             FlowDocument myFlowDoc = new FlowDocument(new Paragraph(new Run(task.Desc)));
             DescRTextBox.Document = myFlowDoc;
             db.ChangeTracker.Clear();

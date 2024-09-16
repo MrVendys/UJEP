@@ -14,7 +14,7 @@ namespace Canban
         {
             DbLoad load = new DbLoad();
             load.LoadDB();
-            
+
             LoginWindow loginWindow = new LoginWindow();
             loginWindow.Show();
         }

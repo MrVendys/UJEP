@@ -20,8 +20,10 @@ namespace Canban.View.Windows
     /// </summary>
     public partial class DialogWindow : Window
     {
-        private string BoardName;
-        public string boardName { get { return BoardName; } set { } }
+        private string InputName;
+        public string inputName { get { return InputName; } set { } }
+        private string ColorName;
+        public string colorName { get { return ColorName; } set { } }
         public DialogWindow()
         {
             InitializeComponent();
@@ -29,14 +31,15 @@ namespace Canban.View.Windows
 
         private void okButton_Click(object sender, RoutedEventArgs e)
         {
-            if (!NameTextBox.Text.IsNullOrEmpty())
+            if (!InputTextBox.Text.IsNullOrEmpty() && InputColorPicker.SelectedColor != null)
             {
                 DialogResult = true;
-                BoardName = NameTextBox.Text;
+                InputName = InputTextBox.Text;
+                ColorName = InputColorPicker.SelectedColor.ToString();
             }
             else
             {
-                MessageBox.Show("Nezadal jste jméno Tabule");
+                MessageBox.Show("Nezadal jste jméno nebo barvu Tabule");
             }
            
         }

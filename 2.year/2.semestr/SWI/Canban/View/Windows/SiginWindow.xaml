@@ -5,14 +5,71 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Canban.View.Windows"
         mc:Ignorable="d"
-        Title="SiginWindow" Height="450" Width="300">
+        Title="SiginWindow" Height="550" Width="300">
+    <Window.Resources>
+        <Style x:Key="InputStyle">
+            <Setter Property="Control.Margin" Value="20,0,20,20"/>
+            <Setter Property="Control.FontSize" Value="20"/>
+        </Style>
+        <Style BasedOn="{StaticResource InputStyle}" TargetType="PasswordBox">
+            <Setter Property="PasswordChar" Value="*"/>
+        </Style>
+
+        <Style TargetType="Label">
+            <Setter Property="Margin" Value="20,10,20,5"/>
+            <Setter Property="FontSize" Value="18"/>
+        </Style>
+
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="0,20,0,0"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="FontSize" Value="18"/>
+        </Style>
+    </Window.Resources>
     <Grid>
         <StackPanel>
-            <TextBox x:Name="NameInput" Margin="30" FontSize="20">Michal</TextBox>
-            <TextBox x:Name="EmailInput" Margin="30" FontSize="20">Michal@gmail.com</TextBox>
-            <PasswordBox x:Name="PasswordInput" Margin="30" FontSize="20" PasswordChar="*"></PasswordBox>
-            <Button x:Name="SigInButton" Width="200" Height="30"  Content="Sig in" Click="SigInButton_Click"></Button>
-            <Button x:Name="LoginButton" Width="200" Height="30" Margin="0,80,0,0" Content="Log in" Click="LoginButton_Click"></Button>
+            <Label Content="Jméno:"/>
+            <TextBox Style="{StaticResource InputStyle}" x:Name="NameInput">Michal</TextBox>
+            
+            <Label Content="Jméno:"/>
+            <TextBox Style="{StaticResource InputStyle}" x:Name="EmailInput">Michal@gmail.com</TextBox>
+            <Grid Width="250">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="8.5*"/>
+                    <ColumnDefinition Width="1.5*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="0" Grid.Column="0" Content="Heslo:" />
+                <PasswordBox Grid.Row="1" Grid.Column="0" Style="{StaticResource InputStyle}" x:Name="PasswordInput" ></PasswordBox>
+                <Image Grid.RowSpan="2" Grid.Column="1" 
+                    Width="30" Height="30" 
+                    Margin="0,25,0,0"  
+                    RenderOptions.BitmapScalingMode="Fant"  
+                       
+                    HorizontalAlignment="Left" 
+                    VerticalAlignment="Center" 
+                    Name="ShowPassword"  
+                    PreviewMouseDown="ShowPassword_PreviewMouseDown" 
+                    PreviewMouseUp="ShowPassword_PreviewMouseUp" 
+                    MouseLeave="ShowPassword_MouseLeave" Source="../../Source/PasswordEye.png"/>
+                
+                <TextBlock Grid.Row="1" Grid.Column="0" Name="PasswordUnmask" Visibility="Hidden"/>
+              
+
+            </Grid>
+            
+            <Label Content="Znovu heslo:"/>
+            <PasswordBox Style="{StaticResource InputStyle}" x:Name="PasswordCheckInput"></PasswordBox>
+            <TextBlock Name="PasswordCheckUnmask" Visibility="Hidden"/>
+
+
+            <Button x:Name="SigInButton" Content="Sig in" Click="SigInButton_Click"></Button>
+            <Button x:Name="LoginButton" Content="Log in" Click="LoginButton_Click"></Button>
 
         </StackPanel>
     </Grid>

@@ -3,6 +3,7 @@ using System;
 using Canban.DB.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Canban.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20240916093444_UpdateToNullColumn")]
+    partial class UpdateToNullColumn
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -89,35 +92,6 @@ namespace Canban.Migrations
                     b.ToTable("Statuses");
                 });
 
-            modelBuilder.Entity("Canban.DB.Models.TaskHistoryModel", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTime>("MoveAt")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("MoveById")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("NewTaskInfoId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("OldTaskInfoId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("MoveById");
-
-                    b.HasIndex("NewTaskInfoId");
-
-                    b.HasIndex("OldTaskInfoId");
-
-                    b.ToTable("TaskHistories");
-                });
-
             modelBuilder.Entity("Canban.DB.Models.TaskModel", b =>
                 {
                     b.Property<int>("Id")
@@ -127,7 +101,7 @@ namespace Canban.Migrations
                     b.Property<int>("ColumnId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime?>("Completed")
+                    b.Property<DateTime>("Completed")
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime?>("Deadline")
@@ -213,33 +187,6 @@ namespace Canban.Migrations
                         .IsRequired();
 
                     b.Navigation("Board");
-                });
-
-            modelBuilder.Entity("Canban.DB.Models.TaskHistoryModel", b =>
-                {
-                    b.HasOne("Canban.DB.Models.UserModel", "MoveBy")
-                        .WithMany()
-                        .HasForeignKey("MoveById")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Canban.DB.Models.TaskModel", "NewTaskInfo")
-                        .WithMany()
-                        .HasForeignKey("NewTaskInfoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Canban.DB.Models.TaskModel", "OldTaskInfo")
-                        .WithMany()
-                        .HasForeignKey("OldTaskInfoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("MoveBy");
-
-                    b.Navigation("NewTaskInfo");
-
-                    b.Navigation("OldTaskInfo");
                 });
 
             modelBuilder.Entity("TaskModelUserModel", b =>

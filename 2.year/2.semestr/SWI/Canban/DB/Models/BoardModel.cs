@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Windows.Media;
 using System.Threading.Tasks;
+using System.Drawing;
 
 namespace Canban.DB.Models
 {
@@ -10,7 +13,7 @@ namespace Canban.DB.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        //public ICollection<Collum>
+        public string? Color { get; set; } = System.Drawing.Color.White.ToString();
         public int UserId { get; set; }
         public virtual UserModel CreatedBy { get; set; }
     }
