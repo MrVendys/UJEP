@@ -36,7 +36,7 @@
         <TextBlock Grid.Row="4" Text="Deadline:"/>
         <TextBlock Grid.Row="6" Text="Description:"/>
 
-        <TextBox x:Name="TitleTextbox" Grid.Column="1" VerticalAlignment="Center" Margin="5,0,5,0" Text="{Binding TaskName}" FontSize="20"></TextBox>
+        <TextBox x:Name="TitleTextbox" Grid.Column="1" VerticalAlignment="Center" Margin="5,0,5,0" Text="{Binding TaskName, Mode=TwoWay}" FontSize="20"></TextBox>
         <Grid Grid.Column="1" Grid.Row="1" Height="Auto" Margin="5,0,5,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="5*"/>
@@ -77,7 +77,7 @@
         <DatePicker x:Name="StartedDatePicker" Grid.Column="3" Grid.Row="2" />
         <DatePicker x:Name="EndedDatePicker" Grid.Column="3" Grid.Row="3"/>
         <DatePicker x:Name="DeadlineDatePicker" Grid.Column="3" Grid.Row="4"/>
-        <RichTextBox x:Name="DescRTextBox" Grid.Column="3" Grid.Row="7" />
+        <RichTextBox x:Name="DescRTextBox" Grid.Column="3" Grid.Row="7"/>
 
 
     </Grid>

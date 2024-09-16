@@ -5,9 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Canban.View.Windows"
         mc:Ignorable="d"
-        Title="TaskHistory" Height="450" Width="800">
-    <Grid>
-        <DataGrid x:Name="TaskDataGrid" Height="400" Width="700"/>
-    </Grid>
+        Title="TaskHistory" Height="450" Width="800" Closing="Window_Closing">
+    <DataGrid x:Name="contextDataGrid"
+        AutoGenerateColumns="True"
+        AlternatingRowBackground="LightBlue"
+        AlternationCount="2"/>
 
 </Window>

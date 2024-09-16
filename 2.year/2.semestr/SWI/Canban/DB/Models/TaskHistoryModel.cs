@@ -11,12 +11,23 @@ namespace Canban.DB.Models
     {
         [Key]
         public int Id { get; set; }
-        public virtual TaskModel OldTaskInfo {  get; set; }
-        public int OldTaskInfoId { get; set; }
-        public virtual TaskModel NewTaskInfo { get; set; }
-        public int NewTaskInfoId { get; set; }
-        public DateTime MoveAt { get; set; }
-        public virtual UserModel MoveBy { get; set; }
-        public int MoveById { get; set; }
+        public string? OldName {  get; set; }
+        public string? OldDesc { get; set; }
+        public DateTime? OldDeadline { get; set; }
+        public DateTime? OldStarted { get; set; }
+        public DateTime? OldCompleted { get; set; }
+        public List<string>? OldUsersNames { get; set; }
+        public int? OldColumnId { get; set; }
+
+        public string? NewName { get; set; }
+        public string? NewDesc { get; set; }
+        public DateTime? NewDeadline { get; set; }
+        public DateTime? NewStarted { get; set; }
+        public DateTime? NewCompleted { get; set; }
+        public List<string>? NewUsersNames { get; set; }
+        public int? NewColumnId { get; set; }
+
+        public DateTime? MoveAt { get; set; }
+        public string MoveBy { get; set; }
     }
 }

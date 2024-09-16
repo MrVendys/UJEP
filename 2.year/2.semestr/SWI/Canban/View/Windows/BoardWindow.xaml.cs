@@ -25,10 +25,12 @@ namespace Canban.View.Windows
     {
         private DatabaseContext db;
         private int dbId = 0;
+        public UserModel loggedUser;
         TaskHistory history;
-        public BoardWindow(int id)
+        public BoardWindow(int id, UserModel loggedUser)
         {
-            history = TaskHistory.GetInstance();
+            this.loggedUser = loggedUser;
+            
             dbId = id;
             db = new DatabaseContext();
             InitializeComponent();
@@ -56,7 +58,7 @@ namespace Canban.View.Windows
         /// <param name="name"></param>
         private void CreateColumnControlUI(ColumnModel columnModel)
         {
-            ColumnControl columnControl = new ColumnControl(columnModel);
+            ColumnControl columnControl = new ColumnControl(columnModel, loggedUser);
             MainGrid.Children.Add(columnControl);
 
         }
@@ -114,8 +116,11 @@ namespace Canban.View.Windows
 
         private void HistoryItem_Click(object sender, RoutedEventArgs e)
         {
-            history.Show();
-            history.Visibility = Visibility.Visible;
+            if(this.history == null)
+                history = TaskHistory.GetInstance();
+            if (!history.IsActive)
+                history.Show();
+            history.LoadCollectionData();
         }
     }
 }

@@ -3,6 +3,7 @@ using System;
 using Canban.DB.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Canban.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20240916132519_updateTaskHistory")]
+    partial class updateTaskHistory
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -95,56 +98,25 @@ namespace Canban.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime?>("MoveAt")
+                    b.Property<DateTime>("MoveAt")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("MoveBy")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<int?>("NewColumnId")
+                    b.Property<int>("MoveById")
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime?>("NewCompleted")
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime?>("NewDeadline")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("NewDesc")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("NewName")
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime?>("NewStarted")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("NewUsersNames")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int?>("OldColumnId")
+                    b.Property<int>("NewTaskInfoId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime?>("OldCompleted")
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime?>("OldDeadline")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("OldDesc")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("OldName")
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime?>("OldStarted")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("OldUsersNames")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("OldTaskInfoId")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("MoveById");
+
+                    b.HasIndex("NewTaskInfoId");
+
+                    b.HasIndex("OldTaskInfoId");
 
                     b.ToTable("TaskHistories");
                 });
@@ -155,8 +127,7 @@ namespace Canban.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("ColumnId")
-                        .IsRequired()
+                    b.Property<int>("ColumnId")
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime?>("Completed")
@@ -168,15 +139,19 @@ namespace Canban.Migrations
                     b.Property<string>("Desc")
                         .HasColumnType("TEXT");
 
+                    b.Property<byte>("Finished")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("Priority")
+                        .HasMaxLength(10)
+                        .HasColumnType("INTEGER");
+
                     b.Property<DateTime?>("Started")
                         .HasColumnType("TEXT");
-
-                    b.Property<int?>("test")
-                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
@@ -241,6 +216,33 @@ namespace Canban.Migrations
                         .IsRequired();
 
                     b.Navigation("Board");
+                });
+
+            modelBuilder.Entity("Canban.DB.Models.TaskHistoryModel", b =>
+                {
+                    b.HasOne("Canban.DB.Models.UserModel", "MoveBy")
+                        .WithMany()
+                        .HasForeignKey("MoveById")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Canban.DB.Models.TaskModel", "NewTaskInfo")
+                        .WithMany()
+                        .HasForeignKey("NewTaskInfoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Canban.DB.Models.TaskModel", "OldTaskInfo")
+                        .WithMany()
+                        .HasForeignKey("OldTaskInfoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("MoveBy");
+
+                    b.Navigation("NewTaskInfo");
+
+                    b.Navigation("OldTaskInfo");
                 });
 
             modelBuilder.Entity("TaskModelUserModel", b =>

@@ -2,7 +2,10 @@
 using Castle.Components.DictionaryAdapter.Xml;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.ObjectModel;
+using System.Security.Policy;
 using System.Windows;
+using System.Windows.Media.Media3D.Converters;
 
 namespace Canban.View.Windows
 {
@@ -10,19 +13,34 @@ namespace Canban.View.Windows
     /// Interakční logika pro TaskHistory.xaml
     /// </summary>
 
-
+    public class Data
+    {
+        public object PropertyName { get; set; }
+        public object OldValue { get; set; }
+        public object NewValue { get; set; }
+    }
 
      public sealed partial class TaskHistory : Window
      {
          private static TaskHistory _instance;
 
-         private List<TaskHistoryModel> authors = new List<TaskHistoryModel>();
+         public ObservableCollection<Data> changes = new ObservableCollection<Data>();
+        public ObservableCollection<Data> Changes { get { return changes; } }
+
+        private List<string> ShowProperties = new List<string> { 
+            "OldName", "OldDesc", "OldDeadline", "OldStarted", "OldCompleted",
+            "NewName", "NewDesc", "NewDeadline", "NewStarted", "NewCompleted"
+        };
+         List<string> propertyList;
          private DatabaseContext db;
 
          private TaskHistory()
          {
              InitializeComponent();
-         }
+            db = new DatabaseContext();
+            DataContext = changes;
+            contextDataGrid.ItemsSource = Changes;
+        }
          public static TaskHistory GetInstance()
          {
              if (_instance == null)
@@ -31,60 +49,109 @@ namespace Canban.View.Windows
              }
              return _instance;
          }
-         public void LoadCollectionData(UserModel loggedUser, TaskModel oldTask, TaskModel newTask, DateTime timeOfUpdate)
+         public void LoadCollectionData()
          {
+            db = new DatabaseContext();
+            db.TaskHistories.Load();
+            db.Tasks.Load();
+            var taskHistories = db.TaskHistories;
 
-             db = new DatabaseContext();
-             db.Users.Load();
-             db.Tasks.Load();
-            List<string> propertyList = new List<string>();
+            Changes.Clear();
+
+            foreach (var history in taskHistories)
+            {
+                var properties = history.GetType().GetProperties();
+                foreach (var prop in properties)
+                {
+                    if (prop.GetValue(history) != null && ShowProperties.Contains(prop.Name))
+                    {
+                        var value = prop.GetValue(history);
+                        changes.Add(new Data
+                        {
+                            PropertyName = prop.Name.ToString(),
+                            NewValue = value,
+                            OldValue = 
+                        });
+                    }
+                    // Get the value of the current property
+
+
+                }
+            }
+
+        }
+        private void LoadData()
+        {
+
+        }
+        public void CreateData(UserModel loggedUser, TaskModel oldTask, TaskModel newTask, DateTime timeOfUpdate)
+        {
+            
+            db.TaskHistories.Load();
+            db.Tasks.Load();
+            propertyList = new List<string>();
             List<object> newPropertyValue = new List<object>();
-            List<object> oldPropertyValie = new List<object>();
+            List<object> oldPropertyValue = new List<object>();
 
             var entity = oldTask;
             var properties = newTask.GetType().GetProperties();
             foreach (var prop in properties)
             {
-                // Get the value of the current property
-                var value = prop.GetValue(newTask);
-
-                // Only update the entity's property if the value is not null
-                if (value != null)
+                if(prop.Name != "Users" && prop.Name != "LazyLoader")
                 {
-                    var entityProp = entity.GetType().GetProperty(prop.Name);
-                    // Find the matching property in the entity
-                    if (entityProp != null && entityProp.GetValue(prop.Name) != value)
+                    var value = prop.GetValue(newTask);
+                    var value2 = prop.GetValue(oldTask);
+                    if (!Equals(prop.GetValue(newTask), prop.GetValue(oldTask)))
                     {
-                        // Update the value of the entity's property
-                        propertyList.Add(entityProp.Name.ToString());
+                        propertyList.Add(prop.Name);
                         newPropertyValue.Add(value);
-                        oldPropertyValie.Add(entityProp.GetValue(prop.Name));
-                    }
+                        oldPropertyValue.Add(value2);
 
+                    }
                 }
+                   // Get the value of the current property
+                   
+                  
+            }
+   
+            db.Users.Load();
+            if(oldPropertyValue[propertyList.IndexOf("Desc")] == null)
+            {
+                oldPropertyValue[propertyList.IndexOf("Desc")] = "";
+            }
+            if (newPropertyValue[propertyList.IndexOf("Desc")] == null)
+            {
+                newPropertyValue[propertyList.IndexOf("Desc")] = "";
             }
 
+            var logUser = db.Users.Find(loggedUser.Id);
+            TaskHistoryModel taskHistoryModel = new TaskHistoryModel()
+            {
+                OldName = propertyList.Contains("Name") ? oldPropertyValue[propertyList.IndexOf("Name")].ToString() : null,
+                NewName = propertyList.Contains("Name") ? newPropertyValue[propertyList.IndexOf("Name")].ToString() : null,
+                OldDesc = propertyList.Contains("Desc") ? oldPropertyValue[propertyList.IndexOf("Desc")].ToString() : null,
+                NewDesc = propertyList.Contains("Desc") ? newPropertyValue[propertyList.IndexOf("Desc")].ToString() : null,
+                OldColumnId = propertyList.Contains("ColumnId") ? (int)oldPropertyValue[propertyList.IndexOf("ColumnId")] : null,
+                NewColumnId = propertyList.Contains("ColumnId") ? (int)newPropertyValue[propertyList.IndexOf("ColumnId")] : null,
+                MoveAt = DateTime.Now,
+                MoveBy = logUser.Name,
+            };
+            //db.ChangeTracker.Clear();
+            db.Add(taskHistoryModel);
+            db.SaveChanges();
 
-
+            db.ChangeTracker.Clear();
+            LoadCollectionData();
+        }
+        private void CreateHistoryUI()
+        {
             DataContext = this;
-             TaskHistoryModel taskHistoryModel = new TaskHistoryModel()
-             {
-                 OldTaskInfo = oldTask,
-                 OldTaskInfoId = oldTask.Id,
-                 NewTaskInfo = newTask,
-                 NewTaskInfoId = newTask.Id,
-                 MoveAt = timeOfUpdate,
-                 MoveBy = loggedUser,
-                 MoveById = oldTask.Id,
-             };
-             authors.Add(taskHistoryModel);
-
-             db.SaveChanges();
-             db.ChangeTracker.Clear();
-            DataContext = this;
-            TaskDataGrid.ItemsSource = authors;
-         }
-
-     }
+        }
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            e.Cancel = true;
+            this.Visibility = Visibility.Hidden;
+        }
+    }
     
 }

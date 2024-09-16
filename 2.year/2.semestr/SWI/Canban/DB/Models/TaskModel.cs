@@ -12,21 +12,16 @@ namespace Canban.DB.Models
         public string Name { get; set; }
         [DefaultValue(null)]
         public string? Desc { get; set; }
-        [MinLength(1)]
-        [MaxLength(10)]
-        [DefaultValue(null)]
-        public int Priority { get; set; }
         [DefaultValue(null)]
         public DateTime? Deadline { get; set; }
         [DefaultValue(null)]
         public DateTime? Started { get; set; }
         [DefaultValue(null)]
         public DateTime? Completed { get; set; }
-        [DefaultValue(0)]
-        public byte Finished { get; set; }
+        public int? test {  get; set; }
         public virtual ICollection<UserModel> Users { get; set; }
         [Required]
-        public int ColumnId { get; set; }
+        public int? ColumnId { get; set; }
 
     }
 }

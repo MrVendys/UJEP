@@ -57,7 +57,7 @@ namespace Canban.View.Windows
         {
             db.Users.Load();
             var users = db.Users.Where(x=>x.Email == EmailInput.Text).ToList();
-            
+            db.ChangeTracker.Clear();
             foreach (var user in users)
             {
                 if(user.Password == PasswordInput.Password)
@@ -78,7 +78,6 @@ namespace Canban.View.Windows
         /// <param name="loggedUser">UserModel přihlášeného uživatele</param>
         private void LogIn(UserModel loggedUser) {
             
-            db.LoggedUser = loggedUser;
             MainWindow main = new MainWindow(loggedUser);
             main.Show();
             this.Close();

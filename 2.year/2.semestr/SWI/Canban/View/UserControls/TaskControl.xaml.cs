@@ -1,5 +1,6 @@
 ﻿using Canban.DB.Models;
 using Canban.View.Windows;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,17 +35,21 @@ namespace Canban.View.UserControls
             get { return taskName; } 
             set { taskName = value; } 
         }
-        public TaskControl(TaskModel newTaskModel)
+        UserModel loggedUser;
+        public TaskControl(TaskModel newTaskModel, UserModel loggedUser)
         {
             InitializeComponent();
+            this.loggedUser = loggedUser;
             this.taskModel = newTaskModel;
             DataContext = this;
         }
         private void NameTextBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            new TaskWindow(taskModel).ShowDialog();
+            new TaskWindow(taskModel.Id, loggedUser).ShowDialog();
+            db.Tasks.Load();
             var task = db.Tasks.Where(x => x.Id == taskModel.Id).FirstOrDefault();
             TaskName = task.Name;
+            NameTextBox.Text = TaskName;
         }
 
         private void RemoveBtn_Click(object sender, RoutedEventArgs e)

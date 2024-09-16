@@ -101,7 +101,7 @@ namespace Canban
         }
         private void OnBoardControlButton_Click(object sender, RoutedEventArgs e)
         {
-            BoardWindow boardWindow = new BoardWindow(boardControl.boardModel.Id);
+            BoardWindow boardWindow = new BoardWindow(boardControl.boardModel.Id, loggedUser);
             ShowWindow(boardWindow);
         }
         private void MenuItem_Click(object sender, RoutedEventArgs e)

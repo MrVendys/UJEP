@@ -32,9 +32,11 @@ namespace Canban.View.UserControls
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-        public ColumnControl(ColumnModel columnModel)
+        public UserModel loggedUser;
+        public ColumnControl(ColumnModel columnModel, UserModel loggedUser)
         {
             InitializeComponent();
+            this.loggedUser = loggedUser;
             this.columnModel = columnModel;
             this.columnName = columnModel.Name;
             string a = System.Drawing.Color.White.ToArgb().ToString();
@@ -77,7 +79,7 @@ namespace Canban.View.UserControls
         /// <param name="taskModel">Predani TaskModelu</param>
         private void CreateTaskUI(TaskModel taskModel)
         {
-            TaskControl task = new TaskControl(taskModel);
+            TaskControl task = new TaskControl(taskModel, loggedUser);
             task.NameTextBox.Text = taskModel.Name;
             task.DeleteRequested += UserControl_DeleteRequested;
             task.MouseMove += UserControl_MouseMove;
@@ -103,6 +105,7 @@ namespace Canban.View.UserControls
 
         private void TaskStackPanel_Drop(object sender, DragEventArgs e)
         {
+            //Zkontrolovat drag&drop
             var sourceUserControl = e.Data.GetData(typeof(TaskControl)) as TaskControl;
             if (sourceUserControl != null)
             {
@@ -112,7 +115,7 @@ namespace Canban.View.UserControls
                 stackPanel.Children.Add(sourceUserControl as TaskControl);
                 sourceUserControl.StackPanel = TaskStackPanel;
                 sourceUserControl.taskModel.ColumnId = id;
-                db.UpdateTasks(sourceUserControl.taskModel.Id, new { ColumnId = id });
+                db.SaveChanges();
             }
         }
 
@@ -130,7 +133,7 @@ namespace Canban.View.UserControls
                 Vector diff = _startPoint - currentPosition;
                 double a = Math.Abs(diff.X);
                 // Zajistíme, že uživatel posunul myš alespoň o určitou vzdálenost
-                if (Math.Abs(diff.X) < SystemParameters.MinimumHorizontalDragDistance + 120)
+                if (Math.Abs(diff.X) < SystemParameters.MinimumHorizontalDragDistance + 50)
                 {
                     var userControl = sender as UserControl;
 

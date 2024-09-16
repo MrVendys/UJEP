@@ -12,17 +12,16 @@ namespace Canban
       public void LoadDB()
         {
                 db = new DatabaseContext();
-                db.Statuses.Load();
                 db.Tasks.Load();
                 db.Users.Load();
                 db.Columns.Load();
                 db.Boards.Load();
-
-                db.Statuses.RemoveRange(db.Statuses);
+                db.TaskHistories.Load();
                 db.Tasks.RemoveRange(db.Tasks);
                 db.Users.RemoveRange(db.Users);
                 db.Columns.RemoveRange(db.Columns);
                 db.Boards.RemoveRange(db.Boards);
+                db.TaskHistories.RemoveRange(db.TaskHistories);
                 db.SaveChanges();
 
             UserModel userModel = new UserModel()
