@@ -56,9 +56,9 @@ namespace Canban.View.Windows
             
 
             InitializeComponent();
-            StartedDatePicker.DisplayDate = DateTime.Now;
-            EndedDatePicker.DisplayDate = DateTime.Now;
-            DeadlineDatePicker.DisplayDate = DateTime.Now;
+            StartedDatePicker.SelectedDate = DateTime.Today.AddDays(-1);
+            EndedDatePicker.SelectedDate = DateTime.Today.AddDays(-1);
+            DeadlineDatePicker.SelectedDate = DateTime.Today.AddDays(-1);
             this.DataContext = this;
         }
 
@@ -167,9 +167,9 @@ namespace Canban.View.Windows
             }
             TaskName = task.Name;
             TitleTextbox.Text = TaskName;
-            StartedDatePicker.SelectedDate = task.Started;
-            DeadlineDatePicker.SelectedDate = task.Deadline;
-            EndedDatePicker.SelectedDate = task.Completed;
+            StartedDatePicker.SelectedDate = task.Started == new DateTime(1,1,1,0,0,0) ? DateTime.Today : task.Started;
+            DeadlineDatePicker.SelectedDate = task.Deadline == new DateTime(1, 1, 1, 0, 0, 0) ? DateTime.Today : task.Deadline;
+            EndedDatePicker.SelectedDate = task.Completed == new DateTime(1, 1, 1, 0, 0, 0) ? DateTime.Today : task.Completed;
             DescRTextBox.Text = task.Desc;
             db.ChangeTracker.Clear();
         }

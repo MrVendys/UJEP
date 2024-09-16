@@ -46,6 +46,7 @@ namespace Canban.View.UserControls
         private void NameTextBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             new TaskWindow(taskModel.Id, loggedUser).ShowDialog();
+            db.ChangeTracker.Clear();
             db.Tasks.Load();
             var task = db.Tasks.Where(x => x.Id == taskModel.Id).FirstOrDefault();
             TaskName = task.Name;
