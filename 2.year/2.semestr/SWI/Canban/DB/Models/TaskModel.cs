@@ -13,11 +13,11 @@ namespace Canban.DB.Models
         [DefaultValue(null)]
         public string? Desc { get; set; }
         [DefaultValue(null)]
-        public DateTime? Deadline { get; set; }
+        public DateTime Deadline { get; set; }
         [DefaultValue(null)]
-        public DateTime? Started { get; set; }
+        public DateTime Started { get; set; }
         [DefaultValue(null)]
-        public DateTime? Completed { get; set; }
+        public DateTime Completed { get; set; }
         public int? test {  get; set; }
         public virtual ICollection<UserModel> Users { get; set; }
         [Required]

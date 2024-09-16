@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
+using System.Windows.Forms;
 
 namespace Canban.View.Windows
 {
@@ -55,8 +56,9 @@ namespace Canban.View.Windows
             
 
             InitializeComponent();
-            FlowDocument myFlowDoc = new FlowDocument(new Paragraph(new Run("")));
-            DescRTextBox.Document = myFlowDoc;
+            StartedDatePicker.DisplayDate = DateTime.Now;
+            EndedDatePicker.DisplayDate = DateTime.Now;
+            DeadlineDatePicker.DisplayDate = DateTime.Now;
             this.DataContext = this;
         }
 
@@ -106,18 +108,16 @@ namespace Canban.View.Windows
         {
 
             TaskName = TitleTextbox.Text;
-            string desc = new TextRange(DescRTextBox.Document.ContentStart, DescRTextBox.Document.ContentEnd).Text;
+            string desc = DescRTextBox.Text;
             UpdateTasks(taskId, new
             {
                 Name = TitleTextbox.Text,
                 Started = StartedDatePicker.SelectedDate,
                 Deadline = DeadlineDatePicker.SelectedDate,
                 Completed = EndedDatePicker.SelectedDate,
-                Desc = desc == "\r\n" ? null : desc,
+                Desc = desc == "" ? null : desc,
             });
             db.SaveChanges();
-            
-            
         }
         private void UpdateTasks(int id, object updatedValues)
         {
@@ -170,8 +170,7 @@ namespace Canban.View.Windows
             StartedDatePicker.SelectedDate = task.Started;
             DeadlineDatePicker.SelectedDate = task.Deadline;
             EndedDatePicker.SelectedDate = task.Completed;
-            FlowDocument myFlowDoc = new FlowDocument(new Paragraph(new Run(task.Desc)));
-            DescRTextBox.Document = myFlowDoc;
+            DescRTextBox.Text = task.Desc;
             db.ChangeTracker.Clear();
         }
     }

@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         Title="TaskHistory" Height="450" Width="800" Closing="Window_Closing">
     <DataGrid x:Name="contextDataGrid"
+              ItemsSource="{Binding Data.DefaultView}"
         AutoGenerateColumns="True"
         AlternatingRowBackground="LightBlue"
         AlternationCount="2"/>

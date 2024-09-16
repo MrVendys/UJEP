@@ -3,6 +3,7 @@ using System;
 using Canban.DB.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Canban.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20240916191806_updateTaskHistorieUser3")]
+    partial class updateTaskHistorieUser3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -143,9 +146,6 @@ namespace Canban.Migrations
 
                     b.Property<string>("OldUsersNames")
                         .HasColumnType("TEXT");
-
-                    b.Property<int>("TaskId")
-                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
