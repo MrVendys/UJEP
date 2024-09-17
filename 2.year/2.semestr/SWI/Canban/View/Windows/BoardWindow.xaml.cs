@@ -71,10 +71,11 @@ namespace Canban.View.Windows
         {
             db.Tasks.Load();
             db.Columns.Load();
+            
             ColumnModel column = new ColumnModel()
             {
-                Name = columnName,
-                Color = columnColor,
+                Name = columnName.IsNullOrEmpty() ? "Novy Sloupec" : columnName,
+                Color = columnName.IsNullOrEmpty() ? "White" : columnColor,
                 BoardId = this.dbId,
                 Board = db.Boards.Where(x => x.Id == this.dbId).First()
             };
@@ -106,10 +107,7 @@ namespace Canban.View.Windows
 
             if (result == true)
             {
-                if (!dialog.inputName.IsNullOrEmpty())
-                {
-                    CreateColumn(dialog.inputName, dialog.colorName);
-                }
+               CreateColumn(dialog.inputName, dialog.colorName);
             }
             
         }

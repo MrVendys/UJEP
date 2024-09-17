@@ -1,5 +1,7 @@
 ﻿using Canban.DB.Models;
+using Canban.View.Windows;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
@@ -15,7 +17,7 @@ namespace Canban.View.UserControls
     {
         private DatabaseContext db;
         public event PropertyChangedEventHandler? PropertyChanged;
-        private string columnName = "Column";
+        private string columnName = "New Column";
         public string ColumnName
         {
             get { return columnName; }
@@ -24,6 +26,12 @@ namespace Canban.View.UserControls
                 columnName = value;
                 OnPropertyChanged("ColumnName");
             }
+        }
+        private string columnColor = "White";
+        public string ColumnColor
+        {
+            get { return columnColor; }
+            set { columnColor = value; }
         }
         private ColumnModel columnModel;
         public int id { get { return ID; } set { ID = value; } }
@@ -38,10 +46,9 @@ namespace Canban.View.UserControls
             InitializeComponent();
             this.loggedUser = loggedUser;
             this.columnModel = columnModel;
-            this.columnName = columnModel.Name;
-            string a = System.Drawing.Color.White.ToArgb().ToString();
-            if (columnModel.Color != null )
-                this.TaskStackPanel.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString(columnModel.Color));
+            this.columnName = columnModel.Name.IsNullOrEmpty() ? ColumnName : columnModel.Name;
+            this.ColumnColor = columnModel.Color.IsNullOrEmpty() ? ColumnColor : columnModel.Color; 
+            this.TaskControlGrid.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString(this.columnColor));
             db = new DatabaseContext();
 
             DataContext = this;
@@ -85,6 +92,7 @@ namespace Canban.View.UserControls
             task.MouseMove += UserControl_MouseMove;
             task.MouseDown += UserControl_MouseDown;
             task.StackPanel = TaskStackPanel;
+            TaskStackPanel.MinHeight += task.MinHeight;
             TaskStackPanel.Children.Add(task);
         }
         private void AddTaskBtn_Click(object sender, RoutedEventArgs e)
@@ -100,6 +108,7 @@ namespace Canban.View.UserControls
                 db.SaveChanges();
                 db.ChangeTracker.Clear();
                 TaskStackPanel.Children.Remove(userControl);
+                TaskStackPanel.MinHeight -= userControl.MinHeight;
             }
         }
 
@@ -111,8 +120,11 @@ namespace Canban.View.UserControls
             {
                 var stackPanel = sender as StackPanel;
 
-                sourceUserControl.StackPanel.Children.Remove(sourceUserControl as TaskControl);
-                stackPanel.Children.Add(sourceUserControl as TaskControl);
+                TaskControl movingTask = sourceUserControl as TaskControl;
+                sourceUserControl.StackPanel.Children.Remove(movingTask);
+                sourceUserControl.StackPanel.MinHeight -= movingTask.MinHeight;
+                stackPanel.MinHeight += movingTask.MinHeight;
+                stackPanel.Children.Add(movingTask);
                 sourceUserControl.StackPanel = TaskStackPanel;
                 sourceUserControl.taskModel.ColumnId = id;
                 db.SaveChanges();
@@ -175,6 +187,33 @@ namespace Canban.View.UserControls
                 }
             }
         }
-    
-}
+
+
+        private void ColumnHeaderTextBlock_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            //TODO UpdateUI funkci
+            DialogWindow dialog = new DialogWindow();
+            bool? result = dialog.ShowDialog();
+            db.Columns.Load();
+            if (result == true)
+            {
+                if (!dialog.inputName.Equals(this.ColumnName) && !dialog.inputName.IsNullOrEmpty() )
+                {
+                    this.ColumnName = dialog.inputName;
+                    db.Columns.Find(columnModel.Id).Name = dialog.inputName;
+                    db.SaveChanges();
+                   }
+                else 
+                {
+
+                }
+                if (!dialog.colorName.Equals(this.Background) && !dialog.colorName.IsNullOrEmpty())
+                {
+                    this.TaskControlGrid.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString(dialog.colorName));
+                    db.Columns.Find(columnModel.Id).Color = dialog.colorName;
+                    db.SaveChanges();
+                }
+            }
+        }
+    }
 }

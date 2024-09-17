@@ -3,6 +3,7 @@ using System;
 using Canban.DB.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Canban.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20240917064146_LoadDb")]
+    partial class LoadDb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -44,7 +47,7 @@ namespace Canban.Migrations
 
                     b.HasIndex("CreatedById");
 
-                    b.ToTable("Boards", (string)null);
+                    b.ToTable("Boards");
                 });
 
             modelBuilder.Entity("Canban.DB.Models.ColumnModel", b =>
@@ -67,7 +70,7 @@ namespace Canban.Migrations
 
                     b.HasIndex("BoardId");
 
-                    b.ToTable("Columns", (string)null);
+                    b.ToTable("Columns");
                 });
 
             modelBuilder.Entity("Canban.DB.Models.StatusModel", b =>
@@ -86,7 +89,7 @@ namespace Canban.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Statuses", (string)null);
+                    b.ToTable("Statuses");
                 });
 
             modelBuilder.Entity("Canban.DB.Models.TaskHistoryModel", b =>
@@ -149,7 +152,7 @@ namespace Canban.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("TaskHistories", (string)null);
+                    b.ToTable("TaskHistories");
                 });
 
             modelBuilder.Entity("Canban.DB.Models.TaskModel", b =>
@@ -183,7 +186,7 @@ namespace Canban.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Tasks", (string)null);
+                    b.ToTable("Tasks");
                 });
 
             modelBuilder.Entity("Canban.DB.Models.UserModel", b =>
@@ -206,7 +209,7 @@ namespace Canban.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users", (string)null);
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("TaskModelUserModel", b =>
@@ -221,7 +224,7 @@ namespace Canban.Migrations
 
                     b.HasIndex("UsersId");
 
-                    b.ToTable("TaskModelUserModel", (string)null);
+                    b.ToTable("TaskModelUserModel");
                 });
 
             modelBuilder.Entity("Canban.DB.Models.BoardModel", b =>

@@ -5,13 +5,29 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Canban.View.UserControls"
              mc:Ignorable="d" 
-             d:DesignHeight="80" d:DesignWidth="400">
-    <Border BorderThickness="2">
-        <Grid Background="White" Height="80">
+             MinHeight="50" d:DesignWidth="250">
+    <UserControl.Resources>
+        <Style x:Key="KanbanTaskStyle" TargetType="Border">
+            <Setter Property="CornerRadius" Value="10"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Padding" Value="3"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect ShadowDepth="2" BlurRadius="4" Color="Gray"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="BorderBrush" Value="#E0E0E0"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+    </UserControl.Resources>
+    <Border BorderThickness="2" Style="{StaticResource KanbanTaskStyle}">
+        <StackPanel Background="White" Height="50" Orientation="Horizontal">
             <TextBox 
         x:Name="NameTextBox" 
         Padding="5,5,0,0"
         Margin="5,0,0,0"
+                HorizontalAlignment="Stretch"
         VerticalAlignment="Center"
         Background="Transparent"
         Foreground="DarkGray"
@@ -26,12 +42,13 @@
         Height="28"
         Margin="0,0,0.5,0"
         HorizontalAlignment="Right" 
+                VerticalAlignment="Center"
         Background="Transparent" 
         BorderThickness="0"
         Content="X"
         Foreground="Red"
         Click="RemoveBtn_Click"/>
-        </Grid>
+        </StackPanel>
     </Border>
     
 </UserControl>

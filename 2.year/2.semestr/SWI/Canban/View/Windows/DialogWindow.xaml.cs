@@ -31,17 +31,9 @@ namespace Canban.View.Windows
 
         private void okButton_Click(object sender, RoutedEventArgs e)
         {
-            if (!InputTextBox.Text.IsNullOrEmpty() && InputColorPicker.SelectedColor != null)
-            {
-                DialogResult = true;
-                InputName = InputTextBox.Text;
-                ColorName = InputColorPicker.SelectedColor.ToString();
-            }
-            else
-            {
-                MessageBox.Show("Nezadal jste jméno nebo barvu Tabule");
-            }
-           
+            DialogResult = true;
+            InputName = InputTextBox.Text;
+            ColorName = InputColorPicker.SelectedColor.ToString();
         }
 
         private void cancelButton_Click(object sender, RoutedEventArgs e)
