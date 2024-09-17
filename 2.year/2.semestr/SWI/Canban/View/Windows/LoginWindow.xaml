@@ -7,42 +7,91 @@
         mc:Ignorable="d"
         Title="Login" Height="450" Width="300">
     <Window.Resources>
+        <!-- Button Style-->
         <Style TargetType="Button">
-            <Setter Property="Margin" Value="0,40,0,0"/>
+            <Setter Property="Width" Value="150"/>
             <Setter Property="Height" Value="30"/>
-            <Setter Property="Width" Value="200"/>
+            <Setter Property="Margin" Value="0,50,0,0"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="Background" Value="#4FC3F7"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Content" Value="Otevřít"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect ShadowDepth="2" BlurRadius="4" Color="Gray"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+             CornerRadius="5" 
+             BorderBrush="#E0E0E0" 
+             BorderThickness="1">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <!-- Hover Effect -->
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#29B6F6"/>
+                    <!-- Slightly darker blue on hover -->
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="#0288D1"/>
+                    <!-- Even darker blue when pressed -->
+                </Trigger>
+            </Style.Triggers>
         </Style>
+        <!-- Label Style-->
         <Style TargetType="Label">
             <Setter Property="Margin" Value="30,30,30,0"/>
-            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="FontSize" Value="20"/>
+        </Style>
+        <!-- TextBox Style-->
+        <Style x:Key="TextBoxStyle" TargetType="TextBox">
+            <Setter Property="Margin" Value="30,5,30,0"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="FontSize" Value="20"/>
+        </Style>
+        <!-- PassworBox Style-->
+        <Style x:Key="PasswordBoxStyle" TargetType="PasswordBox">
+            <Setter Property="Margin" Value="30,5,30,0"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="PasswordChar" Value="*"/>
         </Style>
     </Window.Resources>
-    <Grid>
-        <StackPanel>
-            <Label Content="Email:"/>
-            <TextBox 
-                x:Name="EmailInput" 
-                Margin="30,5,30,0" 
-                FontSize="20"
-                Text="venca@gmail.com"/>
-                
-            <Label Content="Heslo:"/>
-            <PasswordBox 
-                x:Name="PasswordInput" 
-                Margin="30,5,30,0" 
-                FontSize="20" 
-                Password="venca"
-                PasswordChar="*"/>
+    <!-- Login StackPanel -->
+    <StackPanel>
+        <!-- Email Label-->
+        <Label Content="Email:"/>
+        <!-- Email TextBox -->
+        <TextBox 
+            x:Name="EmailInput" 
+            Style="{StaticResource TextBoxStyle}"
+            Text="venca@gmail.com"/>
+        <!-- Password Label-->
+        <Label Content="Heslo:"/>
+        <!-- PasswordBox -->
+        <PasswordBox 
+            Style="{StaticResource PasswordBoxStyle}"
+            x:Name="PasswordInput" 
+            Password="venca"/>
+        <!-- LogIn Button -->
+        <Button 
             
-            <Button 
-                x:Name="SubmitButton" 
-                Content="Log in" 
-                Click="SubmitButton_Click"/>
-            <Button 
-                x:Name="SigInButton" 
-                Content="Sig in" 
-                Click="SigInButton_Click"/>
-
-        </StackPanel>
-    </Grid>
+            x:Name="SubmitButton" 
+            Content="Log in" 
+            Click="SubmitButton_Click"/>
+        <!-- Sigin Button-->
+        <Button 
+            x:Name="SigInButton" 
+            Content="Sig in" 
+            Click="SigInButton_Click"/>
+    </StackPanel>
 </Window>

@@ -6,7 +6,57 @@
         xmlns:local="clr-namespace:Canban.View.Windows"
         mc:Ignorable="d"
         Title="TaskHistory" Height="450" Width="800" Closing="Window_Closing">
+    <Window.Resources>
+        <Style x:Key="TaskHistoryDataGridStyle" TargetType="DataGrid">
+            <!-- Overall grid appearance -->
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="GridLinesVisibility" Value="None"/>
+            <Setter Property="RowBackground" Value="White"/>
+            <Setter Property="AlternatingRowBackground" Value="#F5F5F5"/>
+            <!-- Light grey for alternating rows -->
+            <Setter Property="BorderBrush" Value="#E0E0E0"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="AutoGenerateColumns" Value="False"/>
+            <Setter Property="RowHeight" Value="30"/>
+            <Setter Property="HeadersVisibility" Value="Column"/>
+            <Setter Property="CanUserAddRows" Value="False"/>
+            <Setter Property="CanUserDeleteRows" Value="False"/>
+            <Setter Property="CanUserResizeRows" Value="False"/>
+
+            <!-- DataGrid Header style -->
+            <Setter Property="ColumnHeaderStyle">
+                <Setter.Value>
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="Margin" Value="5"/>
+                        <Setter Property="Width" Value="Auto"/>
+                        <Setter Property="Background" Value="#4FC3F7"/>
+                        <!-- Blue header background -->
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="FontWeight" Value="Bold"/>
+                        <Setter Property="FontSize" Value="14"/>
+                        <Setter Property="Height" Value="35"/>
+                        <Setter Property="BorderBrush" Value="Transparent"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+
+            <!-- DataGrid Cell style -->
+            <Setter Property="CellStyle">
+                <Setter.Value>
+                    <Style TargetType="DataGridCell">
+                        <Setter Property="Padding" Value="5"/>
+                        <Setter Property="BorderThickness" Value="0,0,0,1"/>
+                        <Setter Property="BorderBrush" Value="#E0E0E0"/>
+                        <Setter Property="VerticalAlignment" Value="Center"/>
+                        <Setter Property="HorizontalAlignment" Value="Left"/>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
     <DataGrid x:Name="contextDataGrid"
+              Style="{StaticResource TaskHistoryDataGridStyle}"
               ItemsSource="{Binding Data.DefaultView}"
         AutoGenerateColumns="True"
         AlternatingRowBackground="LightBlue"

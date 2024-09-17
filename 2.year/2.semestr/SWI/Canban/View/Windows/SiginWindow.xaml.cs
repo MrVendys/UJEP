@@ -47,7 +47,7 @@ namespace Canban.View.Windows
             
             
             if (!db.Users.Any(u=>u.Email == EmailInput.Text)) {
-                if (PasswordInput.Password.Equals(PasswordCheckInput.Password) && PasswordInput.Password.Length >= 8)
+                if (PasswordInput.Password.Equals(PasswordAgainInput.Password) && PasswordInput.Password.Length >= 8)
                 {
                     UserModel userModel = new UserModel
                     {
@@ -78,33 +78,50 @@ namespace Canban.View.Windows
 
         private void ShowPassword_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
-            ShowPasswordFunction();
-            MessageBox.Show("Test");
+            ShowPasswordFunction((TextBlock)sender);
         }
 
         private void ShowPassword_PreviewMouseUp(object sender, MouseButtonEventArgs e)
         {
-            HidePasswordFunction();
-            MessageBox.Show("Test");
+            HidePasswordFunction((TextBlock)sender);
         }
 
         private void ShowPassword_MouseLeave(object sender, MouseEventArgs e)
         {
-            HidePasswordFunction();
+            HidePasswordFunction((TextBlock)sender);
         }
 
-        private void ShowPasswordFunction()
+        private void ShowPasswordFunction(TextBlock sender)
         {
-            MessageBox.Show("Test");
-            PasswordUnmask.Visibility = Visibility.Visible;
-            PasswordInput.Visibility = Visibility.Hidden;
-            PasswordUnmask.Text = PasswordInput.Password;
+            if (sender.Name == "ShowPassword")
+            {
+                PasswordInput.Visibility = Visibility.Hidden;
+                PasswordUnmask.Visibility = Visibility.Visible;
+                PasswordUnmask.Text = PasswordInput.Password;
+            }
+            else
+            {
+                PasswordAgainInput.Visibility = Visibility.Hidden;
+                PasswordAgainUnmask.Visibility = Visibility.Visible;
+                PasswordAgainUnmask.Text = PasswordAgainInput.Password;
+
+            }
+
         }
 
-        private void HidePasswordFunction()
+        private void HidePasswordFunction(TextBlock sender)
         {
-            PasswordUnmask.Visibility = Visibility.Hidden;
-            PasswordInput.Visibility = Visibility.Visible;
+            
+            if (sender.Name == "ShowPassword")
+            {
+                PasswordUnmask.Visibility = Visibility.Hidden;
+                PasswordInput.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                PasswordAgainUnmask.Visibility = Visibility.Hidden;
+                PasswordAgainInput.Visibility = Visibility.Visible;
+            }
         }
     }
 }

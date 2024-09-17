@@ -7,70 +7,115 @@
         mc:Ignorable="d"
         Title="SiginWindow" Height="550" Width="300">
     <Window.Resources>
+        <!-- Inputs TextBox Style-->
         <Style x:Key="InputStyle">
-            <Setter Property="Control.Margin" Value="20,0,20,20"/>
+            <Setter Property="Control.Margin" Value="20,0,20,10"/>
             <Setter Property="Control.FontSize" Value="20"/>
         </Style>
         <Style BasedOn="{StaticResource InputStyle}" TargetType="PasswordBox">
             <Setter Property="PasswordChar" Value="*"/>
         </Style>
-
+        <!-- Labels Style -->
         <Style TargetType="Label">
             <Setter Property="Margin" Value="20,10,20,5"/>
-            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontSize" Value="20"/>
         </Style>
-
+        <!-- ShowPassword TextBlock Style-->
+        <Style x:Key="ShowPasswordTextBlockStyle" TargetType="TextBlock">
+            <Setter Property="Width" Value="40"/>
+            <Setter Property="Height" Value="20"/>
+            <Setter Property="Margin" Value="0,40,0,0"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="15"/>
+        </Style>
+        <!-- Button Style -->
         <Style TargetType="Button">
-            <Setter Property="Margin" Value="0,20,0,0"/>
-            <Setter Property="Height" Value="30"/>
-            <Setter Property="Width" Value="200"/>
-            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="Width" Value="150"/>
+            <Setter Property="Height" Value="35"/>
+            <Setter Property="Margin" Value="0,30,0,0"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="Background" Value="#4FC3F7"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect ShadowDepth="2" BlurRadius="4" Color="Gray"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+             CornerRadius="5" 
+             BorderBrush="#E0E0E0" 
+             BorderThickness="1">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <!-- Hover Effect -->
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#29B6F6"/>
+                    <!-- Slightly darker blue on hover -->
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="#0288D1"/>
+                    <!-- Even darker blue when pressed -->
+                </Trigger>
+            </Style.Triggers>
+
         </Style>
     </Window.Resources>
-    <Grid>
-        <StackPanel>
-            <Label Content="Jméno:"/>
-            <TextBox Style="{StaticResource InputStyle}" x:Name="NameInput">Michal</TextBox>
-            
-            <Label Content="Jméno:"/>
-            <TextBox Style="{StaticResource InputStyle}" x:Name="EmailInput">Michal@gmail.com</TextBox>
-            <Grid Width="250">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="8.5*"/>
-                    <ColumnDefinition Width="1.5*"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
+    <StackPanel HorizontalAlignment="Center">
+        <!-- Name Label and TextBox-->
+        <Label Content="Jméno:"/>
+        <TextBox Style="{StaticResource InputStyle}" x:Name="NameInput"/>
+        <!-- Email Label and  TextBox-->
+        <Label Content="Email:"/>
+        <TextBox Style="{StaticResource InputStyle}" x:Name="EmailInput"/>
+        
+        <!-- Password Grid-->
+        <Grid Width="300">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="8.5*"/>
+                <ColumnDefinition Width="2.5*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
 
-                <Label Grid.Row="0" Grid.Column="0" Content="Heslo:" />
-                <PasswordBox Grid.Row="1" Grid.Column="0" Style="{StaticResource InputStyle}" x:Name="PasswordInput" ></PasswordBox>
-                <Image Grid.RowSpan="2" Grid.Column="1" 
-                    Width="30" Height="30" 
-                    Margin="0,25,0,0"  
-                    RenderOptions.BitmapScalingMode="Fant"  
-                       
-                    HorizontalAlignment="Left" 
-                    VerticalAlignment="Center" 
+            <Label Grid.Row="0" Grid.Column="0" Content="Heslo:" />
+            <PasswordBox Grid.Row="1" Grid.Column="0" Style="{StaticResource InputStyle}" Width="190" x:Name="PasswordInput"/>
+            <TextBlock Grid.RowSpan="2" Grid.Column="1" 
                     Name="ShowPassword"  
+                    Style="{StaticResource ShowPasswordTextBlockStyle}"
                     PreviewMouseDown="ShowPassword_PreviewMouseDown" 
                     PreviewMouseUp="ShowPassword_PreviewMouseUp" 
-                    MouseLeave="ShowPassword_MouseLeave" Source="../../Source/PasswordEye.png"/>
-                
-                <TextBlock Grid.Row="1" Grid.Column="0" Name="PasswordUnmask" Visibility="Hidden"/>
-              
+                    MouseLeave="ShowPassword_MouseLeave" Text="Show"/>
 
-            </Grid>
-            
-            <Label Content="Znovu heslo:"/>
-            <PasswordBox Style="{StaticResource InputStyle}" x:Name="PasswordCheckInput"></PasswordBox>
-            <TextBlock Name="PasswordCheckUnmask" Visibility="Hidden"/>
+            <TextBox Style="{StaticResource InputStyle}" Grid.Row="1" Grid.Column="0" Name="PasswordUnmask" Visibility="Hidden"/>
 
+            <Label Grid.Row="2" Grid.Column="0" Content="Znovu Heslo:" />
+            <PasswordBox Grid.Row="3" Grid.Column="0" Style="{StaticResource InputStyle}" Width="190" x:Name="PasswordAgainInput"/>
+            <TextBlock Grid.Row="2" Grid.RowSpan="2" Grid.Column="1" 
+                Name="ShowPasswordAgain"  
+                Style="{StaticResource ShowPasswordTextBlockStyle}"
+                PreviewMouseDown="ShowPassword_PreviewMouseDown" 
+                PreviewMouseUp="ShowPassword_PreviewMouseUp" 
+                MouseLeave="ShowPassword_MouseLeave" Text="Show"/>
+            <TextBox Grid.Row="3" Grid.Column="0" Name="PasswordAgainUnmask" Visibility="Hidden"/>
+        </Grid>
+        
+        <!-- Buttons -->
+        <Button x:Name="SigInButton" Content="Sig in" Click="SigInButton_Click"></Button>
+        <Button x:Name="LoginButton" Content="Log in" Click="LoginButton_Click"></Button>
 
-            <Button x:Name="SigInButton" Content="Sig in" Click="SigInButton_Click"></Button>
-            <Button x:Name="LoginButton" Content="Log in" Click="LoginButton_Click"></Button>
-
-        </StackPanel>
-    </Grid>
+    </StackPanel>
 </Window>

@@ -7,21 +7,65 @@
         xmlns:UserControls="clr-namespace:Canban.View.UserControls"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+    <Window.Resources>
+        <!-- Menu Style -->
+        <Style x:Key="MenuStyle" TargetType="Menu">
+            <Setter Property="Width" Value="Auto"/>
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="Background" Value="#4FC3F7"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontSize" Value="15"/>
+        </Style>
+        <!-- Add Button Style -->
+        <Style x:Key="AddButtonStyle" TargetType="Button">
+            <Setter Property="Width" Value="80"/>
+            <Setter Property="Height" Value="80"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Background" Value="#4FC3F7"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Content" Value="+"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect ShadowDepth="2" BlurRadius="4" Color="Gray"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                    CornerRadius="5" 
+                    BorderBrush="#E0E0E0" 
+                    BorderThickness="1">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <!-- Hover Effect -->
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#29B6F6"/>
+                    <!-- Slightly darker blue on hover -->
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="#0288D1"/>
+                    <!-- Even darker blue when pressed -->
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
     <StackPanel>
-        <Menu Width="800" Height="20">
-            <MenuItem Header="_File">
-                <MenuItem x:Name="AppExit" Header="E_xit" HorizontalAlignment="Left" Width="140"/>
-            </MenuItem>
-            <MenuItem Header="_Tools">
-                <MenuItem x:Name="Options" Header="_Options" HorizontalAlignment="Left" Width="140"/>
-            </MenuItem>
-            <MenuItem Header="_Help">
-                <MenuItem x:Name="About" Header="&amp;About" HorizontalAlignment="Left" Width="140"/>
-            </MenuItem>
-            <MenuItem Header="_LogOut" Click="MenuItem_Click" />
+        <Menu Style="{StaticResource MenuStyle}">
+            <MenuItem Header="_LogOut" Click="MenuItem_Click"/>
         </Menu>
         <WrapPanel x:Name="BoardWrapPanel" Height="auto" Orientation="Horizontal" Margin="20">
-            <Button x:Name="AddButton" Width="100" Height="100" Margin="0,50,0,0" Content="+" FontSize="50" Click="AddButton_Click"/>
+            <Button x:Name="AddButton" Style="{StaticResource AddButtonStyle}" Click="AddButton_Click"/>
 
         </WrapPanel>
     </StackPanel>
