@@ -7,6 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" MouseMove="UserControl_MouseMove_1">
     <UserControl.Resources>
+        <!-- Column Style -->
         <Style x:Key="ColumnStyle" TargetType="StackPanel">
             <Setter Property="Width" Value="200"/>
             <Setter Property="Height" Value="430"/>

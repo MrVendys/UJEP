@@ -6,20 +6,75 @@
              xmlns:local="clr-namespace:Canban.View.UserControls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Height="200" Width="300" Background="AliceBlue" HorizontalAlignment="Center" VerticalAlignment="Center" >
+    <UserControl.Resources>
+        <!-- BoardControl Style -->
+        <Style x:Key="BoardControlStyle" TargetType="StackPanel">
+            <Setter Property="Width" Value="300"/>
+            <Setter Property="Height" Value="200"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Orientation" Value="Vertical"/>
+            <Setter Property="Background" Value="White"/>
+        </Style>
+        <!-- Name Textbox Style -->
+        <Style x:Key="NameTextboxStyle" TargetType="TextBlock">
+            <Setter Property="Width" Value="Auto"/>
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="Margin" Value="30"/>
+            <Setter Property="Text" Value="{Binding BoardName}"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="30"/>
+        </Style>
+        <!-- Open Button Style -->
+        <Style x:Key="OpenButtonStyle" TargetType="Button">
+            <Setter Property="Width" Value="120"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="Background" Value="#4FC3F7"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Content" Value="Otevřít"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect ShadowDepth="2" BlurRadius="4" Color="Gray"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                     CornerRadius="5" 
+                     BorderBrush="#E0E0E0" 
+                     BorderThickness="1">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <!-- Hover Effect -->
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#29B6F6"/>
+                    <!-- Slightly darker blue on hover -->
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="#0288D1"/>
+                    <!-- Even darker blue when pressed -->
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    <!-- BoardControl -->
+    <StackPanel Style="{StaticResource BoardControlStyle}">
+        <!-- Name TextBlock -->
         <TextBlock 
-            x:Name="NameTextBlock" 
-            Width="auto" 
-            Height="50" 
-            TextAlignment="Center" 
-            Margin="0,0,0,100" 
-            FontSize="30" 
-            Text="{Binding BoardName}"/>
+            Style="{StaticResource NameTextboxStyle}"
+            x:Name="NameTextBlock"/>
+        <!-- Open Button -->
         <Button 
-            x:Name="OpenButton" 
-            Width="100" 
-            Height="50" 
-            Margin="0,40,0,0"
-            Content="Otevřít"/>
-    </Grid>
+            Style="{StaticResource OpenButtonStyle}"
+            x:Name="OpenButton"/>
+    </StackPanel>
 </UserControl>
