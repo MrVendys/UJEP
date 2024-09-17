@@ -7,28 +7,88 @@
         xmlns:UserControls="clr-namespace:Canban.View.UserControls"
         mc:Ignorable="d"
         Title="Kanban Boards" Height="600" Width="800">
-    
+    <Window.Resources>
+        <!-- Menu Style -->
+        <Style x:Key="MenuStyle" TargetType="Menu">
+            <Setter Property="Width" Value="Auto"/>
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="Background" Value="#4FC3F7"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontSize" Value="15"/>
+        </Style>
+        <!-- -->
+        <Style x:Key="MainGridStyle" TargetType="StackPanel">
+            <Setter Property="Height" Value="500"/>
+            <Setter Property="Margin" Value="10,0,10,0"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Orientation" Value="Horizontal"/>
+        </Style>
+        <!-- Columns StackPanel Style -->
+        <Style x:Key="ColumnStackPanelStyle" TargetType="StackPanel">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Orientation" Value="Horizontal"/>
+        </Style>
+        <!-- Add Column Button Style-->
+        <Style x:Key="AddColumnButtonStyle" TargetType="Button">
+            <Setter Property="Width" Value="50"/>
+            <Setter Property="Height" Value="150"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="Background" Value="#4FC3F7"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Content" Value="+"/>
+            <Setter Property="FontSize" Value="60"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect ShadowDepth="2" BlurRadius="4" Color="Gray"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+             CornerRadius="5" 
+             BorderBrush="#E0E0E0" 
+             BorderThickness="1">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <!-- Hover Effect -->
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#29B6F6"/>
+                    <!-- Slightly darker blue on hover -->
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="#0288D1"/>
+                    <!-- Even darker blue when pressed -->
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <!-- BoardWindow -->
     <StackPanel>
-            <Menu Width="800" Height="20">
-                <MenuItem Header="_LogOut" Click="MenuItem_Click" />
-                <MenuItem Header="History" Click="HistoryItem_Click" />
-            </Menu>
-        
-        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+        <!-- Menu -->
+        <Menu Style="{StaticResource MenuStyle}">
+            <MenuItem Header="_LogOut" Click="MenuItem_Click" />
+            <MenuItem Header="History" Click="HistoryItem_Click" />
+        </Menu>
+        <!-- ScrolBar -->
+        <ScrollViewer HorizontalScrollBarVisibility="Auto">
+            <!-- MainGrid -->
             <StackPanel 
-                Height="500"
-                VerticalAlignment="Center" 
-                Orientation="Horizontal"
-                Margin="10,0,10,0">
+                Style="{StaticResource MainGridStyle}">
+                <!-- Column StackPanel -->
                 <StackPanel 
                     x:Name="MainGrid" 
-                    VerticalAlignment="Center" 
-                    Orientation="Horizontal"/>
+                    Style="{StaticResource ColumnStackPanelStyle}"/>
+                <!-- Add Column Button-->
                 <Button 
-                    Height="100" 
-                    Width="50" 
-                    Content="+" 
-                    FontSize="50" 
+                    Style="{StaticResource AddColumnButtonStyle}"
                     Click="Button_Click"/>
             </StackPanel>
         </ScrollViewer>
