@@ -7,27 +7,51 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" MouseMove="UserControl_MouseMove_1">
     <UserControl.Resources>
-        <Style x:Key="KanbanColumnHeaderStyle" TargetType="TextBlock">
-            <Setter Property="FontSize" Value="16"/>
-            <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="Margin" Value="5"/>
-            <Setter Property="Foreground" Value="#333333"/>
+        <Style x:Key="ColumnStyle" TargetType="StackPanel">
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="Height" Value="430"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Orientation" Value="Vertical"/>
         </Style>
-        <Style x:Key="KanbanColumnBorderStyle" TargetType="Border">
+        <!-- Columns Header Style -->
+        <Style x:Key="ColumnHeaderStyle" TargetType="TextBlock">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="#333333"/>
+            <Setter Property="Text" Value="{Binding ColumnName}"/>
+            <Setter Property="FontSize" Value="25"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+        <!-- Column Border Style -->
+        <Style x:Key="ColumnBorderStyle" TargetType="Border">
             <Setter Property="Margin" Value="10"/>
             <Setter Property="Padding" Value="5"/>
             <Setter Property="BorderBrush" Value="#B0BEC5"/>
             <Setter Property="BorderThickness" Value="2"/>
         </Style>
+        <!-- Column Scroll Style -->
+        <Style x:Key="ColumnScrollStyle" TargetType="ScrollViewer">
+            <Setter Property="MinHeight" Value="70"/>
+            <Setter Property="VerticalScrollBarVisibility" Value="Auto"/>
+        </Style>
+        <!-- Column StackPanel Style -->
+        <Style x:Key="ColumnStackPanelStyle" TargetType="StackPanel">
+            <Setter Property="MinHeight" Value="50"/>
+            <Setter Property="AllowDrop" Value="True"/>
+            <Setter Property="Background" Value="Transparent"/>
+        </Style>
+        <!-- AddTask Button Style -->
         <Style x:Key="AddTaskButtonStyle" TargetType="Button">
             <Setter Property="Width" Value="120"/>
-            <Setter Property="Background" Value="#4FC3F7"/>
-            <!-- Blue accent color -->
-            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Margin" Value="5"/>
             <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="Background" Value="#4FC3F7"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Content" Value="+"/>
             <Setter Property="FontSize" Value="20"/>
             <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="Margin" Value="5"/>
             <Setter Property="Effect">
                 <Setter.Value>
                     <DropShadowEffect ShadowDepth="2" BlurRadius="4" Color="Gray"/>
@@ -58,38 +82,28 @@
             </Style.Triggers>
         </Style>
     </UserControl.Resources>
-    <Border  Style="{StaticResource KanbanColumnBorderStyle}" >
-        <StackPanel x:Name="TaskControlGrid" Width="200" Height="430" Background="White" Orientation="Vertical">
+    <!-- Column Border -->
+    <Border  Style="{StaticResource ColumnBorderStyle}" >
+        <!-- Column -->
+        <StackPanel x:Name="TaskControlGrid" Style="{StaticResource ColumnStyle}">
+            <!-- Column Header -->
             <TextBlock 
                 x:Name="ColumnHeaderTextBlock"
-        Style="{StaticResource KanbanColumnHeaderStyle}"
-        Grid.Row="0" 
-        TextAlignment="Center" 
-                Background="Transparent"
-        FontSize="25" 
-        Text="{Binding ColumnName}"
+                Style="{StaticResource ColumnHeaderStyle}"
                 MouseLeftButtonDown="ColumnHeaderTextBlock_MouseLeftButtonDown"/>
-            <ScrollViewer VerticalScrollBarVisibility="Auto" MinHeight="70"  Grid.Row="1" Margin="5" BorderThickness="10" VerticalAlignment="Stretch">
+            <!-- Column Scroll -->
+            <ScrollViewer  Style="{StaticResource ColumnScrollStyle}">
+                <!-- Column StackPanel -->
                 <StackPanel 
-            x:Name="TaskStackPanel" 
-            MinHeight="50" 
-            AllowDrop="True" 
-                
-            Background="Transparent"
-            MouseMove="TaskStackPanel_MouseMove" 
-            Drop="TaskStackPanel_Drop"/>
+                    Style="{StaticResource ColumnStackPanelStyle}"
+                    x:Name="TaskStackPanel" 
+                    MouseMove="TaskStackPanel_MouseMove" 
+                    Drop="TaskStackPanel_Drop"/>
             </ScrollViewer>
             <Button 
-        x:Name="AddTaskBtn" 
+                x:Name="AddTaskBtn" 
                 Style="{StaticResource AddTaskButtonStyle}"
-        Grid.Row="2" 
-        
-        HorizontalContentAlignment="Center" 
-        Content="+" 
-        Click="AddTaskBtn_Click"/>
-
+                Click="AddTaskBtn_Click"/>
         </StackPanel>
-
     </Border>
-    
 </UserControl>
