@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Canban")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+529811548f35d9190877ce3e6d79710c28a685c9")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+13797630c2616817cd2496b2bba081562dc1d0d0")]
 [assembly: System.Reflection.AssemblyProductAttribute("Canban")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Canban")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

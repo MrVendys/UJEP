@@ -165,7 +165,7 @@ namespace Canban.View.Windows
             var properties = newTask.GetType().GetProperties();
             foreach (var prop in properties)
             {
-                if(prop.Name != "Users" && prop.Name != "LazyLoader")
+                if(prop.Name != "LazyLoader" && prop.Name != "Id")
                 {
                     var value = prop.GetValue(newTask);
                     var value2 = prop.GetValue(oldTask);
@@ -180,6 +180,10 @@ namespace Canban.View.Windows
                    // Get the value of the current property
                    
                   
+            }
+            foreach(UserModel user in newTask.Users)
+            {
+
             }
    
             db.Users.Load();
@@ -207,6 +211,10 @@ namespace Canban.View.Windows
                     NewDesc = propertyList.Contains("Desc") ? newPropertyValue[propertyList.IndexOf("Desc")].ToString() : null,
                     OldDeadline = propertyList.Contains("Deadline") ? (DateTime)oldPropertyValue[propertyList.IndexOf("Deadline")] : oldTask.Deadline,
                     NewDeadline = propertyList.Contains("Deadline") ? (DateTime)newPropertyValue[propertyList.IndexOf("Deadline")] : oldTask.Deadline,
+                    OldCompleted = propertyList.Contains("Completed") ? (DateTime)oldPropertyValue[propertyList.IndexOf("Completed")] : oldTask.Completed,
+                    NewCompleted = propertyList.Contains("Completed") ? (DateTime)newPropertyValue[propertyList.IndexOf("Completed")] : newTask.Completed,
+                    OldStarted = propertyList.Contains("Started") ? (DateTime)oldPropertyValue[propertyList.IndexOf("Started")] : oldTask.Started,
+                    NewStarted = propertyList.Contains("Started") ? (DateTime)newPropertyValue[propertyList.IndexOf("Started")] : newTask.Started,
                     OldColumnId = propertyList.Contains("ColumnId") ? (int)oldPropertyValue[propertyList.IndexOf("ColumnId")] : null,
                     NewColumnId = propertyList.Contains("ColumnId") ? (int)newPropertyValue[propertyList.IndexOf("ColumnId")] : null,
                     MoveAt = DateTime.Now,
