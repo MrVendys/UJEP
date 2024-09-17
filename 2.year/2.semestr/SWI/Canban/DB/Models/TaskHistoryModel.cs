@@ -29,8 +29,8 @@ namespace Canban.DB.Models
         public DateTime OldCompleted { get; set; }
         [DefaultValue(null)]
         public DateTime NewCompleted { get; set; }
-        public List<string>? OldUsersNames { get; set; }
-        public List<string>? NewUsersNames { get; set; }
+        public List<string>? OldUsers { get; set; }
+        public List<string>? NewUsers { get; set; }
         public int? OldColumnId { get; set; }
         public int? NewColumnId { get; set; }
 

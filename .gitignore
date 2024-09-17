@@ -1,5 +1,7 @@
 venv/
 venv
+bin
+obj
 *.pyc
 .vs/
 .vs

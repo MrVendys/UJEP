@@ -31,8 +31,8 @@ namespace Canban.View.Windows
         public ObservableCollection<Data> Changes { get { return changes; } }
 
         private List<string> ShowProperties = new List<string> { 
-            "OldName", "OldDesc", "OldDeadline", "OldStarted", "OldCompleted",
-            "NewName", "NewDesc", "NewDeadline", "NewStarted", "NewCompleted"
+            "OldName", "OldDesc", "OldDeadline", "OldStarted", "OldCompleted", "OldUsers",
+            "NewName", "NewDesc", "NewDeadline", "NewStarted", "NewCompleted", "NewUsers"
         };
          List<string> propertyList;
          private DatabaseContext db;
@@ -84,18 +84,7 @@ namespace Canban.View.Windows
                             });
                         }
                     }
-                
-                
-
-
             }
-            
-              /*  Changes.Add(new Data
-                {
-                    Name = "Venca",
-                    Value = 1
-                });
-            */
 
         }
         public void LoadNew()
@@ -116,6 +105,18 @@ namespace Canban.View.Windows
                 if (prop.GetValue(history) != null && propertyList.Contains(GetRemainingPart(prop.Name, knownPrefixes)))
                 {
                     var value = prop.GetValue(history);
+                    if (GetRemainingPart(prop.Name, knownPrefixes) == "Users")
+                    {
+                        List<string> list = (List<string>)value;
+                        value = "";
+                        if (list.Count != 0)
+                        {
+                            foreach (var item in list)
+                            {
+                                value += item + " ";
+                            }
+                        }
+                    }
                     changes.Add(new Data
                     {
                         ColumnName = db.Columns.Find(db.Tasks.Find(history.TaskId).ColumnId).Name,
@@ -165,7 +166,7 @@ namespace Canban.View.Windows
             var properties = newTask.GetType().GetProperties();
             foreach (var prop in properties)
             {
-                if(prop.Name != "LazyLoader" && prop.Name != "Id")
+                if(prop.Name != "LazyLoader" && prop.Name != "Id" && prop.Name != "Users")
                 {
                     var value = prop.GetValue(newTask);
                     var value2 = prop.GetValue(oldTask);
@@ -181,11 +182,29 @@ namespace Canban.View.Windows
                    
                   
             }
-            foreach(UserModel user in newTask.Users)
+            List<string> newUsersNames = null;
+            List<string> oldUsersNames = null;
+            if (newTask.Users.Count == 0 && oldTask.Users.Count == 0)
             {
 
             }
-   
+            else
+            {
+                newUsersNames =
+                newTask.Users.Count == 0 ?
+                new List<string>() :
+                newTask.Users.Select(x => x.Name).ToList();
+
+                oldUsersNames =
+                    oldTask.Users.Count == 0 ?
+                    new List<string>() :
+                    oldTask.Users.Select(x => x.Name).ToList();
+                if (oldUsersNames.Count == 0 || newUsersNames.Count == 0)
+                    propertyList.Add("Users");
+                else if (!Enumerable.SequenceEqual(newUsersNames, oldUsersNames))
+                        propertyList.Add("Users");
+            }
+            
             db.Users.Load();
             if (propertyList.Contains("Desc"))
             {
@@ -215,6 +234,8 @@ namespace Canban.View.Windows
                     NewCompleted = propertyList.Contains("Completed") ? (DateTime)newPropertyValue[propertyList.IndexOf("Completed")] : newTask.Completed,
                     OldStarted = propertyList.Contains("Started") ? (DateTime)oldPropertyValue[propertyList.IndexOf("Started")] : oldTask.Started,
                     NewStarted = propertyList.Contains("Started") ? (DateTime)newPropertyValue[propertyList.IndexOf("Started")] : newTask.Started,
+                    OldUsers = propertyList.Contains("Users") ? oldUsersNames : null,
+                    NewUsers = propertyList.Contains("Users") ? newUsersNames : null,
                     OldColumnId = propertyList.Contains("ColumnId") ? (int)oldPropertyValue[propertyList.IndexOf("ColumnId")] : null,
                     NewColumnId = propertyList.Contains("ColumnId") ? (int)newPropertyValue[propertyList.IndexOf("ColumnId")] : null,
                     MoveAt = DateTime.Now,

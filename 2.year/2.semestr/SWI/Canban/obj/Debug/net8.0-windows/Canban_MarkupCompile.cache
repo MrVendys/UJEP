@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-C:\Users\vasik\Projects\UJEP\2.year\2.semestr\SWI\Canban\obj\Debug\net8.0-windows\
+C:\Users\Venca\Projects\UJEP\UJEP\2.year\2.semestr\SWI\Canban\obj\Debug\net8.0-windows\
 Canban
 none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
-C:\Users\vasik\Projects\UJEP\2.year\2.semestr\SWI\Canban\App.xaml
+C:\Users\Venca\Projects\UJEP\UJEP\2.year\2.semestr\SWI\Canban\App.xaml
 11-214046347
 
-741476456511
-253-1168788030
+76944022842
+253-1638397081
 MainWindow.xaml;View\UserControls\BoardControl.xaml;View\UserControls\ColumnControl.xaml;View\UserControls\TaskControl.xaml;View\Windows\BoardWindow.xaml;View\Windows\DialogWindow.xaml;View\Windows\GraphWindow.xaml;View\Windows\LoginWindow.xaml;View\Windows\SiginWindow.xaml;View\Windows\TaskHistory.xaml;View\Windows\TaskWindow.xaml;
 
 False

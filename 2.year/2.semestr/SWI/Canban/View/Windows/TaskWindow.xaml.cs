@@ -71,25 +71,13 @@ namespace Canban.View.Windows
 
         private void AssigneeComboBox_DropDownClosed(object sender, EventArgs e)
         {
-            /*if (AssigneeComboBox.SelectedItem != null)
+            if (SelectedItem != null)
             {
-                /*
-                if (!AssigneeListBox.Items.Contains(AssigneeComboBox.SelectedItem))
-                    AssigneeListBox.Items.Add(AssigneeComboBox.SelectedItem.ToString());
+                if (!SelectedItems.Contains(SelectedItem))
+                    SelectedItems.Add(SelectedItem);
                 else
-                    AssigneeListBox.Items.Remove(AssigneeComboBox.SelectedItem.ToString());
-            
-                if (!ItemsControl.Contains(AssigneeComboBox.SelectedItem.ToString()))
-                {
-                    ItemsControl.Add(AssigneeComboBox.SelectedItem.ToString());
-                }
-                else
-                {
-                    ItemsControl.Remove(AssigneeComboBox.SelectedItem.ToString());
-                }
+                    SelectedItems.Remove(SelectedItem);
             }
-            // Add the selected item to the SelectedItems collection
-            */
         }
         /// <summary>
         /// Adding selected item from combo box to Bind list
@@ -98,10 +86,6 @@ namespace Canban.View.Windows
         /// <param name="e"></param>
         private void AssigneeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (SelectedItem != null && !SelectedItems.Contains(SelectedItem))
-            {
-                SelectedItems.Add(SelectedItem);
-            }
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -124,16 +108,17 @@ namespace Canban.View.Windows
             db.Users.Load();
             db.Tasks.Load();
             var oldTask = db.Tasks.Find(id);
+            if (oldTask != null &&oldTask.Users == null)
+                oldTask.Users = new List<UserModel>();
             db.ChangeTracker.Clear();
 
             db.Users.Load();
             db.Tasks.Load();
             var task = db.Tasks.Find(id);
-            
+            task.Users.Clear();
             foreach (var user in SelectedItems)
             {
                 UserModel userModel = db.Users.Where(x => x.Name == user).First();
-                //db.Users.Find(userModel.Id).TaskModels.Add(newTaskModel);
                 if (userModel != null && !task.Users.Any(c => c.Id == userModel.Id))
                 {
                     task.Users.Add(userModel);
@@ -145,6 +130,8 @@ namespace Canban.View.Windows
                 }
 
             }
+            if (SelectedItems.Count == 0)
+                task.Users.Clear();
             db.SaveChanges();
             if (task != null)
             {
