@@ -18,17 +18,17 @@ namespace Canban.DB.Models
         public string? OldDesc { get; set; }
         public string? NewDesc { get; set; }
         [DefaultValue(null)]
-        public DateTime OldDeadline { get; set; }
+        public DateTime? OldDeadline { get; set; }
         [DefaultValue(null)]
-        public DateTime NewDeadline { get; set; }
+        public DateTime? NewDeadline { get; set; }
         [DefaultValue(null)]
-        public DateTime OldStarted { get; set; }
+        public DateTime? OldStarted { get; set; }
         [DefaultValue(null)]
-        public DateTime NewStarted { get; set; }
+        public DateTime? NewStarted { get; set; }
         [DefaultValue(null)]
-        public DateTime OldCompleted { get; set; }
+        public DateTime? OldCompleted { get; set; }
         [DefaultValue(null)]
-        public DateTime NewCompleted { get; set; }
+        public DateTime? NewCompleted { get; set; }
         public List<string>? OldUsers { get; set; }
         public List<string>? NewUsers { get; set; }
         public int? OldColumnId { get; set; }

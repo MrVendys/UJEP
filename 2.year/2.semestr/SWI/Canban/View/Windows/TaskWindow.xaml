@@ -75,7 +75,7 @@
                   SelectionChanged="AssigneeComboBox_SelectionChanged"/>
         </Grid>
        
-        <DatePicker x:Name="StartedDatePicker" Grid.Column="3" Grid.Row="2" />
+        <DatePicker x:Name="StartedDatePicker" Grid.Column="3" Grid.Row="2" SelectedDateFormat="Short"/>
         <DatePicker x:Name="EndedDatePicker" Grid.Column="3" Grid.Row="3"/>
         <DatePicker x:Name="DeadlineDatePicker" Grid.Column="3" Grid.Row="4"/>
         <TextBox x:Name="DescRTextBox" Grid.Column="3" Grid.Row="7" TextWrapping="Wrap"

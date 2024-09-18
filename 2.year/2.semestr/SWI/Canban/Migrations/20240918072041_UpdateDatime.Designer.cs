@@ -3,6 +3,7 @@ using System;
 using Canban.DB.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Canban.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20240918072041_UpdateDatime")]
+    partial class UpdateDatime
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -105,10 +108,10 @@ namespace Canban.Migrations
                     b.Property<int?>("NewColumnId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime?>("NewCompleted")
+                    b.Property<DateOnly>("NewCompleted")
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime?>("NewDeadline")
+                    b.Property<DateOnly>("NewDeadline")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("NewDesc")
@@ -117,7 +120,7 @@ namespace Canban.Migrations
                     b.Property<string>("NewName")
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime?>("NewStarted")
+                    b.Property<DateOnly>("NewStarted")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("NewUsers")
@@ -126,10 +129,10 @@ namespace Canban.Migrations
                     b.Property<int?>("OldColumnId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime?>("OldCompleted")
+                    b.Property<DateOnly>("OldCompleted")
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime?>("OldDeadline")
+                    b.Property<DateOnly>("OldDeadline")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("OldDesc")
@@ -138,7 +141,7 @@ namespace Canban.Migrations
                     b.Property<string>("OldName")
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime?>("OldStarted")
+                    b.Property<DateOnly>("OldStarted")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("OldUsers")

@@ -14,13 +14,14 @@
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="Orientation" Value="Vertical"/>
-            <Setter Property="Background" Value="White"/>
+            <Setter Property="Background" Value="{Binding BoardColor}"/>
         </Style>
         <!-- Name Textbox Style -->
         <Style x:Key="NameTextboxStyle" TargetType="TextBlock">
             <Setter Property="Width" Value="Auto"/>
             <Setter Property="Height" Value="50"/>
             <Setter Property="Margin" Value="30"/>
+            <Setter Property="Background" Value="Transparent"/>
             <Setter Property="Text" Value="{Binding BoardName}"/>
             <Setter Property="TextAlignment" Value="Center"/>
             <Setter Property="FontSize" Value="30"/>
@@ -67,7 +68,7 @@
         </Style>
     </UserControl.Resources>
     <!-- BoardControl -->
-    <StackPanel Style="{StaticResource BoardControlStyle}">
+    <StackPanel x:Name="MainGrid" Style="{StaticResource BoardControlStyle}">
         <!-- Name TextBlock -->
         <TextBlock 
             Style="{StaticResource NameTextboxStyle}"

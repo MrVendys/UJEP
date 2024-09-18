@@ -27,6 +27,7 @@
             <Setter Property="Margin" Value="0,40,0,0"/>
             <Setter Property="HorizontalAlignment" Value="Left"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Text" Value="Show"/>
             <Setter Property="FontSize" Value="15"/>
         </Style>
         <!-- Button Style -->
@@ -91,6 +92,7 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
+            <!-- Heslo -->
             <Label Grid.Row="0" Grid.Column="0" Content="Heslo:" />
             <PasswordBox Grid.Row="1" Grid.Column="0" Style="{StaticResource InputStyle}" Width="190" x:Name="PasswordInput"/>
             <TextBlock Grid.RowSpan="2" Grid.Column="1" 
@@ -98,10 +100,11 @@
                     Style="{StaticResource ShowPasswordTextBlockStyle}"
                     PreviewMouseDown="ShowPassword_PreviewMouseDown" 
                     PreviewMouseUp="ShowPassword_PreviewMouseUp" 
-                    MouseLeave="ShowPassword_MouseLeave" Text="Show"/>
+                    MouseLeave="ShowPassword_MouseLeave" />
 
             <TextBox Style="{StaticResource InputStyle}" Grid.Row="1" Grid.Column="0" Name="PasswordUnmask" Visibility="Hidden"/>
-
+            
+            <!-- Znovu heslo -->
             <Label Grid.Row="2" Grid.Column="0" Content="Znovu Heslo:" />
             <PasswordBox Grid.Row="3" Grid.Column="0" Style="{StaticResource InputStyle}" Width="190" x:Name="PasswordAgainInput"/>
             <TextBlock Grid.Row="2" Grid.RowSpan="2" Grid.Column="1" 
@@ -109,8 +112,8 @@
                 Style="{StaticResource ShowPasswordTextBlockStyle}"
                 PreviewMouseDown="ShowPassword_PreviewMouseDown" 
                 PreviewMouseUp="ShowPassword_PreviewMouseUp" 
-                MouseLeave="ShowPassword_MouseLeave" Text="Show"/>
-            <TextBox Grid.Row="3" Grid.Column="0" Name="PasswordAgainUnmask" Visibility="Hidden"/>
+                MouseLeave="ShowPassword_MouseLeave"/>
+            <TextBox Style="{StaticResource InputStyle}" Grid.Row="3" Grid.Column="0" Name="PasswordAgainUnmask" Visibility="Hidden"/>
         </Grid>
         
         <!-- Buttons -->

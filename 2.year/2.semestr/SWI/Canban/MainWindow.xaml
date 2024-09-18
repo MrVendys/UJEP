@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Canban"
         xmlns:UserControls="clr-namespace:Canban.View.UserControls"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="900">
     <Window.Resources>
         <!-- Menu Style -->
         <Style x:Key="MenuStyle" TargetType="Menu">
@@ -64,7 +64,7 @@
         <Menu Style="{StaticResource MenuStyle}">
             <MenuItem Header="_LogOut" Click="MenuItem_Click"/>
         </Menu>
-        <WrapPanel x:Name="BoardWrapPanel" Height="auto" Orientation="Horizontal" Margin="20">
+        <WrapPanel x:Name="BoardWrapPanel" Height="auto" Orientation="Horizontal" Margin="20" ScrollViewer.VerticalScrollBarVisibility="Auto">
             <Button x:Name="AddButton" Style="{StaticResource AddButtonStyle}" Click="AddButton_Click"/>
 
         </WrapPanel>

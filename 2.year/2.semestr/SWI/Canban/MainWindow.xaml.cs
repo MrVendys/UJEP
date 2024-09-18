@@ -75,7 +75,7 @@ namespace Canban
         /// a zavolani funkce na vytvoreni BoardControlu
         /// </summary>
         /// <param name="boardName"></param>
-        private void CreateBoard(string boardName)
+        private void CreateBoard(string boardName, string boardColor)
         {
             db.Boards.Load();
             db.Users.Load();
@@ -84,6 +84,7 @@ namespace Canban
             BoardModel boardModel = new BoardModel()
             {
                 Name = boardName,
+                Color = boardColor,
                 UserId = user.Id,
                 CreatedBy = user
             };
@@ -116,10 +117,7 @@ namespace Canban
             bool? result = dialog.ShowDialog();
 
             if (result == true) {
-                if (!dialog.InputTextBox.Text.IsNullOrEmpty())
-                {
-                    CreateBoard(dialog.inputName);
-                }
+                CreateBoard(dialog.inputName, dialog.colorName);
             }
         }
     }

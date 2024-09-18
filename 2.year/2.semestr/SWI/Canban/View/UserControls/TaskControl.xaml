@@ -29,6 +29,7 @@
         </Style>
         <!-- Inout TextBox -->
         <Style x:Key="NameTextBoxStyle" TargetType="TextBox">
+            <Setter Property="MinWidth" Value="180"/>
             <Setter Property="Margin" Value="5,0,0,0"/>
             <Setter Property="Padding" Value="5,5,0,0"/>
             <Setter Property="HorizontalAlignment" Value="Stretch"/>

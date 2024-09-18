@@ -56,9 +56,9 @@ namespace Canban.View.Windows
             
 
             InitializeComponent();
-            StartedDatePicker.SelectedDate = DateTime.Today.AddDays(-1);
-            EndedDatePicker.SelectedDate = DateTime.Today.AddDays(-1);
-            DeadlineDatePicker.SelectedDate = DateTime.Today.AddDays(-1);
+            StartedDatePicker.SelectedDate = DateTime.Today.Date;
+            EndedDatePicker.SelectedDate = DateTime.Today.Date;
+            DeadlineDatePicker.SelectedDate = DateTime.Today.Date;
             this.DataContext = this;
         }
 
@@ -96,9 +96,9 @@ namespace Canban.View.Windows
             UpdateTasks(taskId, new
             {
                 Name = TitleTextbox.Text,
-                Started = StartedDatePicker.SelectedDate,
-                Deadline = DeadlineDatePicker.SelectedDate,
-                Completed = EndedDatePicker.SelectedDate,
+                Started = StartedDatePicker.SelectedDate.Value.Date,
+                Deadline = DeadlineDatePicker.SelectedDate.Value.Date,
+                Completed = EndedDatePicker.SelectedDate.Value.Date,
                 Desc = desc == "" ? null : desc,
             });
             db.SaveChanges();
@@ -154,9 +154,9 @@ namespace Canban.View.Windows
             }
             TaskName = task.Name;
             TitleTextbox.Text = TaskName;
-            StartedDatePicker.SelectedDate = task.Started == new DateTime(1,1,1,0,0,0) ? DateTime.Today : task.Started;
-            DeadlineDatePicker.SelectedDate = task.Deadline == new DateTime(1, 1, 1, 0, 0, 0) ? DateTime.Today : task.Deadline;
-            EndedDatePicker.SelectedDate = task.Completed == new DateTime(1, 1, 1, 0, 0, 0) ? DateTime.Today : task.Completed;
+            StartedDatePicker.SelectedDate = task.Started == new DateTime(1,1,1,0,0,0) ? DateTime.Today.Date : task.Started;
+            DeadlineDatePicker.SelectedDate = task.Deadline == new DateTime(1, 1, 1, 0, 0, 0) ? DateTime.Today.Date : task.Deadline;
+            EndedDatePicker.SelectedDate = task.Completed == new DateTime(1, 1, 1, 0, 0, 0) ? DateTime.Today.Date : task.Completed;
             DescRTextBox.Text = task.Desc;
             db.ChangeTracker.Clear();
         }

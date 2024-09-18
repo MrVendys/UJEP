@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace Canban.View.UserControls
 {
@@ -24,6 +25,15 @@ namespace Canban.View.UserControls
                 OnPropertyChanged("BoardName");
                 }
         }
+        private string boardColor = "White";
+        public string BoardColor
+        {
+            get { return boardColor; }
+            set
+            {
+                boardColor = value;
+            }
+        }
         protected void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
@@ -31,6 +41,8 @@ namespace Canban.View.UserControls
         public BoardControl(BoardModel boardModel)
         {
             boardName = boardModel.Name;
+            boardColor = boardModel.Color;
+            //this.MainGrid.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString(this.boardColor));
             this.boardModel = boardModel;
             InitializeComponent();
             DataContext = this;
